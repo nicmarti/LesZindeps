@@ -1,0 +1,5 @@
+The code source of this project is distributed under the Affero GPL
+GNU AFFERO GENERAL PUBLIC LICENSE
+Version 3, 19 November 2007
+
+Please see COPYING.AGPL.txt for the full text license

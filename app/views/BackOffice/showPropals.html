@@ -1,0 +1,32 @@
+#{extends 'main.html' /}
+#{set title:'BackOffice' /}
+<h1>Liste des missions envoyées</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Creation Date</th>
+        <th>TJM</th>
+        <th>Localisation</th>
+        <th>Contact</th>
+
+    </tr>
+    </thead>
+
+    #{list items:listOfPropals, as:'propal'}
+    <tr>
+
+        <td>${propal.title}</td>
+        <td>${propal.description}</td>
+        <td>${propal.creationDate}</td>
+        <td>${propal.tjm}</td>
+        <td>${propal.localisation}</td>
+        <td>${propal.contact}</td>
+    </tr>
+
+
+    #{/list}
+
+</table>

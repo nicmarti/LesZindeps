@@ -1,0 +1,76 @@
+Zindep(z0):
+ email: jblemee@jesaispas.fr
+ firstName: Jean-Baptiste
+ lastName: Lemée
+ memberSince: 2010-12-21
+ location: Paris
+
+Zindep(z1):
+ email: nicolas@innoteria.fr
+ firstName: Nicolas
+ lastName: Martignole
+ memberSince: 2010-12-22
+ location: Paris
+
+Zindep(z2):
+ email: francois@ostyn.fr
+ firstName: François
+ lastName: Ostyn
+ memberSince: 2010-12-12
+ location: Paris
+
+Zindep(z3):
+ email: mathilde@lemee.fr
+ firstName: Mathilde
+ lastName: Lemée
+ memberSince: 2010-12-12
+ location: Paris
+
+Zindep(z4):
+ email: antonio@goncalves.fr
+ firstName: Antonio
+ lastName: Goncalves
+ memberSince: 2010-12-12
+ location: Paris
+
+Zindep(z5):
+ email: thierry@balla.fr
+ firstName: Thierry
+ lastName: Balla
+ memberSince: 2010-12-12
+ location: Paris
+
+Zindep(z6):
+ email: benoit@test.fr
+ firstName: Benoît
+ lastName: Test
+ memberSince: 2010-11-12
+ location: Grenoble
+
+Zindep(z7):
+ email: thomas@verin.fr
+ firstName: Thomas
+ lastName: Verion
+ memberSince: 2010-11-12
+ location: Geneve
+
+Zindep(z8):
+ email: pierre1@test.fr
+ firstName: Jacques
+ lastName: Test1
+ memberSince: 2010-11-12
+ location: Bordeaux
+
+Zindep(z9):
+ email: pierre2@test.fr
+ firstName: Paul
+ lastName: Test2
+ memberSince: 2010-11-12
+ location: Bordeaux
+
+Zindep(z10):
+ email: pierre3@test.fr
+ firstName: Pierre
+ lastName: Test3
+ memberSince: 2010-11-12
+ location: Bordeaux

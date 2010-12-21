@@ -1,0 +1,9 @@
+GET     /                                       Application.index
+GET /qui            Application.qui
+GET /mission        Application.mission
+POST    /submitMission     Application.submitMission
+
+GET     /public/                                staticDir:public
+
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}
