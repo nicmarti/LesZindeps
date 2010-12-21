@@ -1,37 +1,32 @@
 #{extends 'main.html' /}
-#{set title:'Home' /}
+#{set title:'Qui' /}
+<div class="grid_8 prefix_2">
+    <p id="time">Qui sont les Zindeps ?</p>
+</div>
 
-<p id="time">Qui sont les Zindeps ?</p>
 
-<div class="container_12">
-
-
-    <div class="grid_8 prefix_2">
+<div class="grid_8 prefix_2">
     #{form @search()}
-        <label>Rechercher par nom ou prénom :</label>
-        <input type="text" name="s" value=""/>
-        <input type="submit" value="Chercher"/>
+    <label>Rechercher par nom ou prénom :</label>
+    <input type="text" name="s" value=""/>
+    <input type="submit" value="Chercher"/>
     #{/form}
-    </div>
+</div>
 
-    <div class="grid_8 prefix_2">
-    
+<div class="grid_8 prefix_2">
+
 
     #{list items:listOfZindeps, as:'indep'}
-        <table>
-            <tr>
-                <td><img src="http://www.gravatar.com/avatar/${indep.gravatarId}" alt=""/></td>
-                <td>${indep.firstName} ${indep.lastName}</td>
-                <td>#{a @showProfile(indep.id,indep.firstName,indep.lastName)}Voir le profil complet#{/a}</td>
-            </tr>
-        </table>
-      
+    <table>
+        <tr>
+            <td><img src="http://www.gravatar.com/avatar/${indep.gravatarId}" alt=""/></td>
+            <td>${indep.firstName} ${indep.lastName}</td>
+            <td>#{a @showProfile(indep.id,indep.firstName,indep.lastName)}Voir le profil complet#{/a}</td>
+        </tr>
+    </table>
+
     #{/list}
 
 
-    </div>
-    <div class="grid_6">
-
-    </div>
-    <div class="clear">&nbsp;</div>
 </div>
+<div class="clear">&nbsp;</div>

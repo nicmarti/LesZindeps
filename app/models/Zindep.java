@@ -54,6 +54,10 @@ public class Zindep extends GenericModel {
     @Column(name = "zindep_index")
     public String index;
 
+    @Lob
+    public String bio;
+
+
 
     @Override
     public String toString() {

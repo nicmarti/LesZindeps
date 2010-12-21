@@ -3,6 +3,7 @@ Zindep(z0):
  firstName: Jean-Baptiste
  lastName: Lemée
  memberSince: 2010-12-21
+ bio: Auteur du site java freelance
  location: Paris
 
 Zindep(z1):
@@ -10,6 +11,7 @@ Zindep(z1):
  firstName: Nicolas
  lastName: Martignole
  memberSince: 2010-12-22
+ bio: Indépendant depuis mi 2008, auteur du blog le Touilleur Express.
  location: Paris
 
 Zindep(z2):
@@ -17,6 +19,7 @@ Zindep(z2):
  firstName: François
  lastName: Ostyn
  memberSince: 2010-12-12
+ bio: Exemple de bio
  location: Paris
 
 Zindep(z3):
@@ -25,6 +28,7 @@ Zindep(z3):
  lastName: Lemée
  memberSince: 2010-12-12
  location: Paris
+ bio: Exemple de bio
 
 Zindep(z4):
  email: antonio@goncalves.fr
@@ -32,6 +36,7 @@ Zindep(z4):
  lastName: Goncalves
  memberSince: 2010-12-12
  location: Paris
+ bio: Exemple de bio
 
 Zindep(z5):
  email: thierry@balla.fr
@@ -39,6 +44,7 @@ Zindep(z5):
  lastName: Balla
  memberSince: 2010-12-12
  location: Paris
+ bio: Exemple de bio
 
 Zindep(z6):
  email: benoit@test.fr
@@ -46,13 +52,15 @@ Zindep(z6):
  lastName: Test
  memberSince: 2010-11-12
  location: Grenoble
+ bio: Exemple de bio
 
 Zindep(z7):
  email: thomas@verin.fr
  firstName: Thomas
- lastName: Verion
+ lastName: Verin
  memberSince: 2010-11-12
  location: Geneve
+ bio: Exemple de bio
 
 Zindep(z8):
  email: pierre1@test.fr
@@ -60,17 +68,20 @@ Zindep(z8):
  lastName: Test1
  memberSince: 2010-11-12
  location: Bordeaux
+ bio: Exemple de bio
 
 Zindep(z9):
  email: pierre2@test.fr
- firstName: Paul
+ firstName: Patrick
  lastName: Test2
  memberSince: 2010-11-12
- location: Bordeaux
+ location: Marseille
+ bio: Exemple de bio
 
 Zindep(z10):
  email: pierre3@test.fr
- firstName: Pierre
+ firstName: Christophe
  lastName: Test3
  memberSince: 2010-11-12
- location: Bordeaux
+ location: Lyon
+ bio: Exemple de bio

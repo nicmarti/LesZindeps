@@ -54,7 +54,16 @@
 </p>
 #{/}
 
-#{field 'zindep.memeberSince'}
+
+#{field 'zindep.bio'}
+<p>
+    <label>Bio :</label>
+    <textarea id="${field.id}" name="${field.name}" cols="60" rows="6" class="${field.errorClass}">${field.value}</textarea> 
+    <span class="error">${field.error}</span><br/>
+</p>
+#{/}
+
+#{field 'zindep.memberSince'}
 <p>
     <label>Membre depuis :</label>
     <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
@@ -64,7 +73,7 @@
 #{/}
 
 <script type="text/javascript" charset="utf-8">
-    $("#zindep_memeberSince").datepicker({dateFormat:'dd/MM/yy', showAnim:'fadeIn'})
+    $("#zindep_memberSince").datepicker({dateFormat:'dd/MM/yy', showAnim:'fadeIn'})
 </script>
 
 
