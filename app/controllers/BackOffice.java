@@ -2,6 +2,7 @@ package controllers;
 
 import models.Propal;
 import models.Zindep;
+import org.apache.commons.codec.digest.DigestUtils;
 import play.data.validation.Valid;
 import play.libs.Codec;
 import play.mvc.Controller;
@@ -47,9 +48,7 @@ public class BackOffice extends Controller {
 
         zindep.validateAndSave();
 
-        // Gravatar
-       zindep.gravatarId = Codec.hexMD5(zindep.email.trim().toLowerCase());
-        
+       
         render();
     }
 

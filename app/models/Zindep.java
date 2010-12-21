@@ -6,11 +6,9 @@ import play.data.validation.Email;
 import play.data.validation.MaxSize;
 import play.data.validation.Required;
 import play.db.jpa.GenericModel;
+import play.libs.Codec;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -32,21 +30,21 @@ public class Zindep extends GenericModel {
     @MaxSize(255)
     public String email;
 
-    @Required(message="Ce champ est obligatoire")
+    @Required(message = "Ce champ est obligatoire")
     @MaxSize(255)
     public String firstName;
 
-    @Required(message="Ce champ est obligatoire")
+    @Required(message = "Ce champ est obligatoire")
     @MaxSize(255)
     public String lastName;
 
     // Depuis quand tu fais partie du groupe ?
     public Date memberSince;
 
-    @Required(message="Ce champ est obligatoire")
+    @Required(message = "Ce champ est obligatoire")
     @Lob
     public String location;
-    
+
     public String gravatarId;
 
 
@@ -66,5 +64,13 @@ public class Zindep extends GenericModel {
      */
     public static List<Zindep> findAllByName() {
         return Zindep.find("from Zindep order by lastName").fetch();
+    }
+
+    @PrePersist
+    protected void updateGravatar() {
+        if (email != null) {
+            // Gravatar
+            this.gravatarId = Codec.hexMD5(email.trim().toLowerCase());
+        }
     }
 }
