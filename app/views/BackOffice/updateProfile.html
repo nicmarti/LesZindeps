@@ -1,10 +1,70 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+#{extends 'main.html' /}
+#{set title:'BackOffice' /}
+<h1>Editer un profil</h1>
 
-</body>
-</html>
+#{ifErrors}
+<div class="error">
+    <h2>Attention il y a des erreurs</h2>
+</div>
+#{/ifErrors}
+
+<!-- Tag play cree dans views/tags -->
+#{jQueryValidate class:models.Zindep.class, key:'zindep' /}
+
+#{form id:'joinForm', action:@BackOffice.doUpdateProfile()}
+
+<input type="hidden" name="idEdit" value="${zindep.id}"/>
+        
+#{field 'zindep.email'}
+<p>
+    <label>Adresse email :</label>
+    <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
+           size="90" maxlength="255">
+    <span class="error">${field.error}</span><br/>
+
+</p>
+#{/}
+
+#{field 'zindep.firstName'}
+<p>
+    <label>Prénom :</label>
+    <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
+           size="90" maxlength="255">
+    <span class="error">${field.error}</span><br/>
+</p>
+#{/}
+
+#{field 'zindep.lastName'}
+<p>
+    <label>Nom :</label>
+    <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
+           size="90" maxlength="255">
+    <span class="error">${field.error}</span><br/>
+</p>
+#{/}
+
+#{field 'zindep.location'}
+<p>
+    <label>Ville :</label>
+    <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
+           size="90" maxlength="255">
+    <span class="error">${field.error}</span><br/>
+</p>
+#{/}
+
+#{field 'zindep.memeberSince'}
+<p>
+    <label>Membre depuis :</label>
+    <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
+           size="90" maxlength="255">
+    <span class="error">${field.error}</span><br/>
+</p>
+#{/}
+
+<script type="text/javascript" charset="utf-8">
+    $("#zindep_memeberSince").datepicker({dateFormat:'dd/MM/yy', showAnim:'fadeIn'})
+</script>
+
+
+<p class="buttons"><input type="submit" value="Enregistrer"/></p>
+#{/form}

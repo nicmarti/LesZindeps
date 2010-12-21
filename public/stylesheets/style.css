@@ -420,3 +420,26 @@ footer p
 	font-size: 12px;
 }
 
+.errorbox {
+    background: #FCF5F5;
+    border: 1px solid #db9ea0;
+    margin: 0 0 30px;
+    padding: 10px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+.error {
+    color: #FC3535;
+    padding-right: 10px;
+}
+
+.successbox {
+    background: #e5f4e1;
+    border: 1px solid #d1e7ca;
+    margin: 0 0 30px;
+    padding: 10px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+

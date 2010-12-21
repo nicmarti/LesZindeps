@@ -1,10 +1,33 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+#{extends 'main.html' /}
+#{set title:'BackOffice' /}
+<h1>Liste des Zindeps</h1>
+#{if flash.error}
+<div class="error">
+    <h2>${flash.error}</h2>
+</div>
+#{/if}
+#{if flash.success}
+<div class="greenbox">
+    ${flash.success}
+</div>
+#{/if}
+<table>
+    <thead>
+    <tr>
+        <th>Nom</th>
+        <th>Action</th>
 
-</body>
-</html>
+    </tr>
+    </thead>
+
+    #{list items:listOfZindeps, as:'indep'}
+    <tr>
+
+        <td>${indep.firstName} ${indep.lastName}</td>
+        <td>#{a @updateProfile(indep.id)}Editer le profil#{/a}</td>
+    </tr>
+
+
+    #{/list}
+
+</table>

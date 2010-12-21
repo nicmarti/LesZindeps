@@ -4,29 +4,29 @@
 <p id="time">Qui sont les Zindeps ?</p>
 
 <div class="container_12">
+    <div class="grid_8 prefix_2">
+
+        <table>
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Gravatar</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            #{list items:listOfZindeps, as:'indep'}
+            <tr>
+                <td>${indep.firstName} ${indep.lastName}</td>
+                <td><img src="http://www.gravatar.com/avatar/${indep.gravatarId}"/></td>
+            </tr>
+            #{/list}
+
+            </tbody>
+        </table>
+    </div>
     <div class="grid_6">
 
-    <table>
-        <thead>
-        <tr>
-            <th>Nom</th>
-            <th>Détails</th>
-        </tr>
-        </thead>
-        <tbody>
-
-        #{list items:listOfZindeps, as:'indep'}
-        <tr>
-            <td>${indep.firstName} ${indep.lastName}</td>
-            <td><a href="#">Voir</a></td>
-        </tr>
-        #{/list}
-
-        </tbody>
-    </table>
-        </div>
-    <div class="grid_6">
-       
     </div>
     <div class="clear">&nbsp;</div>
 </div>

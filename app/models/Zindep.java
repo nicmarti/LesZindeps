@@ -1,7 +1,9 @@
 package models;
 
+import net.sf.oval.constraint.Max;
 import org.hibernate.annotations.GenericGenerator;
 import play.data.validation.Email;
+import play.data.validation.MaxSize;
 import play.data.validation.Required;
 import play.db.jpa.GenericModel;
 
@@ -27,20 +29,25 @@ public class Zindep extends GenericModel {
 
     @Required(message = "Email est obligatoire")
     @Email
+    @MaxSize(255)
     public String email;
 
-    @Required
+    @Required(message="Ce champ est obligatoire")
+    @MaxSize(255)
     public String firstName;
 
-    @Required
+    @Required(message="Ce champ est obligatoire")
+    @MaxSize(255)
     public String lastName;
 
     // Depuis quand tu fais partie du groupe ?
     public Date memberSince;
 
-    @Required
+    @Required(message="Ce champ est obligatoire")
     @Lob
     public String location;
+    
+    public String gravatarId;
 
 
     @Override
