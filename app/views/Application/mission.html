@@ -1,10 +1,9 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-<p id="time">Proposer une mission</p>
-
-<div class="container_12">
+        
     <div class="grid_8 prefix_2">
+        <h1>Proposer une mission</h1>
         #{form @submitMission()}
         <p>Vous êtes à la recherche de compétences Java ? Proposez simplement votre mission, soyez direct, ne nous
             proposez pas de copier-coller d'une offre type Monster que nous ne lirons même pas... Bref soyez aussi
@@ -15,8 +14,7 @@
         <p>
             <label>Titre de la mission :</label>
             <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
-                   size="90" maxlength="255">
-            <span class="error">${field.error}</span><br/>
+                   size="60" maxlength="255"><span class="error">${field.error}</span><br/>
             <em>Indiquez clairement le type de profil, le niveau recherché. Le titre doit être précis et clair.</em>
 
         </p>
@@ -27,7 +25,7 @@
         <p>
             <label>Description :</label>
             <textarea id="desc" name="description" cols="60" rows="6"></textarea>
-            <span class="error">${field.error}</span><br/>
+<span class="error">${field.error}</span><br/>
             <em>Type de client, durée, environnement technique, compétences requises, objectif de la mission</em>
 
         </p>
@@ -73,8 +71,4 @@
 
     </div>
 
-    <div class="grid_6">
-
-    </div>
     <div class="clear">&nbsp;</div>
-</div>

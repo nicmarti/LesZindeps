@@ -18,25 +18,29 @@
     #{get 'moreScripts' /}
 </head>
 <body>
-<div class="container_12" id="maincontact">
-    <header>
-        <h1>Les Zindeps</h1>
-    </header>
+<div class="container_12" id="header">
+    <div class="grid_12">
+        <img src="../../public/images/leszindeps.png"/>
+    </div>
+    <div class="grid_4 prefix_8" id="nav">
+            <a id="home" href="@{Application.index()}"
+               class="${request.action =~ /index/ ? 'selected' : ''}">Accueil</a>
+            <a id="qui" href="@{Application.qui()}" class="${request.action =~ /qui/ ? 'selected' : ''}">Qui ?</a>
+            <a id="mission" href="@{Application.mission()}" class="${request.action =~ /mission/ ? 'selected' : ''}">Mission</a>
+    </div>
+</div>
+<div class="container_12" id="mainContent">
+    #{doLayout /}
+</div>
 
-    <nav>
-        <a id="home" href="@{Application.index()}" class="${request.action =~ /index/ ? 'selected' : ''}">Accueil</a>
-        <a id="qui" href="@{Application.qui()}" class="${request.action =~ /qui/ ? 'selected' : ''}">Qui ?</a>
-        <a id="mission" href="@{Application.mission()}" class="${request.action =~ /mission/ ? 'selected' : ''}">Mission</a>
-    </nav>
+<div class="clear"></div>
 
-    <section>
-        #{doLayout /}
-    </section>
+<div class="container_12">
+    <div id="footer" class="grid_12">
+        <p>Copyright(c) 2010 les Zindeps - Travail distribué en licence AGPL</P>
 
-    <footer>
-       <p>Copyright(c) 2010 les Zindeps - Travail distribué en licence AGPL</P>
-       <p>Propulsé avec Play! Framework 1.1</P>
-    </footer>
+        <p>Propulsé avec Play! Framework 1.1</P>
+    </div>
 </div>
 </body>
 </html>
