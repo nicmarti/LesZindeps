@@ -157,7 +157,7 @@ nav a.selected
     font-size: 30px;
 }
 
-#slogan {
+.lightText {
      color: rgba(20,20,20,.6);
     text-align: center;
     font-family: "Qlassik Bold";

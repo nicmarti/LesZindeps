@@ -1,4 +1,7 @@
 GET     /                                       Application.index
+
+GET /p/{firstName}/{lastName}/{id} Application.showProfile
+
 GET /qui            Application.qui
 GET /mission        Application.mission
 POST    /submitMission     Application.submitMission

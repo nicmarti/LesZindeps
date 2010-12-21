@@ -7,6 +7,7 @@ import play.data.validation.MaxSize;
 import play.data.validation.Required;
 import play.db.jpa.GenericModel;
 import play.libs.Codec;
+import play.templates.JavaExtensions;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -48,6 +49,12 @@ public class Zindep extends GenericModel {
     public String gravatarId;
 
 
+    @Lob
+    // Rename to avoir mysql being lost
+    @Column(name = "zindep_index")
+    public String index;
+
+
     @Override
     public String toString() {
         return "Zindep {" +
@@ -66,9 +73,31 @@ public class Zindep extends GenericModel {
         return Zindep.find("from Zindep order by lastName").fetch();
     }
 
+
+    public static List<Zindep> findByLastNameLike(String s) {
+        if (s == null) {
+            return findAllByName();
+        }
+        if (s.trim().equals("")) {
+            return findAllByName();
+        }
+
+        return find("from Zindep z where z.index like ? order by z.lastName", JavaExtensions.noAccents("%" + s.toLowerCase() + "%")).fetch();
+
+    }
+
+
+    /**
+     * Creation d'un index lors de la modification de l'entité et création du champ gravatar
+     */
+    @PreUpdate
     @PrePersist
-    protected void updateGravatar() {
-        if (email != null) {
+    void index() {
+        this.index = JavaExtensions.noAccents(this.firstName).toLowerCase() + " ";
+        this.index += JavaExtensions.noAccents(this.lastName).toLowerCase() + " ";
+
+
+         if (email != null) {
             // Gravatar
             this.gravatarId = Codec.hexMD5(email.trim().toLowerCase());
         }
