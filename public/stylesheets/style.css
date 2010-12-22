@@ -238,7 +238,10 @@ form .error {
 .errorbox {
     background: #FCF5F5;
     border: 1px solid #db9ea0;
-    margin: 0 0 30px;
+    margin-top: 5px;
+    margin-right: 0;
+    margin-left: 0;
+    margin-bottom: 30px;
     padding: 10px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
