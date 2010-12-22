@@ -20,13 +20,14 @@
 <body>
 <div class="container_12" id="header">
     <div class="grid_12">
-        <img src="../../public/images/leszindeps.png"/>
+        <img src="@{'public/images/leszindeps.png'}"/>
     </div>
     <div class="grid_4 prefix_8" id="nav">
             <a id="home" href="@{Application.index()}"
                class="${request.action =~ /index/ ? 'selected' : ''}">Accueil</a>
             <a id="qui" href="@{Application.qui()}" class="${request.action =~ /qui/ ? 'selected' : ''}">Qui ?</a>
             <a id="mission" href="@{Application.mission()}" class="${request.action =~ /mission/ ? 'selected' : ''}">Mission</a>
+            <a id="admin" href="@{Admin.index()}">Accès privé</a>
     </div>
 </div>
 <div class="container_12" id="mainContent">
