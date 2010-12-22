@@ -20,6 +20,11 @@ h1 {
     font-size:20px;
     padding-bottom:5px;
 }
+h2 {
+    font-size:18px;
+    padding-bottom:5px;
+}
+
 
 ol, ul {
     list-style: none;
@@ -237,11 +242,16 @@ form .error {
     padding: 10px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
+    padding-top:5px;
+    padding-bottom:5px;
 }
 
 .error {
     color: #FC3535;
     padding-right: 10px;
+    padding-top:5px;
+    padding-bottom:5px;
+    font-size:14px;
 }
 
 .successbox {
