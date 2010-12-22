@@ -1,0 +1,25 @@
+#{extends 'main.html' /}
+#{set title:'Admin' /}
+
+<div class="grid_8">
+ <h2>Accès membre</h2>
+ <img src="@{'public/images/google.png'}" alt="Google OpenID" border="0" align="top"/>#{a @authenticateOpenIdGoogle()}Je souhaite m'authentifier avec mon compte Google OpenID#{/a}
+
+
+#{if flash.error}
+<div class="errorbox">
+    <h2>Erreur</h2>
+    ${flash.error}
+</div>
+#{/if}
+
+
+
+
+</div>
+<div class="grid_4">
+<p><strong>Question :</strong> comment devenir membre des Zindeps ?</p>
+<p><strong>Réponse :</strong> le groupe n'accepte pas de candidature spontanée. Vous serez sollicité si vous connaissez
+l'un de nous et que votre candidature est retenue par l'ensemble des membres.</p>
+</div>
+<div class="clear"></div>
