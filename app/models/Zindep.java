@@ -39,24 +39,26 @@ public class Zindep extends GenericModel {
     @MaxSize(255)
     public String lastName;
 
-    // Depuis quand tu fais partie du groupe ?
+    @Temporal(TemporalType.DATE)
     public Date memberSince;
 
     @Required(message = "Ce champ est obligatoire")
     @Lob
     public String location;
 
+    // Champ calcule et mis a jour automatiquement
     public String gravatarId;
 
 
     @Lob
-    // Rename to avoir mysql being lost
+    // permet d'indexer simplement
     @Column(name = "zindep_index")
     public String index;
 
+
+    // De quoi raconter sa vie
     @Lob
     public String bio;
-
 
 
     @Override
@@ -105,5 +107,14 @@ public class Zindep extends GenericModel {
             // Gravatar
             this.gravatarId = Codec.hexMD5(email.trim().toLowerCase());
         }
+    }
+
+    public static Zindep findByMail(String mail) {
+        if(mail==null){
+            return null;
+        }
+       return Zindep.find("from Zindep z where email=:mail").bind("mail", mail.trim().toLowerCase()).first();
+
+
     }
 }
