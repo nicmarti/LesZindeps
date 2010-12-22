@@ -69,11 +69,12 @@
     <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
            size="90" maxlength="255">
     <span class="error">${field.error}</span><br/>
+    <em>Format: yy-mm-dd</em>
 </p>
 #{/}
 
 <script type="text/javascript" charset="utf-8">
-    $("#zindep_memberSince").datepicker({dateFormat:'dd/MM/yy', showAnim:'fadeIn'})
+    $("#zindep_memberSince").datepicker({dateFormat:'yy-mm-dd', showAnim:'fadeIn'})
 </script>
 
 

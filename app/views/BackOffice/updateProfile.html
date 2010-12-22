@@ -1,12 +1,19 @@
 #{extends 'main.html' /}
 #{set title:'BackOffice' /}
+
+<div class="grid_12">
 <h1>Editer un profil</h1>
+
 
 #{ifErrors}
 <div class="error">
     <h2>Attention il y a des erreurs</h2>
 </div>
 #{/ifErrors}
+
+</div>
+
+<div class="grid_8">
 
 <!-- Tag play cree dans views/tags -->
 #{jQueryValidate class:models.Zindep.class, key:'zindep' /}
@@ -52,19 +59,34 @@
 </p>
 #{/}
 
-#{field 'zindep.memeberSince'}
+#{field 'zindep.memberSince'}
 <p>
     <label>Membre depuis :</label>
     <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
            size="90" maxlength="255">
     <span class="error">${field.error}</span><br/>
+    <em>Format : yyyy-mm-dd</em>
 </p>
 #{/}
 
+#{field 'zindep.bio'}
+<p>
+    <label>Bio :</label>
+    <textarea id="${field.id}" name="${field.name}" cols="60" rows="6" class="${field.errorClass}">${field.value}</textarea>
+    <span class="error">${field.error}</span><br/>
+</p>
+#{/}
 <script type="text/javascript" charset="utf-8">
-    $("#zindep_memeberSince").datepicker({dateFormat:'dd/MM/yy', showAnim:'fadeIn'})
+    $("#zindep_memberSince").datepicker({dateFormat:'yy-mm-dd', showAnim:'fadeIn'})
 </script>
 
 
 <p class="buttons"><input type="submit" value="Enregistrer"/></p>
 #{/form}
+
+</div>
+<div class="grid_4">
+<a href="http://www.gravatar.com">Gravatar :</a>
+<br/>
+    <img src="http://www.gravatar.com/avatar/${zindep.gravatarId}" alt=""/>    
+</div>
