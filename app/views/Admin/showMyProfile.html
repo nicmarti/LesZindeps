@@ -1,2 +1,80 @@
-Page du profil de ${zindep.firstName} ${zindep.lastName} <br/>
-        
+#{extends 'main.html' /}
+#{set title:'Mon profil' /}
+
+
+<div class="grid_8 prefix_2">
+    #{ifErrors}
+        <div class="errorbox">
+            <h2>Attention il y a des erreurs</h2>
+        </div>
+    #{/ifErrors}
+
+    #{if flash.success}
+        <div class="successbox">
+            ${flash.success}
+        </div>
+    #{/if}
+ 
+    <!-- Tag play cree dans views/tags -->
+    #{jQueryValidate class:models.Zindep.class, key:'zindep' /}
+
+    #{form id:'joinForm', action:@doUpdateMyProfile()}
+
+    <p><label>Adresse email :</label> ${zindep.email}</p>
+ 
+
+    #{field 'zindep.firstName'}
+    <p>
+        <label>Prénom :</label>
+        <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
+               size="90" maxlength="255">
+        <span class="error">${field.error}</span><br/>
+    </p>
+    #{/}
+
+    #{field 'zindep.lastName'}
+    <p>
+        <label>Nom :</label>
+        <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
+               size="90" maxlength="255">
+        <span class="error">${field.error}</span><br/>
+    </p>
+    #{/}
+
+    #{field 'zindep.location'}
+    <p>
+        <label>Ville :</label>
+        <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
+               size="90" maxlength="255">
+        <span class="error">${field.error}</span><br/>
+    </p>
+    #{/}
+
+    #{field 'zindep.memberSince'}
+    <p>
+        <label>Membre depuis :</label>
+        <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
+               size="90" maxlength="255">
+        <span class="error">${field.error}</span><br/>
+        <em>Format : yyyy-mm-dd</em>
+    </p>
+    #{/}
+
+    #{field 'zindep.bio'}
+    <p>
+        <label>Bio :</label>
+        <textarea id="${field.id}" name="${field.name}" cols="60" rows="6"
+                  class="${field.errorClass}">${field.value}</textarea>
+        <span class="error">${field.error}</span><br/>
+    </p>
+    #{/}
+    <script type="text/javascript" charset="utf-8">
+        $("#zindep_memberSince").datepicker({dateFormat:'yy-mm-dd', showAnim:'fadeIn'})
+    </script>
+
+
+    <p class="buttons"><input type="submit" value="Enregistrer"/></p>
+    #{/form}
+
+</div>
+

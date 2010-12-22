@@ -1,6 +1,7 @@
 package controllers;
 
 import models.Zindep;
+import play.data.validation.Valid;
 import play.libs.OpenID;
 import play.mvc.Before;
 import play.mvc.Controller;
@@ -16,7 +17,9 @@ import java.util.List;
  */
 public class Admin extends Controller {
     // Protege toutes les methodes sauf index et authentification via Google
-    @Before(unless = {"index", "authenticateOpenIdGoogle"})
+    @Before(unless = {"index",
+            "authenticateOpenIdGoogle"
+    })
     static void checkLogin() {
         if (!session.contains("zindepId")) {
             flash.error("Merci de vous authentifier pour accéder à cette partie.");
@@ -92,4 +95,46 @@ public class Admin extends Controller {
         render(zindep); // cette variable zindep est celle utilisee dans la page HTML directement
 
     }
+
+    /**
+     * Sauvegarde les modifications
+     *
+     * @param zindep est une sorte de DTO
+     */
+    public static void doUpdateMyProfile(Zindep zindep) {
+        String id = session.get("zindepId");
+        if (id == null) {
+            error("Probleme avec l'authentification");
+        }
+        // Validation rules
+        validation.required(zindep.firstName);
+        validation.maxSize(zindep.firstName, 255);
+        validation.required(zindep.lastName);
+        validation.maxSize(zindep.lastName, 255);
+        validation.maxSize(zindep.location, 255);
+        validation.maxSize(zindep.bio, 2000);
+
+        // Handle errors
+        if (validation.hasErrors()) {
+            render("@showMyProfile", zindep);
+        }
+        Zindep existing = Zindep.findById(id);
+        if (existing == null) {
+            flash.error("Utilisateur non trouvé");
+            index();
+        }
+
+        // c'est pourri et je pense qu'il y a un moyen plus intelligent pour le faire
+        existing.lastName = zindep.lastName;
+        existing.firstName = zindep.firstName;
+        existing.memberSince = zindep.memberSince;
+        existing.location = zindep.location;
+        existing.bio = zindep.bio;
+
+        existing.save();
+
+        flash.success("Mise à jour effectuée");
+        showMyProfile();
+    }
+
 }
