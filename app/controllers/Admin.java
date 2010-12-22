@@ -16,15 +16,14 @@ import java.util.List;
  */
 public class Admin extends Controller {
     // Protege toutes les methodes sauf index et authentification via Google
+    @Before(unless = {"index", "authenticateOpenIdGoogle"})
+    static void checkLogin() {
+        if (!session.contains("zindepId")) {
+            flash.error("Merci de vous authentifier pour accéder à cette partie.");
+            index();
+        }
+    }
 
-//    @Before(unless = {"index", "authenticateOpenIdGoogle"})
-//    static void checkLogin() {
-//        if (!session.contains("zindepId")) {
-//            flash.error("Merci de vous authentifier pour accéder à cette partie.");
-//            index();
-//        }
-//    }
-//
     /**
      * Affiche la page d'accueil
      */
