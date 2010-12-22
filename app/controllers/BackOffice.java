@@ -60,7 +60,6 @@ public class BackOffice extends Controller {
     /**
      * Charge la fiche de l'indep spécifié
      *
-     * @param zindep a editer
      * @param id a editer
      */
     public static void updateProfile(String id) {
@@ -68,6 +67,11 @@ public class BackOffice extends Controller {
         render(zindep);
     }
 
+    /**
+     * Sauvegarde les modifications
+     * @param zindep est une sorte de DTO
+     * @param idEdit permet de repasser l'id... hummm c'est pas top 
+     */
     public static void doUpdateProfile(@Valid Zindep zindep, String idEdit) {
         // Handle errors
         if (validation.hasErrors()) {
@@ -89,7 +93,7 @@ public class BackOffice extends Controller {
         existing.save();
 
         flash.success("Mise à jour effectuée");
-        listZindeps();
+        index();
     }
 
 }
