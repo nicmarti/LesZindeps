@@ -2,9 +2,10 @@
 #{set title:'Profil' /}
 
 <div class="grid_8 prefix_2">
-    <p id="timeSmaller">${zindep.firstName} ${zindep.lastName}</p>
-
-    <p>Membre depuis ${zindep.memberSince?.format('MMMM yyyy')}</p>
+    <h1>${zindep.firstName} ${zindep.lastName}</h1>
+    <h3>${zindep.location}</h3>
+<br/>
+    <p><strong>Membre depuis</strong> ${zindep.memberSince?.format('MMMM yyyy')}</p>
     <p>${zindep.bio}</p>
 
 </div>
