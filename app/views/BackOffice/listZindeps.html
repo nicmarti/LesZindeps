@@ -15,19 +15,20 @@
     <thead>
     <tr>
         <th>Nom</th>
-        <th>Action</th>
+        <th>Prénom</th>
+        <th>Membre depuis</th>
+        <th>Localisation</th>
 
     </tr>
     </thead>
 
     #{list items:listOfZindeps, as:'indep'}
     <tr>
-
-        <td>${indep.firstName} ${indep.lastName}</td>
-        <td>#{a @updateProfile(indep.id)}Editer le profil#{/a}</td>
+        <td>${indep.firstName}</td>
+        <td>${indep.lastName}</td>
+        <td>${indep.memberSince}</td>
+        <td>${indep.location}</td>
     </tr>
-
-
     #{/list}
 
 </table>

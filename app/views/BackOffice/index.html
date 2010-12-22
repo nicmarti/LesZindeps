@@ -1,5 +1,7 @@
 #{extends 'main.html' /}
 #{set title:'BackOffice' /}
+
+<div class="grid_8">
 <h1>Accueil</h1>
 
 <p>L'accès à cette page sera protégé par login/password</p>
@@ -7,3 +9,13 @@
 #{a @newZindep()}Créer un nouvel zindep#{/a}<br/>
 #{a @listZindeps()}Lister tous les zindeps#{/a}  <br/>
 #{a @showPropals()}Lister toutes les propositions de mission#{/a} <br/>
+
+</div>
+<div class="grid_4">
+#{if flash.success}
+    <div class="successbox">
+        ${flash.success}
+    </div>
+#{/if}
+</div>     
+ 

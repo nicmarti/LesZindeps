@@ -21,7 +21,6 @@ public class BackOffice extends Controller {
         render();
     }
 
-
     /**
      * Affiche la liste des propals.
      */
@@ -45,55 +44,19 @@ public class BackOffice extends Controller {
             render("@newZindep", zindep);
         }
 
-
         zindep.validateAndSave();
-
-       
-        render();
+        flash.success("Nouvel indépendant enregistré");
+        index();
     }
 
+    /**
+     * Retourne la liste des Zindeps.
+     * Le pattern flat controller dit que tout le code métier doit etre fait par les Entities (au sens DDD
+     * et pas JPA).
+     */
     public static void listZindeps() {
         List<Zindep> listOfZindeps = Zindep.findAllByName();
         render(listOfZindeps);
-    }
-
-    /**
-     * Charge la fiche de l'indep spécifié
-     *
-     * @param id a editer
-     */
-    public static void updateProfile(String id) {
-        Zindep zindep = Zindep.findById(id);
-        render(zindep);
-    }
-
-    /**
-     * Sauvegarde les modifications
-     * @param zindep est une sorte de DTO
-     * @param idEdit permet de repasser l'id... hummm c'est pas top 
-     */
-    public static void doUpdateProfile(@Valid Zindep zindep, String idEdit) {
-        // Handle errors
-        if (validation.hasErrors()) {
-            render("@updateProfile", zindep);
-        }
-        Zindep existing=Zindep.findById(idEdit);
-        if(existing==null){
-            flash.error("Utilisateur non trouvé");
-            listZindeps();
-        }
-
-        // c'est pourri et je pense qu'il y a un moyen plus intelligent pour le faire
-        existing.email=zindep.email;
-        existing.lastName=zindep.lastName;
-        existing.firstName=zindep.firstName;
-        existing.memberSince=zindep.memberSince;
-        existing.location=zindep.location;
-
-        existing.save();
-
-        flash.success("Mise à jour effectuée");
-        index();
     }
 
 }
