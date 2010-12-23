@@ -17,8 +17,13 @@ import java.util.List;
  */
 public class Admin extends Controller {
     // Protege toutes les methodes sauf index et authentification via Google
+
     @Before(unless = {"index",
-            "authenticateOpenIdGoogle"
+            "authenticateOpenIdGoogle",
+            "showMyProfile",
+            "doUpdateMyProfile"
+
+
     })
     static void checkLogin() {
         if (!session.contains("zindepId")) {
@@ -90,7 +95,9 @@ public class Admin extends Controller {
         }
 
         Zindep zindep = Zindep.findById(id);
-        notFoundIfNull(zindep);
+        if(zindep==null){
+            error("Zindep non trouvé");
+        }
 
         render(zindep); // cette variable zindep est celle utilisee dans la page HTML directement
 

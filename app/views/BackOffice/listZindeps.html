@@ -19,6 +19,7 @@
         <th>Membre depuis</th>
         <th>Localisation</th>
         <th>Email</th>
+        <th>Action</th>
 
     </tr>
     </thead>
@@ -28,8 +29,9 @@
         <td>${indep.firstName}</td>
         <td>${indep.lastName}</td>
         <td>${indep.memberSince}</td>
-        <td>${indep.localisation}</td>
+        <td>${indep.location}</td>
         <td>${indep.email}</td>
+        <td>#{a @updateProfile(indep.id)}Editer#{/a}</td>
     </tr>
     #{/list}
 
