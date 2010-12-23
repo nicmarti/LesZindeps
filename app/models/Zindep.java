@@ -60,6 +60,10 @@ public class Zindep extends GenericModel {
     @Lob
     public String bio;
 
+    // De quoi parler des technos
+    @Lob
+    public String techno;
+
 
     @Override
     public String toString() {
@@ -114,7 +118,5 @@ public class Zindep extends GenericModel {
             return null;
         }
        return Zindep.find("from Zindep z where email=:mail").bind("mail", mail.trim().toLowerCase()).first();
-
-
     }
 }

@@ -76,6 +76,17 @@
     <span class="error">${field.error}</span><br/>
 </p>
 #{/}
+
+
+#{field 'zindep.techno'}
+<p>
+    <label>Technos/Domaine de compétences :</label>
+    <textarea id="${field.id}" name="${field.name}" cols="60" rows="6" class="${field.errorClass}">${field.value}</textarea>
+    <span class="error">${field.error}</span><br/>
+</p>
+#{/}
+
+
 <script type="text/javascript" charset="utf-8">
     $("#zindep_memberSince").datepicker({dateFormat:'yy-mm-dd', showAnim:'fadeIn'})
 </script>

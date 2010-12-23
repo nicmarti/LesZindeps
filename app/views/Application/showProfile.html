@@ -1,13 +1,17 @@
 #{extends 'main.html' /}
 #{set title:'Profil' /}
 
-<div class="grid_8 prefix_2">
+<div class="grid_5 prefix_2">
     <h1>${zindep.firstName} ${zindep.lastName}</h1>
     <h3>${zindep.location}</h3>
-<br/>
-    <p><strong>Membre depuis</strong> ${zindep.memberSince?.format('MMMM yyyy')}</p>
-    <p>${zindep.bio}</p>
+    <h3>Membre depuis</h3>
+    <p>${zindep.memberSince?.format('MMMM yyyy')}</p>
 
+    <h3>Présentation</h3>
+     <p>${zindep.bio}</p>
+
+    <h3>Domaines d'expertise</h3>
+     <p>${zindep.techno}</p>
 </div>
 
 <div class="clear">&nbsp;</div>

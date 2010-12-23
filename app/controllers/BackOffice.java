@@ -87,6 +87,8 @@ public class BackOffice extends Controller {
         existing.firstName = zindep.firstName;
         existing.memberSince = zindep.memberSince;
         existing.location = zindep.location;
+        existing.bio = zindep.bio;
+        existing.techno = zindep.techno;
 
         existing.save();
 
