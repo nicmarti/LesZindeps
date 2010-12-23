@@ -120,6 +120,7 @@ public class Admin extends Controller {
         validation.maxSize(zindep.lastName, 255);
         validation.maxSize(zindep.location, 255);
         validation.maxSize(zindep.bio, 2000);
+        validation.maxSize(zindep.techno, 2000);
 
         // Handle errors
         if (validation.hasErrors()) {
@@ -137,6 +138,7 @@ public class Admin extends Controller {
         existing.memberSince = zindep.memberSince;
         existing.location = zindep.location;
         existing.bio = zindep.bio;
+        existing.techno = zindep.techno;
 
         existing.save();
 
