@@ -1,87 +1,49 @@
+#
+# ATTENTION ce fichier est sur GitHub
+# Ne pas y référencer de vrais indeps, de vrais emails, sauf si vous voulez
+# avoir pleins de nouveaux amis dans votre dossier Spam
+#
 Zindep(z0):
- email: jblemee@jesaispas.fr
- firstName: Jean-Baptiste
- lastName: Lemée
- memberSince: 2010-12-21
- bio: Auteur du site java freelance
+ email: pierre@letesteur.fr
+ firstName: Pierre
+ lastName: Letesteur
+ memberSince: 01/01/2010
+ bio: Auteur du site java LeTesteur
+ techno: Java, JEE5, JEE6, Websphere,JBoss,Performance,Tuning,JMeter
  location: Paris
 
 Zindep(z1):
- email: nicolas@innoteria.fr
+ email: nicolasmartin@bidon.fr
  firstName: Nicolas
- lastName: Martignole
- memberSince: 2010-12-22
- bio: Indépendant depuis mi 2008, auteur du blog le Touilleur Express.
+ lastName: Martin
+ memberSince: 20/10/2010
+ bio: Indépendant depuis mi 2008, auteur du blog "Tout savoir sur Java"
+ techno: Scrum,Agile,Java,Javascript,Groovy,Websphere,Tomcat,JBoss,Geronimo,Spring
  location: Paris
 
 Zindep(z2):
- email: francois@ostyn.fr
- firstName: François
- lastName: Ostyn
- memberSince: 2010-12-12
- bio: Exemple de bio
- location: Paris
-
-Zindep(z3):
- email: mathilde@lemee.fr
- firstName: Mathilde
- lastName: Lemée
- memberSince: 2010-12-12
- location: Paris
- bio: Exemple de bio
-
-Zindep(z4):
- email: antonio@goncalves.fr
- firstName: Antonio
- lastName: Goncalves
- memberSince: 2010-12-12
- location: Paris
- bio: Exemple de bio
-
-Zindep(z5):
- email: thierry@balla.fr
- firstName: Thierry
- lastName: Balla
- memberSince: 2010-12-12
- location: Paris
- bio: Exemple de bio
-
-Zindep(z6):
- email: benoit@test.fr
- firstName: Benoît
- lastName: Test
- memberSince: 2010-11-12
- location: Grenoble
- bio: Exemple de bio
-
-Zindep(z7):
- email: thomas@verin.fr
- firstName: Thomas
- lastName: Verin
- memberSince: 2010-11-12
- location: Geneve
- bio: Exemple de bio
-
-Zindep(z8):
  email: pierre1@test.fr
  firstName: Jacques
  lastName: Test1
- memberSince: 2010-11-12
+ memberSince: 21/02/2010
  location: Bordeaux
- bio: Exemple de bio
+ techo: Adobe Flex,GWT,Flash,Javascript,HTML,Web,CSS,Design web
+ bio: Exemple de bio 1
 
-Zindep(z9):
+Zindep(z3):
  email: pierre2@test.fr
  firstName: Patrick
  lastName: Test2
- memberSince: 2010-11-12
+ memberSince: 02/04/2010
  location: Marseille
- bio: Exemple de bio
+ techno: Spring,Portlet,J2EE,Architecture,Finance de marché
+ bio: Exemple de bio 2
 
-Zindep(z10):
- email: pierre3@test.fr
+Zindep(z4):
+ email: Christophe@test.fr
  firstName: Christophe
  lastName: Test3
- memberSince: 2010-11-12
+ memberSince: 12/01/2009
  location: Lyon
- bio: Exemple de bio
+ techno: Assurance,Spring,J2EE,JEE5,JEE6,Agile,Scrum,Apache Camel,Lucene,Velocity,Tomcat
+ bio: Exemple de bio 3
