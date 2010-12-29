@@ -68,10 +68,10 @@ public class Zindep extends GenericModel {
     @Override
     public String toString() {
         return "Zindep {" +
-                "id='" + id + '\'' +
-                ", name='" + firstName +
-                " " + lastName +
-                '}';
+                "id=" + id +
+                ", name=" + firstName +
+                ", lastName= " + lastName +
+                "}";
     }
 
     /**
