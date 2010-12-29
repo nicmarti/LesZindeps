@@ -28,7 +28,7 @@
     <tr>
         <td>${indep.firstName}</td>
         <td>${indep.lastName}</td>
-        <td>${indep.memberSince}</td>
+        <td>${indep.memberSince.format('d MMMM yyyy')}</td>
         <td>${indep.location}</td>
         <td>${indep.email}</td>
         <td>#{a @updateProfile(indep.id)}Editer#{/a}</td>

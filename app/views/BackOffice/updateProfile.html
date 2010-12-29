@@ -1,6 +1,11 @@
 #{extends 'main.html' /}
 #{set title:'BackOffice' /}
 
+#{set moreScripts:'<script src="/public/javascripts/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/public/javascripts/jquery-ui-1.7.2.custom.min.js" type="text/javascript" charset="utf-8"></script>' /}
+
+
+
 <div class="grid_12">
 <h1>Editer un profil</h1>
 
@@ -59,15 +64,6 @@
 </p>
 #{/}
 
-#{field 'zindep.memberSince'}
-<p>
-    <label>Membre depuis :</label>
-    <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
-           size="90" maxlength="255">
-    <span class="error">${field.error}</span><br/>
-    <em>Format : yyyy-mm-dd</em>
-</p>
-#{/}
 
 #{field 'zindep.bio'}
 <p>
@@ -87,10 +83,23 @@
 #{/}
 
 
-<script type="text/javascript" charset="utf-8">
-    $("#zindep_memberSince").datepicker({dateFormat:'yy-mm-dd', showAnim:'fadeIn'})
-</script>
+#{field 'zindep.memberSince'}
+<p>
+    <label>Membre depuis :</label>
+    <input type="text" id="${field.id}" name="${field.name}" value="${field.value?.format('dd/MM/yy')}" class="${field.errorClass}"
+           size="90" maxlength="255">
+    <span class="error">${field.error}</span><br/>
+    <em>Format: dd/mm/yy</em>
+</p>
+#{/}
 
+<script type="text/javascript" charset="utf-8">
+    $("#zindep_memberSince").datepicker(
+    {dateFormat:'dd/mm/yy', showAnim:'fadeIn',
+        dayNamesMin:["Di","Lu","Ma","Me","Je","Ve","Sa"],
+        firstDay:'1'}
+            )
+</script>
 
 <p class="buttons"><input type="submit" value="Enregistrer"/></p>
 #{/form}
