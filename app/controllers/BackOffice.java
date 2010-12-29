@@ -44,6 +44,13 @@ public class BackOffice extends Controller {
             render("@newZindep", zindep);
         }
 
+
+        Zindep existing = Zindep.findByMail(zindep.email);
+        if (existing != null) {
+            flash.error("Attention, un compte avec cet email existe déjà.");
+            render("@newZindep", zindep);
+        }
+
         zindep.validateAndSave();
         flash.success("Nouvel indépendant enregistré");
         index();
@@ -101,9 +108,9 @@ public class BackOffice extends Controller {
         render(id);
     }
 
-    public static void confirmDelete(String id){
-        Zindep toDelete=Zindep.findById(id);
-        if(toDelete==null){
+    public static void confirmDelete(String id) {
+        Zindep toDelete = Zindep.findById(id);
+        if (toDelete == null) {
             flash.error("Fiche non trouvée");
             listZindeps();
         }
