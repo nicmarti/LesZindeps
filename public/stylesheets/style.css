@@ -270,3 +270,14 @@ form .error {
     -webkit-border-radius: 4px;
 }
 
+.openIdPanel{
+    line-height:20px;
+}
+
+.openidinput {
+    margin-top: 5px;
+    line-height: 22px;
+    padding-left: 32px;
+    background: url(http://sstatic.net/img/openid-large.png) no-repeat 0% 50%;
+    width: 250px;
+}

@@ -1,11 +1,20 @@
 #{extends 'main.html' /}
 #{set title:'Admin' /}
 
-<div class="grid_6">
+<div class="grid_6 openIdPanel">
  <h2>Accès privé</h2>
- <img src="@{'public/images/google.png'}" alt="Google OpenID" border="0" align="top"/>#{a @authenticateOpenIdGoogle()}Je souhaite m'authentifier avec mon compte Google OpenID#{/a}
+ <P>Sélectionnez l'une des 3 méthodes d'identification Open ID :</P>
+ <P>1. <img src="@{'public/images/google.png'}" alt="Google OpenID" border="0" align="middle"/>#{a @authenticateOpenIdGoogle()}Utiliser mon compte Google#{/a}</P>
+ <P>2. <img src="@{'public/images/yahoo.jpg'}" alt="Yahoo! OpenID" border="0" align="middle"/>#{a @authenticateOpenIdYahoo()}Utiliser mon compte Yahoo!#{/a}</P>
 
+ <P>3. Utilisez l'url de votre service Open Id directement :
+     #{form @authenticateOpenId()}
+     <input type="text" name="t" value="" class="openidinput"/>
+     <input type="submit" value="Ok"/>
+     #{/form}</P>
 
+ <P>Vous avez surement déjà un compte compatible Open Id sans le savoir.
+     <a href="http://openid.net/get-an-openid/" target="_blank">Découvrez comment vous authentifier !</a> </P>
 #{if flash.error}
 <div class="errorbox">
     <h2>Erreur</h2>
