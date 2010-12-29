@@ -16,16 +16,10 @@ import java.util.List;
  * @since 22 déc. 2010 21:48:49
  */
 public class Admin extends Controller {
-    // Protege toutes les methodes sauf index et authentification via Google
+    // Protege toutes les methodes sauf index et authentification via openid
 
     @Before(unless = {"index",
-            "authenticateOpenIdGoogle",
-            "authenticateOpenIdYahoo",
-            "authenticateOpenId",
-            "showMyProfile",
-            "doUpdateMyProfile"
-
-
+            "authenticateOpenId"
     })
     static void checkLogin() {
         if (!session.contains("zindepId")) {
@@ -41,98 +35,12 @@ public class Admin extends Controller {
         render();
     }
 
-    /**
-     * Réalise l'authentification
-     */
-    public static void authenticateOpenIdGoogle() {
-        if (OpenID.isAuthenticationResponse()) {
-            OpenID.UserInfo verifiedUser = OpenID.getVerifiedID();
-            if (verifiedUser == null) {
-                flash.error("Erreur OpenID");
-                index();
-            }
-
-            String userEmail = verifiedUser.extensions.get("email");
-            if (userEmail == null) {
-                flash.error("L'identification de votre compte sur le site des Zindeps s'effectue avec votre email." +
-                        " Vous devez authoriser le domaine leszindeps.fr à accéder à votre email pour vous authentifier."
-                );
-                index();
-            }
-
-            Zindep zindep = Zindep.findByMail(userEmail);
-            if (zindep == null) {
-                flash.error("Désolé votre compte n'existe pas. Demandez à l'équipe d'ajouter votre email "
-                        + userEmail
-                        + " pour pouvoir vous authentifier avec ce compte.");
-                index();
-            }
-            session.put("zindepId", zindep.id);
-            session.put("zindepEmail", zindep.email);
-
-            flash.success("Bienvenue " + zindep.firstName);
-
-            // Attention ne pas passer de parametre ici pr des raisons de securité
-            showMyProfile();
-
-        } else {
-            // Verify the id
-            if (!OpenID.id("https://www.google.com/accounts/o8/id").required("email", "http://axschema.org/contact/email").verify()) {
-                flash.put("error", "Oops. Cannot contact google");
-                index();
-            }
-        }
-    }
 
     /**
-     * Réalise l'authentification
+     * Réalise l'authentification.
+     * Le parametre action ne sert à rien ?
      */
-    public static void authenticateOpenIdYahoo() {
-        if (OpenID.isAuthenticationResponse()) {
-            OpenID.UserInfo verifiedUser = OpenID.getVerifiedID();
-            if (verifiedUser == null) {
-                flash.error("Erreur OpenID Yahoo");
-                index();
-            }
-
-            String userEmail = verifiedUser.extensions.get("email");
-            if (userEmail == null) {
-                flash.error("L'identification de votre compte sur le site des Zindeps s'effectue avec votre email." +
-                        " Vous devez authoriser le domaine leszindeps.fr à accéder à votre email pour vous authentifier."
-                );
-                index();
-            }
-
-            Zindep zindep = Zindep.findByMail(userEmail);
-            if (zindep == null) {
-                flash.error("Désolé votre compte n'existe pas. Demandez à l'équipe d'ajouter votre email "
-                        + userEmail
-                        + " pour pouvoir vous authentifier avec ce compte.");
-                index();
-            }
-            session.put("zindepId", zindep.id);
-            session.put("zindepEmail", zindep.email);
-
-            flash.success("Bienvenue " + zindep.firstName);
-
-            // Attention ne pas passer de parametre ici pr des raisons de securité
-            showMyProfile();
-
-        } else {
-            // Verify the id
-            if (!OpenID.id("http://yahoo.com/").required("email", "http://axschema.org/contact/email").verify()) {
-                // Il faut que vous soyez en ligne sur Internet et pas en localhost !
-                flash.put("error", "Impossible de s'authentifier au service Yahoo!");
-                index();
-            }
-        }
-    }
-
-
-    /**
-     * Réalise l'authentification
-     */
-    public static void authenticateOpenId(String t) {
+    public static void authenticateOpenId(String action,String openid_identifier) {
         if (OpenID.isAuthenticationResponse()) {
             OpenID.UserInfo verifiedUser = OpenID.getVerifiedID();
             if (verifiedUser == null) {
@@ -164,15 +72,17 @@ public class Admin extends Controller {
             showMyProfile();
 
         } else {
-            if (t == null) {
+            if (openid_identifier == null) {
+                flash.error("Param openid_identifier is null");
                 index();
             }
-            if (t.trim().isEmpty()) {
+            if (openid_identifier.trim().isEmpty()) {
+                flash.error("Param openid_identifier is empty");
                 index();
             }
 
             // Verify the id
-            if (!OpenID.id(t).required("email", "http://axschema.org/contact/email").verify()) {
+            if (!OpenID.id(openid_identifier).required("email", "http://axschema.org/contact/email").verify()) {
                 flash.put("error", "Impossible de s'authentifier avec l'URL utilisée.");
                 index();
             }
