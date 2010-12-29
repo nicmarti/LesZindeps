@@ -93,7 +93,7 @@ public class BackOffice extends Controller {
         existing.save();
 
         flash.success("Mise à jour effectuée");
-        index();
+        listZindeps();
     }
 
 
