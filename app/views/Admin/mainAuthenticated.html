@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>#{get 'title' /} ★ Les Zindeps</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/style.css'}">
+    <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/grid.css'}">
+    <link rel="stylesheet" type="text/css" media="screen"
+          href="@{'public/stylesheets/south-street/jquery-ui-1.7.2.custom.css'}"/>
+    #{get 'moreStyles' /}
+    <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.ico'}">
+
+    #{get 'moreScripts' /}
+</head>
+<body>
+<div class="container_12" id="header">
+    <div class="grid_12">
+        <img src="@{'public/images/leszindeps.png'}"/>
+    </div>
+
+    <div class="grid_5 prefix_4" id="nav">
+            <a id="home" href="@{Application.index()}">Accueil</a>
+            <a id="admin" href="@{Admin.welcome()}">Ma page</a>
+            <a id="mission" href="@{Admin.listPropals()}">Missions</a>
+    </div>
+    <div class="grid_3" id="userAuth">
+         Utilisateur: ${session.zindepEmail}
+         #{a @logout()}Fermer ma session#{/a}
+    </div>
+</div>
+<div class="container_12" id="mainContent">
+    #{doLayout /}
+</div>
+
+<div class="clear"></div>
+
+<div class="container_12">
+    <div id="footer" class="grid_12">
+        <p>Copyright(c) 2010 les Zindeps - Travail distribué en licence AGPL</P>
+
+        <p>Propulsé avec Play! Framework 1.1</P>
+    </div>
+</div>
+</body>
+</html>

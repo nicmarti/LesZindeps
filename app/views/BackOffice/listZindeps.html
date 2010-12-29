@@ -11,6 +11,7 @@
     ${flash.success}
 </div>
 #{/if}
+
 <table>
     <thead>
     <tr>
@@ -19,7 +20,6 @@
         <th>Membre depuis</th>
         <th>Localisation</th>
         <th>Email</th>
-        <th>Action</th>
 
     </tr>
     </thead>
@@ -31,7 +31,7 @@
         <td>${indep.memberSince?.format('d MMMM yyyy')}</td>
         <td>${indep.location}</td>
         <td>${indep.email}</td>
-        <td>#{a @updateProfile(indep.id)}Editer#{/a}</td>
+
     </tr>
     #{/list}
 

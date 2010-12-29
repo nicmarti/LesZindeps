@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Propal;
 import models.Zindep;
 import play.data.validation.Valid;
 import play.libs.OpenID;
@@ -18,7 +19,7 @@ import java.util.List;
 public class Admin extends Controller {
     // Protege toutes les methodes sauf index et authentification via openid
 
-    @Before(unless = {"index",
+    @Before(unless = {"index", "logout",
             "authenticateOpenId"
     })
     static void checkLogin() {
@@ -35,12 +36,19 @@ public class Admin extends Controller {
         render();
     }
 
+    public static void logout() {
+        session.remove("zindepId");
+        session.remove("zindepEmail");
+        flash.success("Vous avez été délogué.");
+        index();
+
+    }
 
     /**
      * Réalise l'authentification.
      * Le parametre action ne sert à rien ?
      */
-    public static void authenticateOpenId(String action,String openid_identifier) {
+    public static void authenticateOpenId(String action, String openid_identifier) {
         if (OpenID.isAuthenticationResponse()) {
             OpenID.UserInfo verifiedUser = OpenID.getVerifiedID();
             if (verifiedUser == null) {
@@ -69,7 +77,7 @@ public class Admin extends Controller {
             flash.success("Bienvenue " + zindep.firstName);
 
             // Attention ne pas passer de parametre ici pr des raisons de securité
-            showMyProfile();
+            welcome();
 
         } else {
             if (openid_identifier == null) {
@@ -152,6 +160,22 @@ public class Admin extends Controller {
 
         flash.success("Mise à jour effectuée");
         showMyProfile();
+    }
+
+    /**
+     * Page d'accueil une fois authentifié
+     */
+    public static void welcome() {
+        render();
+    }
+
+
+    /**
+     * Affiche la liste des propals.
+     */
+    public static void listPropals() {
+        List<Propal> listOfPropals = Propal.findAllByDate();
+        render(listOfPropals);
     }
 
 }

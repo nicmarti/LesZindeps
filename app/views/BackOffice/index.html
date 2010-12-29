@@ -4,11 +4,13 @@
 <div class="grid_8">
 <h1>Accueil</h1>
 
-<p>L'accès à cette page sera protégé par login/password</p>
+<p class="embp">Bienvenue ${session.zindepEmail}</p>
+    <P>Cette partie permet de créer de nouveaux indépendants.</P>
+    <br/>
 
 #{a @newZindep()}Créer un nouvel zindep#{/a}<br/>
 #{a @listZindeps()}Lister tous les zindeps#{/a}  <br/>
-#{a @showPropals()}Lister toutes les propositions de mission#{/a} <br/>
+#{a @Admin.logout()}Se déloguer#{/a} <br/>
 
 </div>
 <div class="grid_4">

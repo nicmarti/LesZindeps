@@ -44,32 +44,38 @@
 
         <!-- Simple OpenID Selector -->
         #{form @authenticateOpenId(), method:'get',id:'openid_form'}
-            <input type="hidden" name="action" value="verify"/>
+        <input type="hidden" name="action" value="verify"/>
 
-            <fieldset>
+        <fieldset>
 
-                <div id="openid_choice">
-                    <p>Sélectionnez un fournisseur d'accès Open-ID</p>
+            <div id="openid_choice">
+                <p>Sélectionnez un fournisseur d'accès Open-ID</p>
 
-                    <div id="openid_btns"></div>
-                </div>
+                <div id="openid_btns"></div>
+            </div>
 
-                <div id="openid_input_area">
-                    <input id="openid_identifier" name="openid_identifier" type="text" value="http://"/>
-                    <input id="openid_submit" type="submit" value="Sign-In"/>
-                </div>
-                <noscript>
-                    <p>OpenID is service that allows you to log-on to many different websites using a single indentity.
-                        Find out <a href="http://openid.net/what/">more about OpenID</a> and <a
-                                href="http://openid.net/get/">how to get an OpenID enabled account</a>.</p>
-                </noscript>
-            </fieldset>
+            <div id="openid_input_area">
+                <input id="openid_identifier" name="openid_identifier" type="text" value="http://"/>
+                <input id="openid_submit" type="submit" value="Sign-In"/>
+            </div>
+            <noscript>
+                <p>OpenID is service that allows you to log-on to many different websites using a single indentity.
+                    Find out <a href="http://openid.net/what/">more about OpenID</a> and <a
+                            href="http://openid.net/get/">how to get an OpenID enabled account</a>.</p>
+            </noscript>
+        </fieldset>
         #{/form}
         <!-- /Simple OpenID Selector -->
         #{if flash.error}
         <div class="errorbox">
             <h2>Erreur</h2>
             ${flash.error}
+        </div>
+        #{/if}
+
+        #{if flash.success}
+        <div class="successbox">
+            ${flash.success}
         </div>
         #{/if}
     </div>
@@ -88,6 +94,7 @@
 <div class="container_12">
     <div id="footer" class="grid_12">
         <p>Copyright(c) 2010 les Zindeps - Travail distribué en licence AGPL</P>
+
         <p>Propulsé avec Play! Framework 1.1</P>
     </div>
 </div>

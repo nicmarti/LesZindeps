@@ -5,6 +5,7 @@ import models.Zindep;
 import org.apache.commons.codec.digest.DigestUtils;
 import play.data.validation.Valid;
 import play.libs.Codec;
+import play.mvc.Before;
 import play.mvc.Controller;
 
 import java.util.List;
@@ -17,17 +18,21 @@ import java.util.List;
  */
 public class BackOffice extends Controller {
 
+    @Before(unless = {"login"})
+    static void checkLogin() {
+        if (!session.contains("zindepId")) {
+            flash.error("Merci de vous authentifier pour accéder à cette partie.");
+            Admin.index();
+        }
+    }
+
+    /**
+     * Affiche la page d'accueil
+     */
     public static void index() {
         render();
     }
 
-    /**
-     * Affiche la liste des propals.
-     */
-    public static void showPropals() {
-        List<Propal> listOfPropals = Propal.findAllByDate();
-        render(listOfPropals);
-    }
 
     public static void newZindep() {
         render();
@@ -61,63 +66,5 @@ public class BackOffice extends Controller {
         render(listOfZindeps);
     }
 
-    /**
-     * Charge la fiche de l'indep spécifié
-     *
-     * @param id a editer
-     */
-    public static void updateProfile(String id) {
-        Zindep zindep = Zindep.findById(id);
-        render(zindep);
-    }
-
-    /**
-     * Sauvegarde les modifications
-     *
-     * @param zindep est une sorte de DTO
-     * @param idEdit permet de repasser l'id... hummm c'est pas top
-     */
-    public static void doUpdateProfile(@Valid Zindep zindep, String idEdit) {
-        // Handle errors
-        if (validation.hasErrors()) {
-            render("@updateProfile", zindep);
-        }
-        Zindep existing = Zindep.findById(idEdit);
-        if (existing == null) {
-            flash.error("Utilisateur non trouvé");
-            listZindeps();
-        }
-
-        // c'est pourri et je pense qu'il y a un moyen plus intelligent pour le faire
-        existing.email = zindep.email;
-        existing.lastName = zindep.lastName;
-        existing.firstName = zindep.firstName;
-        existing.memberSince = zindep.memberSince;
-        existing.location = zindep.location;
-        existing.bio = zindep.bio;
-        existing.techno = zindep.techno;
-
-        existing.save();
-
-        flash.success("Mise à jour effectuée");
-        listZindeps();
-    }
-
-
-    public static void prepareDelete(String id) {
-        render(id);
-    }
-
-    public static void confirmDelete(String id) {
-        Zindep toDelete = Zindep.findById(id);
-        if (toDelete == null) {
-            flash.error("Fiche non trouvée");
-            listZindeps();
-        }
-        toDelete.delete();
-        flash.success("Fiche effacée");
-        listZindeps();
-
-    }
 }
 

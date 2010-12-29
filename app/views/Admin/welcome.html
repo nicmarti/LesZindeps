@@ -1,0 +1,38 @@
+#{extends 'Admin/mainAuthenticated.html' /}
+#{set title:'Accueil' /}
+
+
+
+<div class="grid_3 prefix_1">
+
+    #{a @Admin.showMyProfile()}Mettre à jour mon profil#{/a} <br/>
+    #{a @Admin.listPropals()}Proposition de mission#{/a}
+</div>
+<div class="grid_8">
+    <h1>Ma page perso</h1>
+    <P>Bienvenue dans votre espace privé.</P>
+    #{ifErrors}
+    <div class="error">
+        <h2>Erreur</h2>
+        <ul>
+            #{errors}
+            <li>${error}</li>
+            #{/errors}
+        </ul>
+    </div>
+    #{/ifErrors}
+
+    #{if flash.error}
+    <div class="error">
+        <h2>${flash.error}</h2>
+    </div>
+    #{/if}
+
+    #{if flash.success}
+    <div class="successbox">
+        ${flash.success}
+    </div>
+    #{/if}
+
+</div>
+
