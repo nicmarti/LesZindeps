@@ -1,2 +1,2 @@
-zindep.email.valid=Email invalide
-zindep.email.required=Email est obligatoire
+validation.required=%s est obligatoire
+validation.email=Le format de l'email n'est pas correct
