@@ -1,8 +1,9 @@
 #{extends 'main.html' /}
 #{set title:'BackOffice' /}
 
-#{set moreScripts:'<script src="/public/javascripts/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/public/javascripts/jquery-ui-1.7.2.custom.min.js" type="text/javascript" charset="utf-8"></script>' /}
+#{set moreScripts:'
+<script src="/public/javascripts/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/public/javascripts/jquery-ui-1.7.2.custom.min.js" type="text/javascript" charset="utf-8"></script>' /}
 
 
 <h1>Créer un nouvel indépendant</h1>
@@ -10,16 +11,27 @@
 
 #{ifErrors}
 <div class="error">
-    <h2>Oops, please correct these errors</h2>
+    <h2>Erreur</h2>
+    <ul>
+        #{errors}
+        <li>${error}</li>
+        #{/errors}
+    </ul>
 </div>
 #{/ifErrors}
+
+#{if flash.error}
+<div class="error">
+    <h2>${flash.error}</h2>
+</div>
+#{/if}
 
 <!-- Tag play cree dans views/tags -->
 #{jQueryValidate class:models.Zindep.class, key:'zindep' /}
 
 #{form id:'joinForm', action:@BackOffice.storeNewZindep()}
 
-            
+
 #{field 'zindep.email'}
 <p>
     <label>Adresse email :</label>
@@ -61,7 +73,8 @@
 #{field 'zindep.bio'}
 <p>
     <label>Bio :</label>
-    <textarea id="${field.id}" name="${field.name}" cols="60" rows="6" class="${field.errorClass}">${field.value}</textarea> 
+    <textarea id="${field.id}" name="${field.name}" cols="60" rows="6"
+              class="${field.errorClass}">${field.value}</textarea>
     <span class="error">${field.error}</span><br/>
 </p>
 #{/}
@@ -69,7 +82,8 @@
 #{field 'zindep.techno'}
 <p>
     <label>Technos/Domaine de compétence:</label>
-    <textarea id="${field.id}" name="${field.name}" cols="60" rows="6" class="${field.errorClass}">${field.value}</textarea>
+    <textarea id="${field.id}" name="${field.name}" cols="60" rows="6"
+              class="${field.errorClass}">${field.value}</textarea>
     <span class="error">${field.error}</span><br/>
 </p>
 #{/}
@@ -78,7 +92,8 @@
 #{field 'zindep.memberSince'}
 <p>
     <label>Membre depuis :</label>
-    <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
+    <input type="text" id="${field.id}" name="${field.name}" value="${field.value?.format('dd/MM/yy')}"
+           class="${field.errorClass}"
            size="90" maxlength="255">
     <span class="error">${field.error}</span><br/>
     <em>Format: dd/mm/yy</em>

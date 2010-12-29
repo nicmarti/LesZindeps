@@ -1,27 +1,42 @@
 #{extends 'main.html' /}
 #{set title:'Mon profil' /}
 
+#{set moreScripts:'
+<script src="/public/javascripts/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/public/javascripts/jquery-ui-1.7.2.custom.min.js" type="text/javascript" charset="utf-8"></script>' /}
+
 
 <div class="grid_8 prefix_2">
     #{ifErrors}
-        <div class="errorbox">
-            <h2>Attention il y a des erreurs</h2>
-        </div>
+    <div class="error">
+        <h2>Erreur</h2>
+        <ul>
+            #{errors}
+            <li>${error}</li>
+            #{/errors}
+        </ul>
+    </div>
     #{/ifErrors}
 
-    #{if flash.success}
-        <div class="successbox">
-            ${flash.success}
-        </div>
+    #{if flash.error}
+    <div class="error">
+        <h2>${flash.error}</h2>
+    </div>
     #{/if}
- 
+
+    #{if flash.success}
+    <div class="successbox">
+        ${flash.success}
+    </div>
+    #{/if}
+
     <!-- Tag play cree dans views/tags -->
     #{jQueryValidate class:models.Zindep.class, key:'zindep' /}
 
     #{form id:'joinForm', action:@doUpdateMyProfile()}
 
     <p><label>Adresse email :</label> ${zindep.email}</p>
- 
+
 
     #{field 'zindep.firstName'}
     <p>
@@ -50,16 +65,6 @@
     </p>
     #{/}
 
-    #{field 'zindep.memberSince'}
-    <p>
-        <label>Membre depuis :</label>
-        <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
-               size="90" maxlength="255">
-        <span class="error">${field.error}</span><br/>
-        <em>Format : yyyy-mm-dd</em>
-    </p>
-    #{/}
-
     #{field 'zindep.bio'}
     <p>
         <label>Bio :</label>
@@ -69,7 +74,7 @@
     </p>
     #{/}
 
-     #{field 'zindep.techno'}
+    #{field 'zindep.techno'}
     <p>
         <label>Technologies :</label>
         <textarea id="${field.id}" name="${field.name}" cols="60" rows="6"
@@ -78,8 +83,24 @@
     </p>
     #{/}
 
+
+    #{field 'zindep.memberSince'}
+    <p>
+        <label>Membre depuis :</label>
+        <input type="text" id="${field.id}" name="${field.name}" value="${field.value?.format('dd/MM/yy')}"
+               class="${field.errorClass}"
+               size="90" maxlength="255">
+        <span class="error">${field.error}</span><br/>
+        <em>Format: dd/mm/yy</em>
+    </p>
+    #{/}
+
     <script type="text/javascript" charset="utf-8">
-        $("#zindep_memberSince").datepicker({dateFormat:'yy-mm-dd', showAnim:'fadeIn'})
+        $("#zindep_memberSince").datepicker(
+        {dateFormat:'dd/mm/yy', showAnim:'fadeIn',
+            dayNamesMin:["Di","Lu","Ma","Me","Je","Ve","Sa"],
+            firstDay:'1'}
+                )
     </script>
 
 
