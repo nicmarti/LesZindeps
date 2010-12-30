@@ -26,13 +26,11 @@
 
 package models;
 
-import net.sf.oval.constraint.Max;
 import org.hibernate.annotations.GenericGenerator;
 import play.data.validation.Email;
 import play.data.validation.MaxSize;
 import play.data.validation.Required;
 import play.db.jpa.GenericModel;
-import play.libs.Codec;
 import play.templates.JavaExtensions;
 
 import javax.persistence.*;
@@ -73,10 +71,6 @@ public class Zindep extends GenericModel {
     @Required(message = "Ce champ est obligatoire")
     @Lob
     public String location;
-
-    // Champ calcule et mis a jour automatiquement
-    public String gravatarId;
-
 
     @Lob
     // permet d'indexer simplement
@@ -139,19 +133,13 @@ public class Zindep extends GenericModel {
 
 
     /**
-     * Creation d'un index lors de la modification de l'entité et création du champ gravatar
+     * Creation d'un index lors de la modification de l'entité
      */
     @PreUpdate
     @PrePersist
     void index() {
         this.index = JavaExtensions.noAccents(this.firstName).toLowerCase() + " ";
         this.index += JavaExtensions.noAccents(this.lastName).toLowerCase() + " ";
-
-
-        if (email != null) {
-            // Gravatar
-            this.gravatarId = Codec.hexMD5(email.trim().toLowerCase());
-        }
     }
 
     /**

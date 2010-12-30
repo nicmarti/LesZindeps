@@ -1,10 +1,13 @@
 #{extends 'main.html' /}
 #{set title:'Profil' /}
 
-
-<div class="grid_5 prefix_2">
+<div class="grid_2">
+    <img src="${zindep.pictureUrl}" alt=""/>
+</div>
+<div class="grid_8">
     <h1>${zindep.firstName} ${zindep.lastName}</h1>
-    <h3>${zindep.location}</h3>
+    <h3>${zindep.title}</h3>
+    <em>${zindep.location}</em>
     <h3>Membre depuis</h3>
     <p>${zindep.memberSince?.format('MMMM yyyy')}</p>
 
@@ -14,5 +17,6 @@
     <h3>Domaines d'expertise</h3>
      <p>${zindep.techno}</p>
 </div>
+
 
 <div class="clear">&nbsp;</div>
