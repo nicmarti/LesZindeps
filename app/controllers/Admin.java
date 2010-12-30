@@ -233,4 +233,45 @@ public class Admin extends Controller {
 
         render();
     }
+
+    public static void importFromLinkedIn() {
+        String id = session.get("zindepId");
+        if (id == null) {
+            error("Probleme avec l'authentification");
+        }
+
+        Zindep zindep = Zindep.findById(id);
+        if (zindep == null) {
+            error("Zindep non trouvé");
+        }
+
+        render(zindep);
+    }
+
+    public static void copyLinkedInProfile(String linkedInId) {
+        if (linkedInId == null) {
+            flash.error("Param linkedInId missing");
+            render();  // Ici comprendre return "ma page" car render() arrete l'execution de cette methode.
+        }
+        Zindep zindep = Zindep.findByLinkedInId(linkedInId);
+
+        if (zindep == null) {
+            // Recherche via la session
+            Zindep fromSession=Zindep.findById(session.get("zindepId"));
+            if(fromSession==null){
+                flash.error("Impossible de retrouver votre compte... vous n'etes pas authentifié ?");
+                render();
+            }
+            fromSession.linkedInId=linkedInId;
+            fromSession.save();
+            flash.success("Votre compte Zindep est maintenant lié à votre compte LinkedIn");
+            render(fromSession);
+        }
+        render(zindep);
+    }
+
+    public void doUpdateMyProfileFromLinkedIn(){
+        index();
+
+    }
 }

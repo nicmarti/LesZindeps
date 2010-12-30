@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Mise à jour ★ Les Zindeps</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" media="screen" href="@{'public/stylesheets/style.css'}">
+    <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/grid.css'}">
+    <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.ico'}">
+    <script type="text/javascript" src="@{'/public/javascripts/openid/jquery-1.2.6.min.js'}"></script>
+
+
+    <!-- For LinkedIn BEGIN -->
+    <script type="text/javascript" src="http://platform.linkedin.com/in.js">
+        api_key: 6cInZ1HG5_2fVsCGIA_2KKsL0Tp1xALRgdxWin-2SvO58MAYc4PuYyQFC_IHZFNL
+        authorize: true
+    </script>
+
+    <script type="text/javascript">
+
+
+        function onLinkedInAuth() {
+            IN.API.Profile("me")
+                    .fields("id","first-name","last-name","location:(name)","summary")
+                    .result(updateProfile)
+                    .error(function(e) {
+                        alert("Impossible de s\'authentifier." + e);
+                    });
+
+
+        }
+
+        function updateProfile(profiles){
+            var id = profiles.values[0].id;
+            // AJAX call to pass back id to your server
+            $('#resultLinkedIn').load('/admin/copyLinkedInProfile?linkedInId=' + id);
+        }
+
+        function logout() {
+            IN.User.logout(logoutConfirmed);
+        }
+
+        function logoutConfirmed() {
+
+        }
+    </script>
+    <!-- For LinkedIn END -->
+
+</head>
+<body>
+<div class="container_12" id="header">
+    <div class="grid_12">
+        <img src="@{'public/images/leszindeps.png'}"/>
+    </div>
+
+    <div class="grid_5 prefix_4" id="nav">
+        <a id="home" href="@{Application.index()}">Accueil</a>
+        <a id="admin" href="@{Admin.welcome()}">Ma page</a>
+        <a id="mission" href="@{Admin.listPropals()}">Missions</a>
+    </div>
+    <div class="grid_3" id="userAuth">
+        Utilisateur: ${session.zindepEmail}
+        #{a @logout()}Fermer ma session#{/a}
+    </div>
+</div>
+<div class="container_12" id="mainContent">
+
+
+    <div class="grid_8 openIdPanel">
+        <h2>Mettre à jour son profil à partir de LinkedIn</h2>
+
+        <!-- Linked In-->
+        <script type="in/Login" data-onAuth="onLinkedInAuth">
+            <h4>Bonjour <?js= firstName ?> <?js= lastName ?> ! Vous êtes authentifié avec LinkedIn.</h4>
+            <a href="javascript:logout();">Fermer ma session LinkedIn</a>
+
+            #{form id:'joinForm', action:@doUpdateMyProfileFromLinkedIn()}
+            <fieldset>
+                <legend>Votre profil</legend>
+
+
+
+
+            <?js if (pictureUrl) { ?>
+                <P>URL de votre image LinkedIn :</P>
+            <img src="<?js= pictureUrl ?>"></img>
+            <br/>
+            <input type="text" name="pictureUrl" value="<?js= pictureUrl ?>"/>
+            <?js } else { ?>
+              <p>Téléchargez une photo sur LinkedIn si vous souhaitez ensuite l'ajouter à votre profil</p>
+            <?js } ?>
+
+            <p class="buttons"><input type="submit" value="Recopier vers mon profil Zindep"/></p>
+            </fieldset>
+            #{/form}
+
+
+        </script>
+
+
+
+
+         <div id="resultLinkedIn"></div>
+         <div id="profile"></div>
+
+    </div>
+
+
+</div>
+
+<div class="clear"></div>
+
+<div class="container_12">
+    <div id="footer" class="grid_12">
+        <p>Copyright(c) 2010 les Zindeps - Travail distribué en licence AGPL</P>
+
+        <p>Propulsé avec Play! Framework 1.1</P>
+    </div>
+</div>
+</body>
+</html>
+
