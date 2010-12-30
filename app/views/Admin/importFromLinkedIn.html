@@ -5,73 +5,16 @@
     <title>Mise à jour ★ Les Zindeps</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" type="text/css" media="screen" href="@{'public/stylesheets/style.css'}">
-    <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/grid.css'}">
-    <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.ico'}">
-    <script type="text/javascript" src="@{'/public/javascripts/openid/jquery-1.2.6.min.js'}"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="@{'public/stylesheets/grid.css'}">
+    <link rel="shortcut icon" type="image/png" href="@{'public/images/favicon.ico'}">
+    <script type="text/javascript" src="@{'public/javascripts/openid/jquery-1.2.6.min.js'}"></script>
 
-
-    <!-- For LinkedIn BEGIN -->
     <script type="text/javascript" src="http://platform.linkedin.com/in.js">
         api_key: GbAcjfxJzfYpzx2xeYRuO8tvVF1udtOMlgDsnLwpHmjUwg6g4JPZV25Uz5zT5arO
         onLoad: onLinkedInLoad
         authorize: true
     </script>
-
-    <script type="text/javascript">
-        function onLinkedInLoad() {
-             // Listen for an auth event to occur
-             IN.Event.on(IN, "auth", onLinkedInAuth);
-        }
-
-
-        function onLinkedInAuth() {
-            // Send the linkedInId back to the server
-            IN.API.Profile("me")
-                    .fields("id","first-name","last-name","picture-url","summary","headline","specialties")
-                    .result(updateProfile)
-                    .error(function(e) {
-                        alert("Impossible de s\'authentifier." + e);
-                    });
-
-
-
-        }
-
-        function updateProfile(profiles){
-             $("#mainPanel").show();
-
-            var id = profiles.values[0].id;
-            // AJAX call to pass back id to your server
-            $('#resultLinkedIn').load('/admin/copyLinkedInProfile?linkedInId=' + id);
-
-             // After they've signed-in, print a form to enable keyword searching
-                var div = document.getElementById("mainPanel");
-
-                div.innerHTML = '<h2>Vos données LinkedIn</h2>';
-                div.innerHTML += '<P>Voici les données chargées à partir de LinkedIn pour votre profil :</p>';
-                div.innerHTML += '<form action="/admin/doupdatemyprofilefromLinkedIn" method="post" enctype="application/x-www-form-urlencoded">'+
-                              'Prénom : <input id="firstName" name="firstName" size="70" value="'+profiles.values[0].firstName+'" type="text"><br/>' +
-                              'Nom : <input id="lastName" name="lastName" size="70" value="'+profiles.values[0].lastName+'" type="text"><br/>' +
-                              'Titre : <input id="title" name="title" size="70" value="'+profiles.values[0].headline+'" type="text"><br/>' +
-                              'Photo : <img src="'+profiles.values[0].pictureUrl+'" alt="image linkedIn"/><br/>' +
-                              '<input id="pictureUrl" name="pictureUrl" size="70" value="'+profiles.values[0].pictureUrl+'" type="hidden"><br/>' +
-                              'Bio : <br/><textarea id="bio" name="bio" rows="6" cols="70">'+profiles.values[0].summary+'</textarea><br/>' +
-                              'Technos : <br/><textarea id="techno" name="techno" rows="6" cols="70">'+profiles.values[0].specialties+'</textarea><br/>' +
-                              '<input type="submit" value="Mettre à jour mon profil Zindep" />';
-               div.innerHTML += '</fieldset>';
-            div.innerHTML += "<br/></br/>Si vous ne souhaitez pas mettre à jour votre profil vous pouvez <a href='javascript:logout()'>fermer votre session LinkedIn.</a>";
-        }
-
-        function logout() {
-            IN.User.logout(logoutConfirmed);
-            $("#mainPanel").hide();
-        }
-
-        function logoutConfirmed() {
-
-        }
-    </script>
-    <!-- For LinkedIn END -->
+    <script type="text/javascript" src="@{'public/javascripts/linkedin_zindep.js'}"></script>
 
 </head>
 <body>
