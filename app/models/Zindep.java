@@ -94,6 +94,10 @@ public class Zindep extends GenericModel {
     @MaxSize(255)
     public String emailBackup;
 
+    public String linkedInId;
+
+    public String pictureURl;
+
 
     @Override
     public String toString() {
@@ -116,6 +120,7 @@ public class Zindep extends GenericModel {
 
     /**
      * Search by last name on the index field.
+     *
      * @param s is a search critieria
      * @return a list of Zindep or an empty list if nothing was found.
      */
@@ -147,10 +152,23 @@ public class Zindep extends GenericModel {
         }
     }
 
+    /**
+     * Recherche par email.
+     */
     public static Zindep findByMail(String mail) {
         if (mail == null) {
             return null;
         }
         return Zindep.find("from Zindep z where email=:mail").bind("mail", mail.trim().toLowerCase()).first();
+    }
+
+    /**
+     * Recherche par LinkedIn id
+     */
+    public static Zindep findByLinkedInId(String id) {
+        if (id == null) return null;
+
+        return Zindep.find("from Zindep z where linkedInId=:pid").bind("pid", id).first();
+
     }
 }
