@@ -100,5 +100,30 @@ public class BackOffice extends Controller {
         render(listOfZindeps);
     }
 
+
+    /**
+     * Permet d'effacer un compte invalide
+     * @param id
+     */
+    public static void prepareDelete(String id) {
+        render(id);
+    }
+
+    /**
+     * Effacement
+     * @param id
+     */
+    public static void confirmDelete(String id) {
+        Zindep toDelete = Zindep.findById(id);
+        if (toDelete == null) {
+            flash.error("Fiche non trouvée");
+            listZindeps();
+        }
+        toDelete.delete();
+        flash.success("Fiche effacée");
+        listZindeps();
+
+    }
+
 }
 
