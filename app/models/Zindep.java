@@ -96,7 +96,7 @@ public class Zindep extends GenericModel {
 
     public String linkedInId;
 
-    public String pictureURl;
+    public String pictureURL;
 
 
     @Override

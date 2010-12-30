@@ -183,7 +183,7 @@ public class Admin extends Controller {
         existing.bio = zindep.bio;
         existing.techno = zindep.techno;
         existing.linkedInId = zindep.linkedInId;
-        existing.pictureURl = zindep.pictureURl;
+        existing.pictureURL = zindep.pictureURL;
 
         existing.save();
 
