@@ -65,6 +65,8 @@ public class Zindep extends GenericModel {
     @MaxSize(255)
     public String lastName;
 
+    public String title;
+
     @Temporal(TemporalType.DATE)
     public Date memberSince;
 
@@ -82,11 +84,11 @@ public class Zindep extends GenericModel {
     public String index;
 
 
-    // De quoi raconter sa vie
+    // Correspond au champ summary de LinkedIn
     @Lob
     public String bio;
 
-    // De quoi parler des technos
+    // Correspond au champ specialties de LinkedIn
     @Lob
     public String techno;
 
@@ -96,7 +98,7 @@ public class Zindep extends GenericModel {
 
     public String linkedInId;
 
-    public String pictureURL;
+    public String pictureUrl;
 
 
     @Override

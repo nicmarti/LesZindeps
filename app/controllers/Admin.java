@@ -183,7 +183,7 @@ public class Admin extends Controller {
         existing.bio = zindep.bio;
         existing.techno = zindep.techno;
         existing.linkedInId = zindep.linkedInId;
-        existing.pictureURL = zindep.pictureURL;
+        existing.pictureUrl = zindep.pictureUrl;
 
         existing.save();
 
@@ -208,32 +208,6 @@ public class Admin extends Controller {
     }
 
 
-    /**
-     * Authentifie un utilisateur via LinkedIn. Ce bout de code n'est valide que si l'id LinkedIn est unique,
-     * et qu'il n'est pas possible de le découvrir. Sinon quelqu'un qui trouve mon id secret pourrait s'authentifier
-     * avec mon compte sur le site.
-     *
-     * @param id is the unique secret id of a profile.
-     */
-    public static void authenticateWithLinkedIn(String id) {
-        if (id == null) {
-            flash.error("Param id missing");
-            render();  // Ici comprendre return "ma page" car render() arrete l'execution de cette methode.
-        }
-        Zindep zindep = Zindep.findByLinkedInId(id);
-        if (zindep == null) {
-            flash.error("Votre compte n'a pas d'attribut linkedInId. Demandez à un administrateur d'ajouter votre compte avec l'id LinkedIn suivant: "
-                    + id
-                    + ". Si vous avez déjà un compte, vous pouvez aussi vous authentifier avec openid et éditer votre propre profil afin d'ajouter cet ID LinkedIn.");
-            render(); // chaque appel de ce type dans Play declenche une runtime exception qui casse l'execution du flow normal... C'est normal
-        }
-
-        session.put("zindepId", zindep.id);
-        session.put("zindepEmail", zindep.email);
-
-        render();
-    }
-
     public static void importFromLinkedIn() {
         String id = session.get("zindepId");
         if (id == null) {
@@ -248,30 +222,69 @@ public class Admin extends Controller {
         render(zindep);
     }
 
+    /**
+     * Cette fonction est appelée par l'API JS de LinkedIn lorsque l'utilisateur s'est bien authentifié.
+     * Je m'en sers pour recopier l'id linkedin dans sa fiche.
+     * @param linkedInId est l'id unique de chaque utilisateur.
+     */
     public static void copyLinkedInProfile(String linkedInId) {
         if (linkedInId == null) {
             flash.error("Param linkedInId missing");
             render();  // Ici comprendre return "ma page" car render() arrete l'execution de cette methode.
         }
+        if(linkedInId.equals("undefined")){
+            flash.error("Erreur javascript, impossible de retrouver l'attribut linkedIn Id. Vérifiez la console JS.");
+            render();
+        }
         Zindep zindep = Zindep.findByLinkedInId(linkedInId);
 
         if (zindep == null) {
             // Recherche via la session
-            Zindep fromSession=Zindep.findById(session.get("zindepId"));
-            if(fromSession==null){
+            Zindep fromSession = Zindep.findById(session.get("zindepId"));
+            if (fromSession == null) {
                 flash.error("Impossible de retrouver votre compte... vous n'etes pas authentifié ?");
                 render();
             }
-            fromSession.linkedInId=linkedInId;
+            fromSession.linkedInId = linkedInId;
             fromSession.save();
-            flash.success("Votre compte Zindep est maintenant lié à votre compte LinkedIn");
+            flash.success("Votre compte Zindep est maintenant lié à votre compte LinkedIn.");
             render(fromSession);
         }
         render(zindep);
     }
 
-    public void doUpdateMyProfileFromLinkedIn(){
-        index();
+    /**
+     * Sauvegarde vers votre profil les parametres récuperés sur votre compte linkedin.
+     * @param firstName
+     * @param lastName
+     * @param title
+     * @param pictureUrl
+     * @param bio
+     * @param techno
+     */
+    public static void doUpdateMyProfileFromLinkedIn(String firstName, String lastName, String title, String pictureUrl,
+                                              String bio, String techno) {
+        String id = session.get("zindepId");
+        if (id == null) {
+            error("Probleme avec l'authentification");
+        }
+
+        Zindep zindep = Zindep.findById(id);
+        if (zindep == null) {
+            error("Zindep non trouvé");
+        }
+
+        zindep.firstName=firstName;
+        zindep.lastName=lastName;
+        zindep.title=title;
+        zindep.pictureUrl=pictureUrl;
+        zindep.bio=bio;
+        zindep.techno=techno;
+        zindep.save();
+
+        flash.success("Votre profil a été mis à jour à partir des données de LinkedIn");
+        showMyProfile();
+
 
     }
 }

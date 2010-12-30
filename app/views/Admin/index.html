@@ -21,28 +21,6 @@
         });
     </script>
 
-    <!-- For LinkedIn BEGIN -->
-    <script type="text/javascript" src="http://platform.linkedin.com/in.js">
-        api_key: 6cInZ1HG5_2fVsCGIA_2KKsL0Tp1xALRgdxWin-2SvO58MAYc4PuYyQFC_IHZFNL
-        authorize: true
-    </script>
-
-    <script type="text/javascript">
-        function onLinkedInAuth() {
-          IN.API.Profile("me")
-            .result( function(me) {
-              var id = me.values[0].id;
-              // AJAX call to pass back id to your server
-              $('#resultLinkedIn').load('/admin/authenticatewithlinkedin?id='+id) ;
-            })
-            .error( function(e) {alert("Impossible de s\'authentifier." + e);} ) ;
-        }
-
-        function logout(){
-            alert("logout");
-        }
-    </script>
-    <!-- For LinkedIn END -->
 
 </head>
 <body>
@@ -89,15 +67,6 @@
 
         #{/form}
         <!-- /Simple OpenID Selector -->
-
-
-        <!-- Linked In-->
-            <p>S'authentifier avec LinkedIn</p>
-            <script type="in/Login" data-onAuth="onLinkedInAuth" data-onLogout="logout">
-                Bonjour <?js= firstName ?> <?js= lastName ?> ! Vous êtes authentifié avec LinkedIn.
-            </script>
-
-            <div id="resultLinkedIn"></div>
 
         </fieldset>
 

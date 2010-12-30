@@ -40,6 +40,14 @@
 
         <p><label>Adresse email :</label> ${zindep.email}</p>
 
+         #{field 'zindep.title'}
+        <p>
+            <label>Titre de votre profil :</label>
+            <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
+                   size="50" maxlength="255">
+            <span class="error">${field.error}</span><br/>
+        </p>
+        #{/}
 
         #{field 'zindep.emailBackup'}
         <p>
@@ -100,10 +108,12 @@
 
          #{field 'zindep.pictureUrl'}
         <p>
-            <label>URL d'une photo :</label>
+            <label>URL absolue d'une photo de 80px par 80px :</label>
             <input type="text" id="${field.id}" name="${field.name}" value="${field.value}"
                       class="${field.errorClass}"/>
             <span class="error">${field.error}</span><br/>
+            <img src="${field.value}" alt="Votre photo en 80x80" border="3"/>
+
         </p>
         #{/}
 
@@ -119,7 +129,7 @@
 
         #{field 'zindep.memberSince'}
         <p>
-            <label>Membre depuis :</label>
+            <label>Membre du groupe Les Zindeps depuis :</label>
             <input type="text" id="${field.id}" name="${field.name}" value="${field.value?.format('dd/MM/yy')}"
                    class="${field.errorClass}"
                    size="90" maxlength="255">
