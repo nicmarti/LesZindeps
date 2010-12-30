@@ -44,7 +44,9 @@ import java.util.List;
 public class Admin extends Controller {
     // Protege toutes les methodes sauf index et authentification via openid
 
-    @Before(unless = {"index", "logout",
+    @Before(unless = {"index",
+            "logout",
+            "authenticateWithLinkedIn",
             "authenticateOpenId"
     })
     static void checkLogin() {
@@ -180,6 +182,8 @@ public class Admin extends Controller {
         existing.location = zindep.location;
         existing.bio = zindep.bio;
         existing.techno = zindep.techno;
+        existing.linkedInId = zindep.linkedInId;
+        existing.pictureURl = zindep.pictureURl;
 
         existing.save();
 
@@ -203,4 +207,30 @@ public class Admin extends Controller {
         render(listOfPropals);
     }
 
+
+    /**
+     * Authentifie un utilisateur via LinkedIn. Ce bout de code n'est valide que si l'id LinkedIn est unique,
+     * et qu'il n'est pas possible de le découvrir. Sinon quelqu'un qui trouve mon id secret pourrait s'authentifier
+     * avec mon compte sur le site.
+     *
+     * @param id is the unique secret id of a profile.
+     */
+    public static void authenticateWithLinkedIn(String id) {
+        if (id == null) {
+            flash.error("Param id missing");
+            render();  // Ici comprendre return "ma page" car render() arrete l'execution de cette methode.
+        }
+        Zindep zindep = Zindep.findByLinkedInId(id);
+        if (zindep == null) {
+            flash.error("Votre compte n'a pas d'attribut linkedInId. Demandez à un administrateur d'ajouter votre compte avec l'id LinkedIn suivant: "
+                    + id
+                    + ". Si vous avez déjà un compte, vous pouvez aussi vous authentifier avec openid et éditer votre propre profil afin d'ajouter cet ID LinkedIn.");
+            render(); // chaque appel de ce type dans Play declenche une runtime exception qui casse l'execution du flow normal... C'est normal
+        }
+
+        session.put("zindepId", zindep.id);
+        session.put("zindepEmail", zindep.email);
+
+        render();
+    }
 }
