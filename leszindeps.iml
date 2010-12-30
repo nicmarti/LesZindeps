@@ -25,20 +25,16 @@
     <orderEntry type="module-library">
       <library name="PlayFramework Dependecies">
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../play-1.1-beta2/framework/lib" />
+          <root url="file://$MODULE_DIR$/lib" />
+          <root url="file://$MODULE_DIR$/../play-1.1/framework/lib" />
+          <root url="jar://$MODULE_DIR$/../play-1.1/framework/play.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
-        <jarDirectory url="file://$MODULE_DIR$/../play-1.1-beta2/framework/lib" recursive="false" />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../play-1.1-beta2/framework/play.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../play-1.1/framework/src" />
+        </SOURCES>
+        <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/../play-1.1/framework/lib" recursive="false" />
       </library>
     </orderEntry>
   </component>

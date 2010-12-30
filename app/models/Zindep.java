@@ -1,3 +1,29 @@
+/*
+ * Copyright(c) 2010 Les Zindeps.
+ *
+ * The code source of this project is distributed
+ * under the Affero GPL GNU AFFERO GENERAL PUBLIC LICENSE
+ * Version 3, 19 November 2007
+ *
+ * This file is part of project LesZindeps. The source code is
+ * hosted on GitHub. The initial project was launched by
+ * Nicolas Martignole.
+ *
+ * LesZindeps is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * LesZindeps is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ *
+ * Please see COPYING.AGPL.txt for the full text license
+ * or online http://www.gnu.org/licenses/agpl.html
+ */
+
 package models;
 
 import net.sf.oval.constraint.Max;
@@ -64,6 +90,10 @@ public class Zindep extends GenericModel {
     @Lob
     public String techno;
 
+    @Email
+    @MaxSize(255)
+    public String emailBackup;
+
 
     @Override
     public String toString() {
@@ -84,6 +114,11 @@ public class Zindep extends GenericModel {
     }
 
 
+    /**
+     * Search by last name on the index field.
+     * @param s is a search critieria
+     * @return a list of Zindep or an empty list if nothing was found.
+     */
     public static List<Zindep> findByLastNameLike(String s) {
         if (s == null) {
             return findAllByName();
@@ -93,7 +128,6 @@ public class Zindep extends GenericModel {
         }
 
         return find("from Zindep z where z.index like ? order by z.lastName", JavaExtensions.noAccents("%" + s.toLowerCase() + "%")).fetch();
-
     }
 
 
@@ -107,16 +141,16 @@ public class Zindep extends GenericModel {
         this.index += JavaExtensions.noAccents(this.lastName).toLowerCase() + " ";
 
 
-         if (email != null) {
+        if (email != null) {
             // Gravatar
             this.gravatarId = Codec.hexMD5(email.trim().toLowerCase());
         }
     }
 
     public static Zindep findByMail(String mail) {
-        if(mail==null){
+        if (mail == null) {
             return null;
         }
-       return Zindep.find("from Zindep z where email=:mail").bind("mail", mail.trim().toLowerCase()).first();
+        return Zindep.find("from Zindep z where email=:mail").bind("mail", mail.trim().toLowerCase()).first();
     }
 }

@@ -3,21 +3,26 @@ import java.util.*;
 import play.test.*;
 import models.*;
 
+/**
+ * Exemple de test unitaire... libre à vous de compléter.
+ */
 public class ZindepTest extends UnitTest {
 
-    /**
-     * Verifie que l'attribut gravatar est bien mis a jour lorsque l'on persiste l'entité
-     */
     @Test
-    public void testGravatar() {
-        String expected = "09b788738dcb5d36dbd782db5ad66304";
+    public void shouldReturns5ZindepForFindAllByName() {
+        List<Zindep> result=Zindep.findAllByName();
+        assertNotNull(result);
+        assertEquals(5,result.size());
+    }
 
-        Zindep tested=new Zindep();
-        tested.email="nicolas@touilleur-express.fr";
+    @Test
+    public void shouldReturnAnEmptyListWhenParamIsNullOrEmpty() {
+        List<Zindep> result=Zindep.findByLastNameLike(null);
+        assertNotNull(result);
 
-        tested.save();
-        assertNotNull(tested.gravatarId);
-        assertEquals(expected,tested.gravatarId);
+        List<Zindep> result2=Zindep.findByLastNameLike("");
+        assertNotNull(result2);
+
     }
 
 }

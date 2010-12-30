@@ -2,6 +2,32 @@
 #{set title:'Mon profil' /}
 
 #{set moreScripts:'
+<!--
+  ~ Copyright(c) 2010 Les Zindeps.
+  ~
+  ~ The code source of this project is distributed
+  ~ under the Affero GPL GNU AFFERO GENERAL PUBLIC LICENSE
+  ~ Version 3, 19 November 2007
+  ~
+  ~ This file is part of project LesZindeps. The source code is
+  ~ hosted on GitHub. The initial project was launched by
+  ~ Nicolas Martignole.
+  ~
+  ~ LesZindeps is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ LesZindeps is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~
+  ~ Please see COPYING.AGPL.txt for the full text license
+  ~ or online http://www.gnu.org/licenses/agpl.html
+  -->
+
 <script src="/public/javascripts/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/public/javascripts/jquery-ui-1.7.2.custom.min.js" type="text/javascript" charset="utf-8"></script>' /}
 
@@ -35,8 +61,23 @@
 
     #{form id:'joinForm', action:@doUpdateMyProfile()}
 
+    <fieldset>
+    <legend>Votre profil</legend>
+
     <p><label>Adresse email :</label> ${zindep.email}</p>
 
+
+     #{field 'zindep.emailBackup'}
+    <p>
+        <label>Email secondaire :</label>
+        <input type="text" id="${field.id}" name="${field.name}"
+               value="${field.value}"
+               class="${field.errorClass}"
+               size="90" maxlength="255"
+               title="Optionel">
+        <span class="error">${field.error}</span><br/>
+    </p>
+    #{/}
 
     #{field 'zindep.firstName'}
     <p>
@@ -94,6 +135,7 @@
         <em>Format: dd/mm/yy</em>
     </p>
     #{/}
+    </fieldset>
 
     <script type="text/javascript" charset="utf-8">
         $("#zindep_memberSince").datepicker(

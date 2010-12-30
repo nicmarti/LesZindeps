@@ -1,10 +1,33 @@
+/*
+ * Copyright(c) 2010 Les Zindeps.
+ *
+ * The code source of this project is distributed
+ * under the Affero GPL GNU AFFERO GENERAL PUBLIC LICENSE
+ * Version 3, 19 November 2007
+ *
+ * This file is part of project LesZindeps. The source code is
+ * hosted on GitHub. The initial project was launched by
+ * Nicolas Martignole.
+ *
+ * LesZindeps is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * LesZindeps is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ *
+ * Please see COPYING.AGPL.txt for the full text license
+ * or online http://www.gnu.org/licenses/agpl.html
+ */
+
 package controllers;
 
-import models.Propal;
 import models.Zindep;
-import org.apache.commons.codec.digest.DigestUtils;
 import play.data.validation.Valid;
-import play.libs.Codec;
 import play.mvc.Before;
 import play.mvc.Controller;
 
@@ -12,12 +35,17 @@ import java.util.List;
 
 /**
  * Un controleur different pour surveiller l'arrière-boutique.
+ * Mon idée est que ce controller n'est pas indispensable. Il sert le temps de la mise en route du projet.
+ * Ensuite, il faut que le reste des outils se suffisent à eux-mêmes.
  *
  * @author Nicolas Martignole
  * @since 21 déc. 2010 14:21:41
  */
 public class BackOffice extends Controller {
 
+    /**
+     * Methode appelée à chaque fois pour vérifier si l'utilisateur est authentifié ou non.
+     */
     @Before(unless = {"login"})
     static void checkLogin() {
         if (!session.contains("zindepId")) {
@@ -27,13 +55,15 @@ public class BackOffice extends Controller {
     }
 
     /**
-     * Affiche la page d'accueil
+     * Affiche la page d'accueil.
      */
     public static void index() {
         render();
     }
 
-
+    /**
+     * Affiche la page de création d'un indep.
+     */
     public static void newZindep() {
         render();
     }
@@ -61,6 +91,10 @@ public class BackOffice extends Controller {
         index();
     }
 
+    /**
+     * Retourne la liste des zindeps, le tag listOfZindeps est directement itéré dans la page HTML
+     * grace à Groovy.
+     */
     public static void listZindeps() {
         List<Zindep> listOfZindeps = Zindep.findAllByName();
         render(listOfZindeps);

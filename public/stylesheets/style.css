@@ -1,3 +1,29 @@
+/*
+ * Copyright(c) 2010 Les Zindeps.
+ *
+ * The code source of this project is distributed
+ * under the Affero GPL GNU AFFERO GENERAL PUBLIC LICENSE
+ * Version 3, 19 November 2007
+ *
+ * This file is part of project LesZindeps. The source code is
+ * hosted on GitHub. The initial project was launched by
+ * Nicolas Martignole.
+ *
+ * LesZindeps is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * LesZindeps is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ *
+ * Please see COPYING.AGPL.txt for the full text license
+ * or online http://www.gnu.org/licenses/agpl.html
+ */
+
 /* ----------------------------------------------
  * RESET
  * ------------------------------------------- */
@@ -92,6 +118,24 @@ html {
 
 }
 
+a {
+    color: #660066;
+
+}
+
+a:hover {
+    color: #ff6600;
+
+}
+
+a:active {
+    color: #ff6600;
+}
+
+a.selected {
+    color: #660066;
+}
+
 #nav a {
     padding: 4px 6px;
     margin: 0 2px;
@@ -118,7 +162,7 @@ html {
     color: #fff;
 }
 
-#userAuth{
+#userAuth {
     font-size: 0.9em;
     color: #666666;
 }
@@ -406,6 +450,27 @@ a.openid_large_btn:focus {
 .embp {
     color: #330066;
     font-weight: bold;
-    margin-top:15px;
-    margin-bottom:5px;
+    margin-top: 15px;
+    margin-bottom: 5px;
 }
+
+.searchBox {
+    background-image: url('/public/images/magnifying-glass.gif');
+    background-repeat: no-repeat;
+    padding-left: 20px;
+}
+
+fieldset {
+    border: 1px solid #999;
+    padding-left: 9px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+}
+
+legend {
+    color: #330033;
+    background: #fff;
+    border: 1px solid #781351;
+    padding: 2px 6px
+}
+

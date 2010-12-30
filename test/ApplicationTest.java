@@ -13,5 +13,17 @@ public class ApplicationTest extends FunctionalTest {
         assertContentType("text/html", response);
         assertCharset("utf-8", response);
     }
-    
+
+    @Test
+    public void testThatAdminPageIsProtected() {
+        Response response = GET("/admin/showmyprofile");
+        assertStatus(302, response);
+    }
+
+
+    @Test
+    public void testThatBackofficePageIsProtected() {
+        Response response = GET("/backoffice/index");
+        assertStatus(302, response);
+    }
 }
