@@ -2,7 +2,12 @@
 #{set title:'Profil' /}
 
 <div class="grid_2">
-    <img src="${zindep.pictureUrl}" alt=""/>
+    #{if zindep.pictureUrl}
+    <img src="${zindep.pictureUrl}" alt="${zindep.firstName} ${zindep.lastName}"/>
+    #{/if}
+    #{else}
+    <img src="@{'public/images/no_photo.png'}" alt="No picture yet"/>
+    #{/else}
 </div>
 <div class="grid_8">
     <h1>${zindep.firstName} ${zindep.lastName}</h1>
@@ -12,11 +17,27 @@
     <p>${zindep.memberSince?.format('MMMM yyyy')}</p>
 
     <h3>Présentation</h3>
-     <p>${zindep.bio}</p>
+     <p align="justify">${zindep.bio}</p>
 
     <h3>Domaines d'expertise</h3>
-     <p>${zindep.techno}</p>
+    <p align="justify">${zindep.techno}</p>
 </div>
 
-
 <div class="clear">&nbsp;</div>
+<div class="grid6 prefix_2">
+    <h3>Contactez ${zindep.firstName}</h3>
+    #{if flash.success}
+    <div class="successbox">${flash.success}</div>
+    #{/if}
+     #{if flash.error}
+    <div class="errorbox">${flash.error}</div>
+    #{/if}
+    #{form @sendMessage(zindep.id)}
+        <label for="msg">Votre Message :</label>
+        <textarea id="msg" rows="6" cols="60" name="message" title="Message"></textarea><br/>
+        <input type="submit" value="Envoyer"/>
+    #{/form}
+
+
+</div>
+

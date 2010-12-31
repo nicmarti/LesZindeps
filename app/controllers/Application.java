@@ -28,6 +28,7 @@ package controllers;
 
 import models.Propal;
 import models.Zindep;
+import notifiers.Mails;
 import play.mvc.*;
 
 import java.util.Date;
@@ -113,8 +114,34 @@ public class Application extends Controller {
             qui();
         }
         render(zindep);
-
     }
 
+    /**
+     * Envoi un email. Mon dieu c'est tellement simple avec Play que je ne vais même pas mettre un commentaire.
+     * Y"a qu'à regarder Mails.java et comprendre la magie...
+     * @param id est l'id de l'indep à contacter
+     * @param message est le message à envoyer
+     */
+    public static void sendMessage(String id, String message){
+        if(message==null){
+            flash.error("Votre message est vide");
+            showProfile(id,"","");
+        }
+        if(message.trim().isEmpty()){
+            flash.error("Votre message est vide, merci de corriger");
+        showProfile(id,"","");
+        }
+        Zindep zindep=Zindep.findById(id);
+        if(zindep==null){
+            flash.error("Un probleme technique empêche l'envoi de message pour l'instant. Merci de retenter plus tard.");
+            showProfile(id,"","");
+        }
+        Mails.sendMessageToUser(message,zindep.email);
+        if(zindep.emailBackup!=null){
+            Mails.sendMessageToUser(message,zindep.emailBackup);
+        }
+        flash.success("Message envoyé");
+        showProfile(id,"","");
+    }
 
 }

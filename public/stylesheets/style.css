@@ -38,8 +38,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 
 body {
-    line-height: 1.2em;
-    font-family: Geneva, Times new Roman, serif;
+    line-height: 1.3em;
+    font-family: Geneva,Tahoma, sans-serif;
 }
 
 h1 {
@@ -317,7 +317,7 @@ form .error {
 .successbox {
     background: #e5f4e1;
     border: 1px solid #d1e7ca;
-    margin: 0 0 30px;
+    margin: 0 0 10px;
     padding: 10px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
