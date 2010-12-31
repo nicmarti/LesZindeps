@@ -141,20 +141,25 @@ a.selected {
 }
 
 #nav a {
-    padding: 4px 6px;
-    margin: 0 2px;
+    padding-top: 6px;
+    padding-right: 6px;
+    padding-left: 6px;
+    padding-bottom: 6px;
+    margin-top: 0;
+    margin-right: 2px;
+    margin-left: 2px;
+    margin-bottom: 0;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     background-color: #330066;
     color: #fff;
-    font-family: Helvetica, sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     text-decoration: none;
 }
 
 #nav a:hover {
-    color: #ccc;
+    color: #ff6600;
 }
 
 #nav a:active {
