@@ -1,0 +1,10 @@
+Message envoyé via le site des Zindeps
+=======================================
+
+Bonjour,
+Un visiteur a envoyé un message via le site des Zindeps
+en consultant votre profil.
+
+Son message:
+${message}
+
