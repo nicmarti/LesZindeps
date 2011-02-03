@@ -54,7 +54,8 @@ public class Application extends Controller {
      * Retourne la liste des zindeps
      */
     public static void qui() {
-        List<Zindep> listOfZindeps = Zindep.findAllByName();
+        List<Zindep> listOfZindeps = Zindep.findAllVisibleByName();
+        
         render(listOfZindeps);
     }
 

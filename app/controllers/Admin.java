@@ -186,6 +186,7 @@ public class Admin extends Controller {
         existing.pictureUrl = zindep.pictureUrl;
         existing.emailBackup= zindep.emailBackup;
         existing.title= zindep.title;
+        existing.isVisible= zindep.isVisible;
 
         existing.save();
 

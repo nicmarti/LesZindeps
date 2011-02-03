@@ -93,6 +93,8 @@ public class Zindep extends GenericModel {
     public String linkedInId;
 
     public String pictureUrl;
+    
+    public boolean isVisible = false;
 
 
     @Override
@@ -111,6 +113,15 @@ public class Zindep extends GenericModel {
      */
     public static List<Zindep> findAllByName() {
         return Zindep.find("from Zindep order by lastName").fetch();
+    }
+
+    /**
+     * Retourne la liste trié par nom des Zindeps qui veulent rendre leur profil visible.
+     *
+     * @return une liste triée ou vide... si un jour tous les zindeps venait à disparaitre ou a rendre leur profil invisible ;).
+     */
+    public static List<Zindep> findAllVisibleByName() {
+        return Zindep.find("from Zindep where isVisible = 'True' order by lastName").fetch();
     }
 
 

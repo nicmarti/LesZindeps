@@ -137,6 +137,15 @@
             <em>Format: dd/mm/yy</em>
         </p>
         #{/}
+        
+        #{field 'zindep.isVisible'}
+        <p>
+            <label>Rendre mon profil visible :</label>
+            <input type="checkbox" id="${field.id}" name="${field.name}" ${field.value? 'checked' : ''}
+                   class="${field.errorClass}">
+            <span class="error">${field.error}</span><br/>
+        </p>
+        #{/}
     </fieldset>
 
     <script type="text/javascript" charset="utf-8">

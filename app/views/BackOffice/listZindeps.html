@@ -22,7 +22,7 @@
         <th>Membre depuis</th>
         <th>Localisation</th>
         <th>Email</th>
-
+        <th>Visible</th>
     </tr>
     </thead>
 
@@ -33,7 +33,7 @@
         <td>${indep.memberSince?.format('d MMMM yyyy')}</td>
         <td>${indep.location}</td>
         <td>${indep.email}</td>
-
+        <td><input type="checkbox" ${indep.isVisible? 'checked' : ''} onclick="return false" > </td>
     </tr>
     #{/list}
 
