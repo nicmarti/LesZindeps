@@ -43,20 +43,10 @@ public class AdminMissions extends Admin
     /**
      * Affiche la liste des missions déjà effectuées par ce Zindep
      */
-    public static void showMyMissions() {
-        String id = session.get("zindepId");
-        if (id == null) {
-            error("Probleme avec l'authentification");
-        }
-
-        Zindep zindep = Zindep.findById(id);
-        if (zindep == null) {
-            error("Zindep non trouvé");
-        }
+    public static void showMissions() {
         
-        List<Mission> missions = Mission.findByZindep(zindep);
-
-        render(zindep,missions);
+        List<Mission> missions = Mission.findAll();
+        render(missions);
 
     }
     
@@ -68,6 +58,10 @@ public class AdminMissions extends Admin
         render(); 
     }
     
+    /**
+     * Affiche le formulaire d'ajout de mission en mode édition
+     * @param missionId
+     */
     public static void updateMission  (Long missionId)
     {
         Mission mission = Mission.findById(missionId);
@@ -78,6 +72,10 @@ public class AdminMissions extends Admin
         render("@addMission", mission);
     }
 
+    /**
+     * Supprime une mission et renvoie vers la liste des missions
+     * @param missionId
+     */
     public static void delMission (Long missionId)
     {
         Mission mission = Mission.findById(missionId);
@@ -87,9 +85,13 @@ public class AdminMissions extends Admin
         
         mission.delete();
         
-        showMyMissions();
+        showMissions();
     }
 
+    /**
+     * Sauve ou met a jour une mission
+     * @param mission
+     */
     public static void doAddMission (@Valid Mission mission)
     {
         String id = session.get("zindepId");
@@ -109,10 +111,12 @@ public class AdminMissions extends Admin
             render("@addMission", mission);
         }
         
+        // dans le cas d'une mise à jour, l'id est non null
         if (mission.id != null)
         {
             mission.save();
         }
+        // sinon c'est un nouveau, on persiste
         else
         {
             
@@ -123,7 +127,7 @@ public class AdminMissions extends Admin
         }
         
         flash.success("Mise à jour effectuée");
-        showMyMissions();     
+        showMissions();     
     }
 
 }
