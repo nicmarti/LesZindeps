@@ -28,10 +28,9 @@ package controllers;
 
 import java.util.List;
 
-import play.data.validation.Valid;
-
 import models.Mission;
 import models.Zindep;
+import play.data.validation.Valid;
 
 /**
  * Ce controleur permet à chaque Zindep de gérer les missions qu'il a déjà effectuées
@@ -129,5 +128,24 @@ public class AdminMissions extends Admin
         flash.success("Mise à jour effectuée");
         showMissions();     
     }
+    
+    public static void listOfIntermediaries (String term)
+    {
+        List<String>intermediaries = Mission.getListOfIntermediaries(term);
+        renderJSON(intermediaries);
+    }    
+    
+    public static void listOfCustomers (String term)
+    {
+        List<String>customers = Mission.getListOfCustomers(term);
+        renderJSON(customers);
+    }  
+    
+    public static void listOfLocations (String term)
+    {
+        List<String>locations = Mission.getListOfLocations(term);
+        renderJSON(locations);
+    }  
+
 
 }

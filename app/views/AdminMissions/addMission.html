@@ -1,8 +1,11 @@
 #{extends 'Admin/mainAuthenticated.html' /}
 #{set title:'Ajouter une mission' /}
 
-#{set moreScripts:'<script src="/public/javascripts/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>' /}
-#{set moreScripts:'<script src="/public/javascripts/jquery-ui-1.7.2.custom.min.js" type="text/javascript" charset="utf-8"></script>' /}
+#{set 'moreScripts'}
+<script src="/public/javascripts/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/public/javascripts/jquery-ui-1.8.6.custom.min.js" type="text/javascript" charset="utf-8"></script>
+#{/set}
+
 
 
 <div class="grid_8 prefix_2">
@@ -37,7 +40,7 @@
     <fieldset>
         <legend>Mission</legend>
         
-        <input type="hidden" id="mission_id" name="mission.id" value="${mission.id}"/>
+        <input type="hidden" id="mission_id" name="mission.id" value="${mission?.id}"/>
         
         #{field 'mission.title'}
         <p>
@@ -142,11 +145,26 @@
     </fieldset>
 
     <script type="text/javascript" charset="utf-8">
-        $("#mission_initialDate #mission_endDate" ).datepicker(
+        $("#mission_initialDate,#mission_endDate" ).datepicker(
         {dateFormat:'dd/mm/yy', showAnim:'fadeIn',
             dayNamesMin:["Di","Lu","Ma","Me","Je","Ve","Sa"],
             firstDay:'1'}
-                )
+                );
+        
+        $( "#mission_intermediary" ).autocomplete({
+            source: "@{AdminMissions.listOfIntermediaries()}",
+            minLength: 2
+        });
+        
+        $( "#mission_customer" ).autocomplete({
+            source: "@{AdminMissions.listOfCustomers()}",
+            minLength: 2
+        });  
+        
+        $( "#mission_location" ).autocomplete({
+            source: "@{AdminMissions.listOfLocations()}",
+            minLength: 2
+        });  
     </script>
 
 
