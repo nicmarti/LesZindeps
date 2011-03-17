@@ -1,107 +1,70 @@
-<!DOCTYPE html>
+#{extends 'Admin/adminTemplate.html' /}
+#{set pageTitle:'Import from LinkedIn' /}
 
-<html>
-<head>
-    <title>Authentification ★ Les Zindeps</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" type="text/css" media="screen" href="@{'public/stylesheets/style.css'}">
-    <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/grid.css'}">
-    <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.ico'}">
+#{set 'moreScripts'}
+<!-- specifique pour cette page -->
+<link type="text/css" rel="stylesheet" href="@{'/public/stylesheets/openid/openid.css'}"/>
+<script type="text/javascript" src="@{'/public/javascripts/openid/jquery-1.2.6.min.js'}"></script>
+<script type="text/javascript" src="@{'/public/javascripts/openid/openid-jquery.js'}"></script>
+<script type="text/javascript" src="@{'/public/javascripts/openid/openid-jquery-en.js'}"></script>
 
-    <!-- specifique pour cette page -->
-    <link type="text/css" rel="stylesheet" href="@{'/public/stylesheets/openid/openid.css'}"/>
-    <script type="text/javascript" src="@{'/public/javascripts/openid/jquery-1.2.6.min.js'}"></script>
-    <script type="text/javascript" src="@{'/public/javascripts/openid/openid-jquery.js'}"></script>
-    <script type="text/javascript" src="@{'/public/javascripts/openid/openid-jquery-en.js'}"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        openid.init('openid_identifier');
+        openid.setDemoMode(false);
+    });
+</script>
 
-    <script type="text/javascript">
-        $(document).ready(function() {
-            openid.init('openid_identifier');
-            openid.setDemoMode(false);
-        });
-    </script>
+#{/set}
 
+<div class="grid_8 openIdPanel">
+    <h2>Accès privé</h2>
 
-</head>
-<body>
-<div class="container_12" id="header">
-    <div class="grid_12">
-        <img src="@{'public/images/leszindeps.png'}"/>
-    </div>
-    <div class="grid_4 prefix_8" id="nav">
-        <a id="home" href="@{Application.index()}"
-           class="${request.action =~ /index/ ? 'selected' : ''}">Accueil</a>
-        <a id="qui" href="@{Application.qui()}" class="${request.action =~ /qui/ ? 'selected' : ''}">Qui ?</a>
-        <a id="mission" href="@{Application.mission()}"
-           class="${request.action =~ /mission/ ? 'selected' : ''}">Mission</a>
-        <a id="admin" href="@{Admin.index()}">Accès privé</a>
-    </div>
-</div>
-<div class="container_12" id="mainContent">
+    <!-- Simple OpenID Selector -->
+    #{form @authenticateOpenId(), method:'get',id:'openid_form'}
+    <input type="hidden" name="action" value="verify"/>
 
+    <fieldset>
 
-    <div class="grid_8 openIdPanel">
-        <h2>Accès privé</h2>
+        <div id="openid_choice">
+            <p>Sélectionnez un fournisseur d'accès Open-ID</p>
 
-        <!-- Simple OpenID Selector -->
-        #{form @authenticateOpenId(), method:'get',id:'openid_form'}
-        <input type="hidden" name="action" value="verify"/>
+            <div id="openid_btns"></div>
+        </div>
 
-        <fieldset>
-
-            <div id="openid_choice">
-                <p>Sélectionnez un fournisseur d'accès Open-ID</p>
-
-                <div id="openid_btns"></div>
-            </div>
-
-            <div id="openid_input_area">
-                <input id="openid_identifier" name="openid_identifier" type="text" value="http://"/>
-                <input id="openid_submit" type="submit" value="Sign-In"/>
-            </div>
-            <noscript>
-                <p>OpenID is service that allows you to log-on to many different websites using a single indentity.
-                    Find out <a href="http://openid.net/what/">more about OpenID</a> and <a
-                            href="http://openid.net/get/">how to get an OpenID enabled account</a>.</p>
-            </noscript>
+        <div id="openid_input_area">
+            <input id="openid_identifier" name="openid_identifier" type="text" value="http://"/>
+            <input id="openid_submit" type="submit" value="Sign-In"/>
+        </div>
+        <noscript>
+            <p>OpenID is service that allows you to log-on to many different websites using a single indentity.
+                Find out <a href="http://openid.net/what/">more about OpenID</a> and <a
+                        href="http://openid.net/get/">how to get an OpenID enabled account</a>.</p>
+        </noscript>
 
         #{/form}
         <!-- /Simple OpenID Selector -->
 
-        </fieldset>
+    </fieldset>
 
-        #{if flash.error}
-        <div class="errorbox">
-            <h2>Erreur</h2>
-            ${flash.error}
-        </div>
-        #{/if}
-
-        #{if flash.success}
-        <div class="successbox">
-            ${flash.success}
-        </div>
-        #{/if}
+    #{if flash.error}
+    <div class="errorbox">
+        <h2>Erreur</h2>
+        ${flash.error}
     </div>
+    #{/if}
 
-
-    <div class="grid_4">
-        <p><strong>Question :</strong> comment devenir membre des Zindeps ?</p>
-
-        <p><strong>Réponse :</strong> le groupe n'accepte pas de candidature spontanée. Vous serez sollicité si vous
-            connaissez l'un de nous et que votre candidature est retenue par l'ensemble des membres.</p>
+    #{if flash.success}
+    <div class="successbox">
+        ${flash.success}
     </div>
+    #{/if}
 </div>
 
-<div class="clear"></div>
 
-<div class="container_12">
-    <div id="footer" class="grid_12">
-        <p>Copyright(c) 2010 les Zindeps - Travail distribué en licence AGPL</P>
+<div class="grid_4">
+    <p><strong>Question :</strong> comment devenir membre des Zindeps ?</p>
 
-        <p>Propulsé avec Play! Framework 1.1</P>
-    </div>
+    <p><strong>Réponse :</strong> le groupe n'accepte pas de candidature spontanée. Vous serez sollicité si vous
+        connaissez l'un de nous et que votre candidature est retenue par l'ensemble des membres.</p>
 </div>
-</body>
-</html>
-

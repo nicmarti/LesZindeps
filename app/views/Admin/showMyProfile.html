@@ -1,9 +1,10 @@
-#{extends 'Admin/mainAuthenticated.html' /}
+#{extends 'Admin/adminTemplate.html' /}
 #{set title:'Mon profil' /}
 
-#{set moreScripts:'
+#{set 'moreScripts'}
 <script src="/public/javascripts/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="/public/javascripts/jquery-ui-1.7.2.custom.min.js" type="text/javascript" charset="utf-8"></script>' /}
+<script src="/public/javascripts/jquery-ui-1.7.2.custom.min.js" type="text/javascript" charset="utf-8"></script>
+#{/set}
 
 
 <div class="grid_8 prefix_2">
@@ -140,9 +141,8 @@
         
         #{field 'zindep.isVisible'}
         <p>
-            <label>Rendre mon profil visible :</label>
-            <input type="checkbox" id="${field.id}" name="${field.name}" ${field.value? 'checked' : ''}
-                   class="${field.errorClass}">
+            <label>Rendre mon profil invisible :</label>
+            <input type="checkbox" id="${field.id}" name="${field.name}" ${field.value? 'checked' : ''} class="${field.errorClass}"> Oui je veux masquer mon profil
             <span class="error">${field.error}</span><br/>
         </p>
         #{/}

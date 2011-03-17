@@ -1,65 +1,24 @@
-<!DOCTYPE html>
+#{extends 'Admin/adminTemplate.html' /}
+#{set pageTitle:'Import from LinkedIn' /}
 
-<html>
-<head>
-    <title>Mise à jour ★ Les Zindeps</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" type="text/css" media="screen" href="@{'public/stylesheets/style.css'}">
-    <link rel="stylesheet" type="text/css" media="screen" href="@{'public/stylesheets/grid.css'}">
-    <link rel="shortcut icon" type="image/png" href="@{'public/images/favicon.ico'}">
+#{set 'moreScripts'}
     <script type="text/javascript" src="@{'public/javascripts/openid/jquery-1.2.6.min.js'}"></script>
-
     <script type="text/javascript" src="http://platform.linkedin.com/in.js">
         api_key: GbAcjfxJzfYpzx2xeYRuO8tvVF1udtOMlgDsnLwpHmjUwg6g4JPZV25Uz5zT5arO
         onLoad: onLinkedInLoad
         authorize: true
     </script>
-    <script type="text/javascript" src="@{'public/javascripts/linkedin_zindep.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/linkedin_zindep.js'}"></script>
+#{/set}
 
-</head>
-<body>
-<div class="container_12" id="header">
-    <div class="grid_12">
-        <img src="@{'public/images/leszindeps.png'}"/>
-    </div>
 
-    <div class="grid_5 prefix_4" id="nav">
-        <a id="home" href="@{Application.index()}">Accueil</a>
-        <a id="admin" href="@{Admin.welcome()}">Ma page</a>
-        <a id="mission" href="@{Admin.listPropals()}">Missions</a>
-    </div>
-    <div class="grid_3" id="userAuth">
-        Utilisateur: ${session.zindepEmail}
-        #{a @logout()}Fermer ma session#{/a}
-    </div>
+<div class="grid_8">
+    <h2>Mettre à jour son profil à partir de LinkedIn</h2>
+    <!-- Linked In-->
+    <script type="IN/Login"></script>
+
+    <div id="resultLinkedIn"></div>
+    <div id="mainPanel"></div>
+    <div id="profile"></div>
 </div>
-<div class="container_12" id="mainContent">
-
-
-    <div class="grid_8">
-        <h2>Mettre à jour son profil à partir de LinkedIn</h2>
-
-        <!-- Linked In-->
-        <script type="IN/Login"></script>
-
-        <div id="resultLinkedIn"></div>
-        <div id="mainPanel"></div>
-        <div id="profile"></div>
-
-    </div>
-
-
-</div>
-
-<div class="clear"></div>
-
-<div class="container_12">
-    <div id="footer" class="grid_12">
-        <p>Copyright(c) 2010 les Zindeps - Travail distribué en licence AGPL</P>
-
-        <p>Propulsé avec Play! Framework 1.1</P>
-    </div>
-</div>
-</body>
-</html>
 

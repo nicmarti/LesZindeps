@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>#{get 'pageTitle' /} ★ Les Zindeps</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" media="screen" href="@{'public/stylesheets/style.css'}">
+    <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/grid.css'}">
+    <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.ico'}">
+
+    #{get 'moreScripts' /}
+
+
+</head>
+<body>
+<div class="container_12" id="header">
+    <div class="grid_5">
+        <img src="@{'public/images/logo_leszindeps.png'}" alt="Logo les Zindeps"/>
+    </div>
+
+    #{showAdminMenu /}
+
+</div>
+<div class="container_12" id="mainContent">
+
+    #{doLayout /}
+
+</div>
+
+<div class="clear"></div>
+
+<div class="container_12">
+    <div id="footer" class="grid_12">
+        <p>Copyright(c) 2010-2011 Les Zindeps - <a href="/public/legal.html">Mentions légales</a></P>
+
+        <p>Propulsé avec Play! Framework 1.1 / Hébergé sur PlayApps.net</P>
+    </div>
+</div>
+</body>
+</html>
+
