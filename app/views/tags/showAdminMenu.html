@@ -1,0 +1,23 @@
+#{if session.contains("zindepId")}
+<div class="grid_2 prefix_4">
+    <div class="userAuth">
+    ${session.zindepEmail} <br/> #{a @logout()}Fermer ma session#{/a}
+    </div>
+</div>
+
+<div class="grid_3 prefix_5 suffix_4">
+    <div class="navAuthenticated">
+    <li><a id="admin2" href="@{Admin.welcome()}">Ma page</a></li>
+    <li><a id="mission2" href="@{Admin.listPropals()}">Missions</a></li>
+    </div>
+</div>
+
+#{/if}
+#{else}
+<div class="grid_4 prefix_8" id="nav">
+    <a id="qui" href="@{Application.qui()}" class="${request.action =~ /qui/ ? 'selected' : ''}">Qui ?</a>
+    <a id="mission" href="@{Application.mission()}"
+       class="${request.action =~ /mission/ ? 'selected' : ''}">Mission</a>
+    <a id="admin" href="@{Admin.index()}">Accès privé</a>
+</div>
+#{/else}
