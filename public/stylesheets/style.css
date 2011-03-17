@@ -159,7 +159,7 @@ a.selected {
 }
 
 #nav a:hover {
-    color: #ff6600;
+G    color: #ff6600;
 }
 
 #nav a:active {
@@ -295,6 +295,11 @@ form .error {
     color: #555;
     text-decoration: none;
     font-size: 10px;
+}
+
+#footer a:link,a:hover,a:visited {
+    text-decoration: none;
+    color: #555;
 }
 
 .errorbox {
