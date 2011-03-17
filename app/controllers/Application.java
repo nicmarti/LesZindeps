@@ -139,7 +139,17 @@ public class Application extends Controller {
         }
         Mails.sendMessageToUser(message,zindep.email);
         if(zindep.emailBackup!=null){
-            Mails.sendMessageToUser(message,zindep.emailBackup);
+            if(zindep.emailBackup.trim().equals("")){
+               // email invalide. J'en profite pour le nettoyer et sauver la fiche proprement
+               zindep.emailBackup=null;
+               zindep.save();
+            }
+            // Verifie l'email
+            validation.email(zindep.emailBackup);
+            // si le mail est valide alors envoie la copie
+            if(!validation.hasErrors()){
+                Mails.sendMessageToUser(message,zindep.emailBackup);
+            }
         }
         flash.success("Message envoyé");
         showProfile(id,"","");
