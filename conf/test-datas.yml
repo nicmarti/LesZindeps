@@ -39,10 +39,11 @@ Zindep(z0):
  firstName: Pierre
  lastName: Letesteur
  memberSince: 01/01/2010
- bio: Auteur du site java LeTesteur
+ bio: Auteur du site java LeTesteur. Pierre a un email secondaire pour tester.
  techno: Java, JEE5, JEE6, Websphere,JBoss,Performance,Tuning,JMeter
  location: Paris
  isVisible: true
+ emailBackup: emailbackup@letesteur.fr
 
 Zindep(z1):
  email: nmartignole@gmail.com

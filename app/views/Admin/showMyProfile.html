@@ -1,4 +1,4 @@
-#{extends 'Admin/mainAuthenticated.html' /}
+#{extends 'Admin/adminTemplate.html' /}
 #{set title:'Mon profil' /}
 
 #{set 'moreScripts'}
@@ -144,9 +144,8 @@
         
         #{field 'zindep.isVisible'}
         <p>
-            <label>Rendre mon profil visible :</label>
-            <input type="checkbox" id="${field.id}" name="${field.name}" ${field.value? 'checked' : ''}
-                   class="${field.errorClass}">
+            <label>Rendre mon profil invisible :</label>
+            <input type="checkbox" id="${field.id}" name="${field.name}" ${field.value? 'checked' : ''} class="${field.errorClass}"> Oui je veux masquer mon profil
             <span class="error">${field.error}</span><br/>
         </p>
         #{/}

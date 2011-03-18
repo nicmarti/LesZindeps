@@ -165,6 +165,8 @@ public class Admin extends Controller {
         validation.maxSize(zindep.bio, 2000);
         validation.maxSize(zindep.techno, 2000);
 
+        validation.email(zindep.emailBackup);
+
         // Handle errors
         if (validation.hasErrors()) {
             render("@showMyProfile", zindep);

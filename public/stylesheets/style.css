@@ -39,7 +39,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 body {
     line-height: 1.3em;
-    font-family: Geneva,Tahoma, sans-serif;
+    font-family: Geneva, Tahoma, sans-serif;
 }
 
 h1 {
@@ -87,7 +87,7 @@ table {
 }
 
 form {
-    line-height:2em;
+    line-height: 2em;
 }
 
 /* ----------------------------------------------
@@ -171,9 +171,24 @@ a.selected {
     color: #fff;
 }
 
-#userAuth {
-    font-size: 0.9em;
+.userAuth {
+    font-size: 0.8em;
     color: #666666;
+    padding-left: 6px;
+}
+
+.navAuthenticated {
+    color: #666666;
+}
+
+.navAuthenticated li {
+    list-style: none;
+    list-style-type: none;
+    display: inline;
+}
+
+.navAuthenticated a:hover {
+    color: #f15f15;
 }
 
 /* ----------------------------------------------
@@ -295,6 +310,11 @@ form .error {
     color: #555;
     text-decoration: none;
     font-size: 10px;
+}
+
+#footer a:link, a:hover, a:visited {
+    text-decoration: none;
+    color: #555;
 }
 
 .errorbox {
@@ -474,7 +494,7 @@ fieldset {
     padding-left: 9px;
     padding-top: 9px;
     padding-bottom: 9px;
-    margin-top:5px;
+    margin-top: 5px;
 }
 
 legend {
