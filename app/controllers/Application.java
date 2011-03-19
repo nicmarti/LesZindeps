@@ -55,7 +55,7 @@ public class Application extends Controller {
      */
     public static void qui() {
         List<Zindep> listOfZindeps = Zindep.findAllVisibleByName();
-        
+
         render(listOfZindeps);
     }
 
@@ -70,6 +70,7 @@ public class Application extends Controller {
 
     /**
      * Enregistre une demande de mission
+     *
      * @param propal est la nouvelle mission
      */
     public static void submitMission(Propal propal) {
@@ -78,7 +79,7 @@ public class Application extends Controller {
             validation.keep();
             mission();
         }
-        propal.creationDate=new Date();
+        propal.creationDate = new Date();
         propal.save();
 
         flash.success("Merci d'avoir proposé une mission.");
@@ -87,30 +88,31 @@ public class Application extends Controller {
 
     /**
      * Recherche par nom et par prénom
+     *
      * @param s est le critere de recherche.
      */
-    public static void search(String s){
-        if(s==null){
+    public static void search(String s) {
+        if (s == null) {
             qui();
         }
-        if(s.trim().equals("")){
+        if (s.trim().equals("")) {
             qui();
         }
         List<Zindep> listOfZindeps = Zindep.findByLastNameLike(s);
-        renderTemplate("Application/qui.html",listOfZindeps);
+        renderTemplate("Application/qui.html", listOfZindeps);
     }
 
     /**
      * Affiche un profil, notez aussi dans le fichier "routes" comment l'URL elle est belle...
      * CE qui permettra de la mettre dans son CV par exemple (idée de David Dewalle)
-     * @param id est vraiment utilisé pour charger la fiche
-     * @param firstName ne sert pas mais permet de creer une URL propre dans routes
-     * @param lastName ne sert pas mais permet de creer une URL propre dans routes
      *
+     * @param id        est vraiment utilisé pour charger la fiche
+     * @param firstName ne sert pas mais permet de creer une URL propre dans routes
+     * @param lastName  ne sert pas mais permet de creer une URL propre dans routes
      */
-    public static void showProfile(String id,String firstName,String lastName){
-        Zindep zindep=Zindep.findById(id);
-        if(zindep==null){
+    public static void showProfile(String id, String firstName, String lastName) {
+        Zindep zindep = Zindep.findById(id);
+        if (zindep == null) {
             flash.error("Profil non trouvé ou désactivé");
             qui();
         }
@@ -120,39 +122,41 @@ public class Application extends Controller {
     /**
      * Envoi un email. Mon dieu c'est tellement simple avec Play que je ne vais même pas mettre un commentaire.
      * Y"a qu'à regarder Mails.java et comprendre la magie...
-     * @param id est l'id de l'indep à contacter
+     *
+     * @param id      est l'id de l'indep à contacter
      * @param message est le message à envoyer
      */
-    public static void sendMessage(String id, String message){
-        if(message==null){
+    public static void sendMessage(String id, String message) {
+        if (message == null) {
             flash.error("Votre message est vide");
-            showProfile(id,"","");
+            showProfile(id, "", "");
         }
-        if(message.trim().isEmpty()){
+        if (message.trim().isEmpty()) {
             flash.error("Votre message est vide, merci de corriger");
-        showProfile(id,"","");
+            showProfile(id, "", "");
         }
-        Zindep zindep=Zindep.findById(id);
-        if(zindep==null){
+        Zindep zindep = Zindep.findById(id);
+        if (zindep == null) {
             flash.error("Un probleme technique empêche l'envoi de message pour l'instant. Merci de retenter plus tard.");
-            showProfile(id,"","");
+            showProfile(id, "", "");
         }
-        Mails.sendMessageToUser(message,zindep.email);
-        if(zindep.emailBackup!=null){
-            if(zindep.emailBackup.trim().equals("")){
-               // email invalide. J'en profite pour le nettoyer et sauver la fiche proprement
-               zindep.emailBackup=null;
-               zindep.save();
-            }
-            // Verifie l'email
-            validation.email(zindep.emailBackup);
-            // si le mail est valide alors envoie la copie
-            if(!validation.hasErrors()){
-                Mails.sendMessageToUser(message,zindep.emailBackup);
+        Mails.sendMessageToUser(message, zindep.email);
+        if (zindep.emailBackup != null) {
+            if (zindep.emailBackup.trim().equals("")) {
+                // email invalide. J'en profite pour le nettoyer et sauver la fiche proprement
+                zindep.emailBackup = null;
+                zindep.save();
+            } else {
+                // Verifie l'email
+                validation.email(zindep.emailBackup);
+                // si le mail est valide alors envoie la copie
+                if (!validation.hasErrors()) {
+                    Mails.sendMessageToUser(message, zindep.emailBackup);
+                }
             }
         }
         flash.success("Message envoyé");
-        showProfile(id,"","");
+        showProfile(id, "", "");
     }
 
 }
