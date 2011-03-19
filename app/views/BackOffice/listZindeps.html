@@ -22,7 +22,8 @@
         <th>Membre depuis</th>
         <th>Localisation</th>
         <th>Email</th>
-        <th>Visible</th>
+        <th>Visibile</th>
+        <th>Action</th>
     </tr>
     </thead>
 
@@ -30,11 +31,22 @@
     <tr>
         <td>${indep.firstName}</td>
         <td>${indep.lastName}</td>
-        <td>${indep.memberSince?.format('d MMMM yyyy')}</td>
+        <td>${indep.memberSince?.format('dd/MM/yy')}</td>
         <td>${indep.location}</td>
         <td>${indep.email}</td>
-        <td><input type="checkbox" ${indep.isVisible? 'checked' : ''} onclick="return false" > </td>
+        <td>${indep.isVisible ? '√':'■'}</td>
+        <td>
+            #{if indep.isVisible}
+                #{a @BackOffice.setInvisible(indep.id)}Masquer#{/a}
+            #{/if}
+            #{else}
+                #{a @BackOffice.setVisible(indep.id)}Montrer#{/a}
+            #{/else}
+        </td>
     </tr>
     #{/list}
 
 </table>
+
+#{a @BackOffice.index()}&larr; Retour#{/a}
+

@@ -39,6 +39,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 body {
     line-height: 1.3em;
+    font-size: 13px;
     font-family: Geneva, Tahoma, sans-serif;
 }
 
@@ -97,7 +98,6 @@ html {
     margin: 0;
     background: #fff;
     color: #000;
-    font: 13px "Helvetica";
 }
 
 #header {
@@ -200,6 +200,7 @@ table {
     text-align: left;
     font-size: 15px;
     border: 1px solid rgba(0, 0, 0, 0.1);
+    font-size:12px;
 }
 
 thead {
@@ -213,6 +214,7 @@ thead {
 
 th {
     padding: 10px 5px 5px;
+    text-align:center;
 }
 
 tbody tr:nth-child(even) {
@@ -225,6 +227,9 @@ tbody tr:nth-child(odd) {
 
 td {
     padding: 5px;
+    text-align:center;
+
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 td a, td input[type=submit] {
@@ -247,18 +252,7 @@ td a:active, td input[type=submit]:active {
     top: 1px;
 }
 
-td input {
-    text-align: left;
-    font-size: 15px;
-    padding: 0;
-    border: none;
-    border-bottom: 1px solid rgba(255, 255, 0, .3);
-    background: transparent;
-    color: gold;
-    display: block;
-    margin: -3px -1px;
-    width: 200px;
-}
+
 
 td.editing {
     padding: 0px 5px;
