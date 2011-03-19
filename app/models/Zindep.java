@@ -106,14 +106,6 @@ public class Zindep extends GenericModel {
                 "}";
     }
 
-    /**
-     * Retourne la liste trié par nom des Zindeps.
-     *
-     * @return une liste triée ou vide... si un jour tous les zindeps venait à disparaitre.
-     */
-    public static List<Zindep> findAllByName() {
-        return Zindep.find("from Zindep order by lastName").fetch();
-    }
 
     /**
      * Retourne la liste trié par nom des Zindeps qui veulent rendre leur profil visible.
@@ -121,7 +113,7 @@ public class Zindep extends GenericModel {
      * @return une liste triée ou vide... si un jour tous les zindeps venait à disparaitre ou a rendre leur profil invisible ;).
      */
     public static List<Zindep> findAllVisibleByName() {
-        return Zindep.find("from Zindep where isVisible = 'True' order by lastName").fetch();
+        return Zindep.find("from Zindep z where z.isVisible=true order by z.lastName").fetch();
     }
 
 
@@ -133,13 +125,12 @@ public class Zindep extends GenericModel {
      */
     public static List<Zindep> findByLastNameLike(String s) {
         if (s == null) {
-            return findAllByName();
+            return findAllVisibleByName();
         }
         if (s.trim().equals("")) {
-            return findAllByName();
+            return findAllVisibleByName();
         }
-
-        return find("from Zindep z where z.index like ? order by z.lastName", JavaExtensions.noAccents("%" + s.toLowerCase() + "%")).fetch();
+        return find("from Zindep z where z.index like ? and z.isVisible=true order by z.lastName", JavaExtensions.noAccents("%" + s.toLowerCase() + "%")).fetch();
     }
 
 
