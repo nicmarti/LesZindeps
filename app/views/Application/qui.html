@@ -24,11 +24,9 @@
         #{/if}
             <td>
                 #{if indep.pictureUrl && indep.pictureUrl!='undefined'}
-                    #{a @showProfile(indep.id,indep.firstName,indep.lastName)}
-                    <img src="${indep.pictureUrl}"
+                    #{a @showProfile(indep.id,indep.firstName,indep.lastName)}<img src="${indep.pictureUrl}"
                          alt="${indep.firstName} ${indep.lastName}"
-                         class="zindepPicture"/>
-                    #{/a}
+                         class="zindepPicture"/>#{/a}
                     <br/>
                 #{/if}
                 ${indep.firstName} ${indep.lastName}<br/>

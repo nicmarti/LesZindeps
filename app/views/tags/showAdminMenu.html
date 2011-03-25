@@ -14,11 +14,5 @@
 
 #{/if}
 #{else}
-<div class="grid_4 prefix_8" id="nav">
-    <a id="home" href="@{Application.index()}">Accueil</a>
-    <a id="qui" href="@{Application.qui()}" class="${request.action =~ /qui/ ? 'selected' : ''}">Qui ?</a>
-    <a id="mission" href="@{Application.mission()}"
-       class="${request.action =~ /mission/ ? 'selected' : ''}">Mission</a>
-    <a id="admin" href="@{Admin.index()}">Accès privé</a>
-</div>
+#{tagMenuNav /}
 #{/else}

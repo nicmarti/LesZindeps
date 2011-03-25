@@ -18,12 +18,7 @@
     <div class="grid_12">
         <img src="@{'public/images/logo_leszindeps.png'}" alt="Logo les Zindeps"/>
     </div>
-    <div class="grid_6 prefix_5" id="nav">
-            <a class="button blue" href="@{Application.index()}">Accueil</a>
-            <a class="button blue" href="@{Application.qui()}">Qui ?</a>
-            <a class="button blue" href="@{Application.mission()}">Mission</a>
-            <a class="button red" href="@{Admin.index()}">Accès privé</a>
-    </div>
+   #{tagMenuNav/}
 </div>
 <div class="container_12" id="mainContent">
     #{doLayout /}
@@ -34,8 +29,7 @@
 <div class="container_12">
     <div id="footer" class="grid_12">
         <p>Copyright(c) 2010-2011 Les Zindeps - <a href="/public/legal.html">Mentions légales</a></P>
-
-        <p>Propulsé avec Play! Framework 1.1 / Hébergé sur PlayApps.net</P>
+        <p>Propulsé avec <a href="http://www.playframework.org/">Play! Framework - Hébergé sur <a href="http://www.playapps.net">Playapps</a></P>
     </div>
 </div>
 </body>
