@@ -77,8 +77,18 @@ public class AdminMissions extends Admin {
         if (mission == null) {
             error("Mission non trouvée");
         }
+        String id = session.get("zindepId");
+        Zindep zindep = Zindep.findById(id);
+        if (zindep == null) {
+            flash.error("Impossible de trouver le propriétaire");
+        }
+        if (!mission.zindep.equals(zindep)) {
+            flash.error("Désolé, vous ne pouvez pas effacer les missions d'un autre");
+            showMissions();
+        }
 
         mission.delete();
+        flash.success("Mission effacée");
         showMissions();
     }
 
@@ -98,21 +108,22 @@ public class AdminMissions extends Admin {
             error("Zindep non trouvé");
         }
 
-        // Handle errors
+        // Validation
         if (validation.hasErrors()) {
             params.flash();
             render("@addMission", mission);
         }
-
         // dans le cas d'une mise à jour, l'id est non null
         if (mission.id != null) {
+            if (!mission.zindep.equals(zindep)) {
+                flash.error("Désolé, vous ne pouvez pas modifier les missions d'un autre");
+                showMissions();
+            }
             mission.save();
         }
         // sinon c'est un nouveau, on persiste
         else {
-
             mission.zindep = zindep;
-
             zindep.missions.add(mission);
             zindep.save();
         }
