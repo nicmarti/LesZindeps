@@ -3,14 +3,12 @@
 
 <h1>Liste des missions envoyées</h1>
 
-#{a @AdminMissions.showMissions()}Voir les missions déjà réalisées et leurs tarifs#{/a}<br/>
-
 <table>
     <thead>
     <tr>
         <th>Title</th>
         <th>Description</th>
-        <th>Creation Date</th>
+        <th>Postée le</th>
         <th>TJM</th>
         <th>Localisation</th>
         <th>Contact</th>
@@ -20,15 +18,13 @@
 
     #{list items:listOfPropals, as:'propal'}
     <tr>
-
         <td>${propal.title}</td>
         <td>${propal.description}</td>
-        <td>${propal.creationDate}</td>
+        <td>${propal.creationDate.format('EEE d MMM HH:mm')}</td>
         <td>${propal.tjm}</td>
         <td>${propal.localisation}</td>
         <td>${propal.contact}</td>
     </tr>
-
 
     #{/list}
 
