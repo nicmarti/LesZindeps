@@ -29,6 +29,7 @@ package controllers;
 import models.Propal;
 import models.Zindep;
 import notifiers.Mails;
+import play.Logger;
 import play.mvc.*;
 
 import java.util.Date;
