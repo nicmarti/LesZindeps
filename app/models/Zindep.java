@@ -34,6 +34,7 @@ import play.db.jpa.GenericModel;
 import play.templates.JavaExtensions;
 
 import javax.persistence.*;
+
 import java.util.Date;
 import java.util.List;
 
@@ -95,6 +96,9 @@ public class Zindep extends GenericModel {
     public String pictureUrl;
     
     public boolean isVisible = false;
+    
+    @OneToMany(mappedBy = "zindep", cascade=CascadeType.ALL)
+    public List<Mission> missions; 
 
 
     @Override

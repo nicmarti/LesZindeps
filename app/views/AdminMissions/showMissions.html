@@ -1,0 +1,71 @@
+#{extends 'Admin/adminTemplate.html' /}
+#{set title:'Liste des missions déjà effectuées' /}
+
+<h1>Liste des missions effectuées</h1>
+
+ <p class="buttons">#{a @AdminMissions.addMission()}Ajouter une mission#{/a}</p>
+
+	#{ifErrors}
+    <div class="error">
+        <h2>Erreur</h2>
+        <ul>
+            #{errors}
+            <li>${error}</li>
+            #{/errors}
+        </ul>
+    </div>
+    #{/ifErrors}
+
+    #{if flash.error}
+    <div class="error">
+        <h2>${flash.error}</h2>
+    </div>
+    #{/if}
+
+    #{if flash.success}
+    <div class="successbox">
+        ${flash.success}
+    </div>
+    #{/if}
+
+<table>
+    <thead>
+    <tr>
+    	<th>Nom</th>
+        <th>Titre</th>
+        <th>Date début</th>
+        <th>Date fin</th>
+        <th>Tarif client</th>
+        <th>Tarif SSII</th>
+        <th>Client</th>
+        <th>SSII</th>
+        <th>Région</th>
+        <th>Exp.</th>
+        <th>Commentaire</th>
+        <th>Actions</th>
+        
+
+    </tr>
+    </thead>
+
+    #{list items:missions, as:'mission'}
+    <tr>
+
+		<td>${mission.zindep.firstName} ${mission.zindep.lastName}</td>
+        <td>${mission.title}</td>
+        <td>${mission.initialDate}</td>
+        <td>${mission.endDate}</td>
+        <td>${mission.clientPrice}</td>
+        <td>${mission.intermediaryPrice}</td>
+        <td>${mission.customer}</td>
+        <td>${mission.intermediary}</td>
+        <td>${mission.location}</td>
+        <td>${mission.exp}</td>
+        <td>${mission.comment}</td>
+        <td>#{if mission.zindep.id == session.zindepId}  #{a @AdminMissions.updateMission(mission.id)}Modifier#{/a} | #{a @AdminMissions.delMission(mission.id)}Supprimer#{/a}#{/if}</td>
+    </tr>
+
+
+    #{/list}
+
+</table>

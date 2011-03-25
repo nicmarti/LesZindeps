@@ -1,0 +1,175 @@
+#{extends 'Admin/adminTemplate.html' /}
+#{set title:'Ajouter une mission' /}
+
+#{set 'moreScripts'}
+<script src="/public/javascripts/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/public/javascripts/jquery-ui-1.8.6.custom.min.js" type="text/javascript" charset="utf-8"></script>
+#{/set}
+
+
+
+<div class="grid_8 prefix_2">
+    #{ifErrors}
+    <div class="error">
+        <h2>Erreur</h2>
+        <ul>
+            #{errors}
+            <li>${error}</li>
+            #{/errors}
+        </ul>
+    </div>
+    #{/ifErrors}
+
+    #{if flash.error}
+    <div class="error">
+        <h2>${flash.error}</h2>
+    </div>
+    #{/if}
+
+    #{if flash.success}
+    <div class="successbox">
+        ${flash.success}
+    </div>
+    #{/if}
+
+    <!-- Tag play cree dans views/tags -->
+    #{jQueryValidate class:models.Mission.class, key:'mission' /}
+
+    #{form id:'joinForm', action:@doAddMission()}
+
+    <fieldset>
+        <legend>Mission</legend>
+        
+        <input type="hidden" id="mission_id" name="mission.id" value="${mission?.id}"/>
+        
+        #{field 'mission.title'}
+        <p>
+            <label for="${field.id}">Titre :</label>
+            <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
+                   size="50" maxlength="255">
+            <span class="error">${field.error}</span><br/>
+        </p>
+        #{/}
+        
+        #{field 'mission.initialDate'}
+        <p>
+            <label for="${field.id}">Date de début :</label>
+            <input type="text" id="${field.id}" name="${field.name}" value="${field.value?.format('dd/MM/yy')}"
+                   class="${field.errorClass}"
+                   size="90" maxlength="255">
+            <span class="error">${field.error}</span><br/>
+            <em>Format: dd/mm/yy</em>
+        </p>
+        #{/}
+        
+        #{field 'mission.endDate'}
+        <p>
+            <label for="${field.id}">Date de fin :</label>
+            <input type="text" id="${field.id}" name="${field.name}" value="${field.value?.format('dd/MM/yy')}"
+                   class="${field.errorClass}"
+                   size="90" maxlength="255">
+            <span class="error">${field.error}</span><br/>
+            <em>Format: dd/mm/yy</em>
+        </p>
+        #{/}
+        
+        #{field 'mission.clientPrice'}
+        <p>
+            <label for="${field.id}">Tarif client :</label>
+            <input type="text" id="${field.id}" name="${field.name}" value="${field.value}"
+                   class="${field.errorClass}"
+                   size="90" maxlength="255">
+            <span class="error">${field.error}</span><br/>
+        </p>
+        #{/}
+        
+        #{field 'mission.intermediaryPrice'}
+        <p>
+            <label for="${field.id}">Tarif SSII :</label>
+            <input type="text" id="${field.id}" name="${field.name}" value="${field.value}"
+                   class="${field.errorClass}"
+                   size="90" maxlength="255">
+            <span class="error">${field.error}</span><br/>
+        </p>
+        #{/}
+        
+        #{field 'mission.customer'}
+        <p>
+            <label for="${field.id}">Client :</label>
+            <input type="text" id="${field.id}" name="${field.name}" value="${field.value}"
+                   class="${field.errorClass}"
+                   size="90" maxlength="255">
+            <span class="error">${field.error}</span><br/>
+        </p>
+        #{/}
+        
+        #{field 'mission.intermediary'}
+        <p>
+            <label for="${field.id}">SSII :</label>
+            <input type="text" id="${field.id}" name="${field.name}" value="${field.value}"
+                   class="${field.errorClass}"
+                   size="90" maxlength="255">
+            <span class="error">${field.error}</span><br/>
+        </p>
+        #{/}
+        
+        #{field 'mission.comment'}
+        <p>
+            <label for="${field.id}">Commentaire :</label>
+            <textarea id="${field.id}" name="${field.name}" cols="60" rows="6"
+                      class="${field.errorClass}">${field.value}</textarea>
+            <span class="error">${field.error}</span><br/>
+        </p>
+        #{/}
+        
+		#{field 'mission.location'}
+        <p>
+            <label for="${field.id}">Région :</label>
+            <input type="text" id="${field.id}" name="${field.name}" value="${field.value}"
+                   class="${field.errorClass}"
+                   size="90" maxlength="255">
+            <span class="error">${field.error}</span><br/>
+        </p>
+        #{/}
+        
+		#{field 'mission.exp'}
+        <p>
+            <label for="${field.id}">Expérience :</label>
+            <input type="text" id="${field.id}" name="${field.name}" value="${field.value}"
+                   class="${field.errorClass}"
+                   size="90" maxlength="255">
+            <span class="error">${field.error}</span><br/>
+        </p>
+        #{/}        
+        
+    </fieldset>
+
+    <script type="text/javascript" charset="utf-8">
+        $("#mission_initialDate,#mission_endDate" ).datepicker(
+        {dateFormat:'dd/mm/yy', showAnim:'fadeIn',
+            dayNamesMin:["Di","Lu","Ma","Me","Je","Ve","Sa"],
+            firstDay:'1'}
+                );
+        
+        $( "#mission_intermediary" ).autocomplete({
+            source: "@{AdminMissions.listOfIntermediaries()}",
+            minLength: 2
+        });
+        
+        $( "#mission_customer" ).autocomplete({
+            source: "@{AdminMissions.listOfCustomers()}",
+            minLength: 2
+        });  
+        
+        $( "#mission_location" ).autocomplete({
+            source: "@{AdminMissions.listOfLocations()}",
+            minLength: 2
+        });  
+    </script>
+
+
+    <p class="buttons"><input type="submit" value="Enregistrer"/></p>
+    #{/form}
+
+</div>
+

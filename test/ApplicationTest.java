@@ -26,4 +26,10 @@ public class ApplicationTest extends FunctionalTest {
         Response response = GET("/backoffice/index");
         assertStatus(302, response);
     }
+    
+    @Test
+    public void testThatAdminMissionPageIsProtected() {
+        Response response = GET("/adminmission/showmymissions");
+        assertStatus(302, response);
+    }
 }
