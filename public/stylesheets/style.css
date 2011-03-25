@@ -146,6 +146,9 @@ a.selected {
     color: #666666;
     padding-left: 6px;
 }
+.adminLeftNav a{
+    margin-bottom:4px;
+}
 
 /* ----------------------------------------------
  * LIST
