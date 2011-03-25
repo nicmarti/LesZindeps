@@ -156,7 +156,7 @@ a.selected {
 /* ----------------------------------------------
  * LIST
  * ------------------------------------------- */
-.darkTable table {
+.zindepTable table {
     width: 100%;
     table-layout: fixed;
     text-align: left;
@@ -165,30 +165,12 @@ a.selected {
     font-size: 12px;
 }
 
-.darkTable thead {
-    border-radius: 10px;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    background: #330033;
-    border: 1px solid #000000;
-    color: #fff;
+.zindepTable a{
+    text-decoration:none;
 }
 
-.darkTable th {
-    padding: 10px 5px 5px;
-    text-align: center;
-}
-
-.darkTable tbody tr:nth-child(even) {
-    background: rgba(0, 0, 0, 0.05);
-}
-
-.darkTable tbody tr:nth-child(odd) {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.darkTable td {
-    padding: 5px;
+.zindepTable td {
+    padding: 15px;
     text-align: center;
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
@@ -456,7 +438,8 @@ legend {
 }
 
 .zindepPicture {
-    width: 80px;
+    height: 80px;
+    width:80px;
     border-width: 1px;
     border-color: #dfdfdf;
     border-style: solid;
