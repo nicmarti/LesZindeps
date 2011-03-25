@@ -1,0 +1,4 @@
+# si vous oubliez le mot de passe de votre user root sur MySQL
+# http://www.commentcamarche.net/forum/affich-2755583-galere-a-n-en-plus-finir-avec-l-acces-a-mysql
+UPDATE mysql.user SET Password=PASSWORD('root') WHERE User='root';
+FLUSH PRIVILEGES;

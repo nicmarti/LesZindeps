@@ -95,7 +95,7 @@ public class BackOffice extends Controller {
      * grace à Groovy.
      */
     public static void listZindeps() {
-        List<Zindep> listOfZindeps = Zindep.findAllByName();
+        List<Zindep> listOfZindeps = Zindep.findAll();
         render(listOfZindeps);
     }
 

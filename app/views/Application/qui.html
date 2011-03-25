@@ -2,36 +2,42 @@
 #{set title:'Qui' /}
 
 
-<div class="grid_8 prefix_2">
-    <h1>Qui sont les Zindeps ?</h1>
-    <p>Nous nous connaissons et vous avez sans doute travaillé avec l'un de nous. Nous vous laissons découvrir
-    et rechercher dans notre annuaire. Chacun de nous représente le groupe des Zindeps, gage de qualité
-    et de sérieux.
-
-    </p>
+<div class="grid_6 prefix_2">
+    <h1>Travaillons ensemble</h1>
 </div>
 
 
-<div class="grid_8 prefix_2">
+<div class="grid_4">
     #{form @search()}
-    <label>Rechercher par nom ou prénom :</label>
-    <input type="text" name="s" value="" class="searchBox"/>
+    <input type="text" name="s" value="" class="searchBox" size="40" placeholder="Recherche par nom ou prénom"/>
     #{/form}
     <br/>
 </div>
 
 <div class="grid_8 prefix_2">
 
-
-    #{list items:listOfZindeps, as:'indep'}
     <table>
-        <tr>
-            <td>${indep.firstName} ${indep.lastName}</td>
-            <td>#{a @showProfile(indep.id,indep.firstName,indep.lastName)}Voir le profil complet#{/a}</td>
-        </tr>
-    </table>
+    #{list items:listOfZindeps, as:'indep'}
 
+        #{if indep_parity=='odd'}
+        <TR>
+        #{/if}
+            <td>
+                #{if indep.pictureUrl && indep.pictureUrl!='undefined'}
+                    #{a @showProfile(indep.id,indep.firstName,indep.lastName)}
+                    <img src="${indep.pictureUrl}"
+                         alt="${indep.firstName} ${indep.lastName}"
+                         class="zindepPicture"/>
+                    #{/a}
+                    <br/>
+                #{/if}
+                ${indep.firstName} ${indep.lastName}<br/>
+                #{a @showProfile(indep.id,indep.firstName,indep.lastName),class:'button green small'}Profil#{/a}</td>
+       #{if indep_parity=='even'}
+        </TR>
+        #{/if}
     #{/list}
+    </table>
 
 
 </div>

@@ -88,7 +88,7 @@ table {
 }
 
 form {
-    line-height: 2em;
+    line-height: 1.5em;
 }
 
 /* ----------------------------------------------
@@ -102,6 +102,7 @@ html {
 
 #header {
     padding-top: 10px;
+    padding-bottom: 10px;
     height: 130px;
     border-bottom-style: solid;
     border-bottom-color: black;
@@ -140,37 +141,6 @@ a.selected {
     color: #660066;
 }
 
-#nav a {
-    padding-top: 6px;
-    padding-right: 6px;
-    padding-left: 6px;
-    padding-bottom: 6px;
-    margin-top: 0;
-    margin-right: 2px;
-    margin-left: 2px;
-    margin-bottom: 0;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    background-color: #330066;
-    color: #fff;
-    font-size: 13px;
-    text-decoration: none;
-}
-
-#nav a:hover {
-    color: #ff6600;
-}
-
-#nav a:active {
-    position: relative;
-    top: 1px;
-}
-
-#nav a.selected {
-    color: #fff;
-}
-
 .userAuth {
     font-size: 0.8em;
     color: #666666;
@@ -200,7 +170,7 @@ table {
     text-align: left;
     font-size: 15px;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    font-size:12px;
+    font-size: 12px;
 }
 
 thead {
@@ -214,7 +184,7 @@ thead {
 
 th {
     padding: 10px 5px 5px;
-    text-align:center;
+    text-align: center;
 }
 
 tbody tr:nth-child(even) {
@@ -227,36 +197,11 @@ tbody tr:nth-child(odd) {
 
 td {
     padding: 5px;
-    text-align:center;
-
+    text-align: center;
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-td a, td input[type=submit] {
-    text-decoration: none;
-    background: #fff;
-    font-weight: normal;
-    padding: 0 3px 0 5px;
-    color: #000;
-    -webkit-border-radius: 10px;
-    -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 1px 1px;
-    -moz-border-radius: 10px;
-    -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 1px 1px;
-    cursor: pointer;
-    width: 16px;
-    height: 16px;
-}
 
-td a:active, td input[type=submit]:active {
-    position: relative;
-    top: 1px;
-}
-
-
-
-td.editing {
-    padding: 0px 5px;
-}
 
 /* ----------------------------------------------
 * ADD
@@ -500,5 +445,113 @@ legend {
 
 #mainPage {
 
+}
 
+.zindepPicture {
+    width: 80px;
+    border-width: 1px;
+    border-color: #dfdfdf;
+    border-style: solid;
+    padding: 3px;
+    -moz-box-shadow: 3px 3px 3px #ccc;
+    -webkit-box-shadow: 3px 3px 3px #ccc;
+    box-shadow: 3px 3px 3px #ccc;
+}
+
+/* Superbes boutons CSS3 tirés de ma démo qui déchire PimpMyApp */
+/* (on sent le gars qui markete bien le truc */
+
+.button, .button:visited {
+    background: #222 url(/public/images/overlay.png) repeat-x;
+    display: inline-block;
+    padding: 5px 10px 6px;
+    color: #fff;
+    text-decoration: none;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    position: relative;
+    cursor: pointer
+}
+
+.button:hover {
+    background-color: #111;
+    color: #fff;
+}
+
+.button:active {
+    top: 1px;
+}
+
+.small.button, .small.button:visited {
+    font-size: 11px
+}
+
+.button, .button:visited,
+.medium.button, .medium.button:visited {
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1;
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.large.button, .large.button:visited {
+    font-size: 14px;
+    padding: 8px 14px 9px;
+}
+
+.super.button, .super.button:visited {
+    font-size: 34px;
+    padding: 8px 14px 9px;
+}
+
+.pink.button, .magenta.button:visited {
+    background-color: #e22092;
+}
+
+.pink.button:hover {
+    background-color: #c81e82;
+}
+
+.green.button, .green.button:visited {
+    background-color: #91bd09;
+}
+
+.green.button:hover {
+    background-color: #749a02;
+}
+
+.red.button, .red.button:visited {
+    background-color: #e62727;
+}
+
+.red.button:hover {
+    background-color: #cf2525;
+}
+
+.orange.button, .orange.button:visited {
+    background-color: #ff5c00;
+}
+
+.orange.button:hover {
+    background-color: #d45500;
+}
+
+.blue.button, .blue.button:visited {
+    background-color: #2981e4;
+}
+
+.blue.button:hover {
+    background-color: #2575cf;
+}
+
+.yellow.button, .yellow.button:visited {
+    background-color: #ffb515;
+}
+
+.yellow.button:hover {
+    background-color: #fc9200;
 }

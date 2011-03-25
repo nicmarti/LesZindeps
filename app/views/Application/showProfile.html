@@ -2,8 +2,8 @@
 #{set title:'Profil' /}
 
 <div class="grid_2">
-    #{if zindep.pictureUrl}
-    <img src="${zindep.pictureUrl}" alt="${zindep.firstName} ${zindep.lastName}"/>
+     #{if zindep.pictureUrl && zindep.pictureUrl!='undefined'}
+    <img src="${zindep.pictureUrl}" alt="${zindep.firstName} ${zindep.lastName}" class="zindepPicture"/>
     #{/if}
     #{else}
     <img src="@{'public/images/no_photo.png'}" alt="No picture yet"/>
@@ -35,7 +35,7 @@
     #{form @sendMessage(zindep.id)}
         <label for="msg">Votre Message :</label>
         <textarea id="msg" rows="6" cols="60" name="message" title="Message"></textarea><br/>
-        <input type="submit" value="Envoyer"/>
+        <input type="submit" value="Envoyer votre message" class="button blue large"/>
     #{/form}
 
 

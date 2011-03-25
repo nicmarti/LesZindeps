@@ -18,12 +18,11 @@
     <div class="grid_12">
         <img src="@{'public/images/logo_leszindeps.png'}" alt="Logo les Zindeps"/>
     </div>
-    <div class="grid_4 prefix_8" id="nav">
-            <a id="home" href="@{Application.index()}"
-               class="${request.action =~ /index/ ? 'selected' : ''}">Accueil</a>
-            <a id="qui" href="@{Application.qui()}" class="${request.action =~ /qui/ ? 'selected' : ''}">Qui ?</a>
-            <a id="mission" href="@{Application.mission()}" class="${request.action =~ /mission/ ? 'selected' : ''}">Mission</a>
-            <a id="admin" href="@{Admin.index()}">Accès privé</a>
+    <div class="grid_6 prefix_5" id="nav">
+            <a class="button blue" href="@{Application.index()}">Accueil</a>
+            <a class="button blue" href="@{Application.qui()}">Qui ?</a>
+            <a class="button blue" href="@{Application.mission()}">Mission</a>
+            <a class="button red" href="@{Admin.index()}">Accès privé</a>
     </div>
 </div>
 <div class="container_12" id="mainContent">
