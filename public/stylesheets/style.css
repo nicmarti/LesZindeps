@@ -147,20 +147,6 @@ a.selected {
     padding-left: 6px;
 }
 
-.navAuthenticated {
-    color: #666666;
-}
-
-.navAuthenticated li {
-    list-style: none;
-    list-style-type: none;
-    display: inline;
-}
-
-.navAuthenticated a:hover {
-    color: #f15f15;
-}
-
 /* ----------------------------------------------
  * LIST
  * ------------------------------------------- */
