@@ -2,13 +2,13 @@
 #{set title:'Home' /}
 
 
-<p id="time">Proposer une mission</p>
 
 <div class="container_12">
     <div class="grid_8 prefix_2">
         #{if flash.success}
         <div class="greenbox">
-            ${flash.success}
+           <h3>${flash.success}</h3>
+
         </div>
         #{/if}
         #{if flash.error}
