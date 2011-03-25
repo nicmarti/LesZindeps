@@ -251,7 +251,15 @@ form .error {
     font-size: 10px;
 }
 
-#footer a:link, a:hover, a:visited {
+#footer a:link {
+    text-decoration: none;
+    color: #555;
+}
+#footer a:hover {
+    text-decoration: none;
+    color: #844;
+}
+#footer a:visited {
     text-decoration: none;
     color: #555;
 }
