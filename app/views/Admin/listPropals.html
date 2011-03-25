@@ -3,7 +3,7 @@
 
 <h1>Liste des missions envoyées</h1>
 
-<table>
+<table class="simpleTable">
     <thead>
     <tr>
         <th>Title</th>
@@ -17,7 +17,7 @@
     </thead>
 
     #{list items:listOfPropals, as:'propal'}
-    <tr>
+    <tr class="${propal_parity}">
         <td>${propal.title}</td>
         <td>${propal.description}</td>
         <td>${propal.creationDate.format('EEE d MMM HH:mm')}</td>

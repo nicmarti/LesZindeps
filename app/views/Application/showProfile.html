@@ -1,6 +1,7 @@
 #{extends 'main.html' /}
-#{set title:'Profil' /}
-
+#{set 'title'}
+${zindep.firstName} ${zindep.lastName}
+#{/set}
 <div class="grid_2">
      #{if zindep.pictureUrl && zindep.pictureUrl!='undefined'}
     <img src="${zindep.pictureUrl}" alt="${zindep.firstName} ${zindep.lastName}" class="zindepPicture"/>

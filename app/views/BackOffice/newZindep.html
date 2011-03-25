@@ -1,13 +1,12 @@
 #{extends 'main.html' /}
 #{set title:'BackOffice' /}
 
-#{set moreScripts:'
+#{set 'moreScripts'}
 <script src="/public/javascripts/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="/public/javascripts/jquery-ui-1.7.2.custom.min.js" type="text/javascript" charset="utf-8"></script>' /}
-
+<script src="/public/javascripts/jquery-ui-1.7.2.custom.min.js" type="text/javascript" charset="utf-8"></script>'
+#{/set}
 
 <h1>Créer un nouvel indépendant</h1>
-
 
 #{ifErrors}
 <div class="error">

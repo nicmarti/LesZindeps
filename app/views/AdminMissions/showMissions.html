@@ -3,8 +3,7 @@
 
 <h1>Liste des missions effectuées</h1>
 
- <p class="buttons">#{a @AdminMissions.addMission()}Ajouter une mission#{/a}</p>
-
+ #{a @AdminMissions.addMission(),class:'button red'}Ajouter une mission#{/a}
 	#{ifErrors}
     <div class="error">
         <h2>Erreur</h2>
@@ -28,7 +27,7 @@
     </div>
     #{/if}
 
-<table>
+<table class="simpleTable">
     <thead>
     <tr>
     	<th>Nom</th>
@@ -49,7 +48,7 @@
     </thead>
 
     #{list items:missions, as:'mission'}
-    <tr>
+    <tr class="${mission_parity}">
 
 		<td>${mission.zindep.firstName} ${mission.zindep.lastName}</td>
         <td>${mission.title}</td>

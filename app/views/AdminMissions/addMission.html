@@ -7,7 +7,6 @@
 #{/set}
 
 
-<div class="grid_8 prefix_2">
     #{ifErrors}
     <div class="error">
         <h2>Erreur</h2>
@@ -76,6 +75,7 @@
         <p>
             <label for="${field.id}">Tarif client :</label>
             <input type="text" id="${field.id}" name="${field.name}" value="${field.value}"
+                   placeholder="Indiquez le TJM que vous avez facturé"
                    class="${field.errorClass}"
                    size="90" maxlength="255">
             <span class="error">${field.error}</span><br/>
@@ -84,9 +84,10 @@
         
         #{field 'mission.intermediaryPrice'}
         <p>
-            <label for="${field.id}">Tarif SSII :</label>
+            <label for="${field.id}">Tarif SSII/intermédiaire :</label>
             <input type="text" id="${field.id}" name="${field.name}" value="${field.value}"
                    class="${field.errorClass}"
+                   placeholder="Indiquez le tarif facturé au client final"
                    size="90" maxlength="255">
             <span class="error">${field.error}</span><br/>
         </p>
@@ -94,9 +95,10 @@
         
         #{field 'mission.customer'}
         <p>
-            <label for="${field.id}">Client :</label>
+            <label for="${field.id}">Nom du Client :</label>
             <input type="text" id="${field.id}" name="${field.name}" value="${field.value}"
                    class="${field.errorClass}"
+                   placeholder="Nom du client final pour lequel vous avez effectué la mission"
                    size="90" maxlength="255">
             <span class="error">${field.error}</span><br/>
         </p>
@@ -104,9 +106,10 @@
         
         #{field 'mission.intermediary'}
         <p>
-            <label for="${field.id}">SSII :</label>
+            <label for="${field.id}">Nom de l'intermédiaire/SSII :</label>
             <input type="text" id="${field.id}" name="${field.name}" value="${field.value}"
                    class="${field.errorClass}"
+                   placeholder="Si vous passiez par un intermédiaire, précisez son nom"
                    size="90" maxlength="255">
             <span class="error">${field.error}</span><br/>
         </p>
@@ -123,7 +126,7 @@
         
 		#{field 'mission.location'}
         <p>
-            <label for="${field.id}">Région :</label>
+            <label for="${field.id}">Région/Pays :</label>
             <input type="text" id="${field.id}" name="${field.name}" value="${field.value}"
                    class="${field.errorClass}"
                    size="90" maxlength="255">
@@ -133,10 +136,11 @@
         
 		#{field 'mission.exp'}
         <p>
-            <label for="${field.id}">Expérience :</label>
+            <label for="${field.id}">Votre nombre d'années d'expérience au début de la mission :</label>
             <input type="text" id="${field.id}" name="${field.name}" value="${field.value}"
                    class="${field.errorClass}"
-                   size="90" maxlength="255">
+                   placeholder="Valeur numérique, exemple : 4"
+                   size="15" maxlength="2"> année(s)
             <span class="error">${field.error}</span><br/>
         </p>
         #{/}        
@@ -170,5 +174,4 @@
     <p class="buttons"><input type="submit" value="Enregistrer"/></p>
     #{/form}
 
-</div>
 

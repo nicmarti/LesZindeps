@@ -27,20 +27,22 @@
 /* ----------------------------------------------
  * RESET
  * ------------------------------------------- */
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, hr {
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dd, dl, dt, li, ol, ul, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
     margin: 0;
     padding: 0;
     border: 0;
+    font-weight: inherit;
+    font-style: inherit;
     outline: 0;
     font-size: 100%;
+    line-height: 1.22em;
     vertical-align: baseline;
-    background: transparent;
 }
 
 body {
     line-height: 1.3em;
     font-size: 13px;
-    font-family: Geneva, Tahoma, sans-serif;
+    font-family: Tahoma, sans-serif;
 }
 
 h1 {
@@ -146,14 +148,15 @@ a.selected {
     color: #666666;
     padding-left: 6px;
 }
-.adminLeftNav a{
-    margin-bottom:4px;
+
+.adminLeftNav a {
+    margin-bottom: 4px;
 }
 
 /* ----------------------------------------------
  * LIST
  * ------------------------------------------- */
-table {
+.darkTable table {
     width: 100%;
     table-layout: fixed;
     text-align: left;
@@ -162,7 +165,7 @@ table {
     font-size: 12px;
 }
 
-thead {
+.darkTable thead {
     border-radius: 10px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -171,26 +174,32 @@ thead {
     color: #fff;
 }
 
-th {
+.darkTable th {
     padding: 10px 5px 5px;
     text-align: center;
 }
 
-tbody tr:nth-child(even) {
+.darkTable tbody tr:nth-child(even) {
     background: rgba(0, 0, 0, 0.05);
 }
 
-tbody tr:nth-child(odd) {
+.darkTable tbody tr:nth-child(odd) {
     background: rgba(255, 255, 255, 0.05);
 }
 
-td {
+.darkTable td {
     padding: 5px;
     text-align: center;
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-
+/* Simple Table */
+.simpleTable table {
+    width: 100%;
+    table-layout: fixed;
+    text-align: left;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
 
 /* ----------------------------------------------
 * ADD
@@ -244,10 +253,12 @@ form .error {
     text-decoration: none;
     color: #555;
 }
+
 #footer a:hover {
     text-decoration: none;
     color: #844;
 }
+
 #footer a:visited {
     text-decoration: none;
     color: #555;
@@ -552,3 +563,32 @@ legend {
 .yellow.button:hover {
     background-color: #fc9200;
 }
+
+/* ---------------------------------------------- */
+
+.simpleTable th {
+    padding: 13px 6px 13px 6px;
+    border: 1px solid #dfdfdf;
+    background-color: #252525;
+    color:#fff;
+
+}
+
+.simpleTable td {
+    padding: 13px 6px 13px 6px;
+    border: 1px solid #d4d2d2
+}
+
+.simpleTable td.flex {
+    width: 269px
+}
+
+.simpleTable td.end, simpleTable th.end {
+    border-right: none
+}
+
+.simpleTable tr.even td {
+    background-color: #f4f4f4
+}
+
+
