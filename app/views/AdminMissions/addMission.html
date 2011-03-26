@@ -1,12 +1,6 @@
 #{extends 'Admin/adminTemplate.html' /}
 #{set title:'Ajouter une mission' /}
 
-#{set 'moreScripts'}
-<script src="/public/javascripts/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="/public/javascripts/jquery-ui-1.8.6.custom.min.js" type="text/javascript" charset="utf-8"></script>
-#{/set}
-
-
     #{ifErrors}
     <div class="error">
         <h2>Erreur</h2>
@@ -171,7 +165,7 @@
     </script>
 
 
-    <p class="buttons"><input type="submit" value="Enregistrer"/></p>
+    <p class="buttons"><input type="submit" value="Enregistrer" class="button green"/></p>
     #{/form}
 
 

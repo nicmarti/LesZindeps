@@ -46,6 +46,8 @@ import java.util.List;
  */
 @Entity
 public class Zindep extends GenericModel {
+    public static enum Availability{ NOT_AVAILABLE,PART_TIME_ONLY,AVAILABLE }
+
     @Id
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
@@ -100,6 +102,9 @@ public class Zindep extends GenericModel {
     @OneToMany(mappedBy = "zindep", cascade=CascadeType.ALL)
     public List<Mission> missions; 
 
+    @Enumerated(EnumType.STRING)
+    public Availability currentAvailability;
+
 
     @Override
     public String toString() {
@@ -139,13 +144,28 @@ public class Zindep extends GenericModel {
 
 
     /**
-     * Creation d'un index lors de la modification de l'entité
+     * Creation d'un index lors de la modification de l'entité.
+     * Certains attributs ont été ajoutés après la première mise en ligne,
+     * ce qui fait que certains Zindeps n'ont pas toutes les valeurs renseignées.
+     * J'ai donc ajouté un peu de code pour s'assurer que l'entité est propre
+     * lors de la mise à jour et du nettoyage.
      */
     @PreUpdate
     @PrePersist
     void index() {
         this.index = JavaExtensions.noAccents(this.firstName).toLowerCase() + " ";
         this.index += JavaExtensions.noAccents(this.lastName).toLowerCase() + " ";
+        if("undefined".equals(pictureUrl)){
+            // clean up invalid image
+            pictureUrl=null;
+        }
+        if(currentAvailability==null){
+            // for existing user in DB
+            currentAvailability=Zindep.Availability.NOT_AVAILABLE;
+        }
+        if(memberSince==null){
+            memberSince=new Date();
+        }
     }
 
     /**
@@ -165,6 +185,6 @@ public class Zindep extends GenericModel {
         if (id == null) return null;
 
         return Zindep.find("from Zindep z where linkedInId=:pid").bind("pid", id).first();
-
     }
+
 }

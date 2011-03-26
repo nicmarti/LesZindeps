@@ -98,6 +98,12 @@ public class Mission extends Model {
         return Mission.find("from Mission where zindep = :zindep order by endDate").bind("zindep", zindep).fetch();
     }
 
+    /**
+     * Retourne la liste des intermédiares vers la vue pour l'autocompletion
+     * dans la page addMision
+     * @param term est le terme entré par l'utilisateur.
+     * @return une liste qui matche la recherche afin d'afficher une dropdown list.
+     */
     public static List<String> getListOfIntermediaries(String term) {
         String whereClause = "";
         if (term != null) {
