@@ -48,7 +48,7 @@ import play.db.jpa.JPA;
 import play.db.jpa.Model;
 
 /**
- * Correspond au anciennes missions réalisées par les Zindeps
+ * Correspond aux anciennes missions réalisées par les Zindeps
  */
 @Entity
 public class Mission extends Model {
@@ -57,6 +57,9 @@ public class Mission extends Model {
 
     @Required
     public String title;
+
+    @Required
+    public String role;
 
     @Temporal(TemporalType.DATE)
     @Required
@@ -84,6 +87,8 @@ public class Mission extends Model {
 
     @Required
     public String location;
+
+    public String country;
 
     @Required(message = "Le champ expérience est obligatoire, merci d'indiquer un nombre d'années")
     public Long exp;

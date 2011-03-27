@@ -574,4 +574,11 @@ legend {
     background-color: #f4f4f4
 }
 
+/* ----------------------------------------------
+* Details d'une fiche
+* ------------------------------------------- */
+.infosDetails {
+	font-size: 9pt;
+	color: #7e807f;
+}
 

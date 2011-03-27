@@ -34,12 +34,35 @@
         
         <input type="hidden" id="mission_id" name="mission.id" value="${mission?.id}"/>
         
+        #{field 'mission.role'}
+        <p>
+            <label for="${field.id}">Poste :</label>
+            
+             #{select field.name, value:field.value, id:field.id,  class:field.errorClass}
+				#{option 'Architecte'}Architecte#{/option}
+				#{option 'Auditeur'}Auditeur#{/option}
+				#{option 'Chef de projet'}Chef de projet#{/option}
+				#{option 'Coach Agile'}Coach Agile#{/option}
+				#{option 'Consultant fonctionnel'}Consultant fonctionnel#{/option}
+				#{option 'Développeur'}Développeur#{/option}
+				#{option 'Formateur'}Formateur#{/option}
+				#{option 'Leader technique'}Leader technique#{/option}
+				#{option 'Scrum Master'}Scrum Master#{/option}
+			 #{/select}
+            <br/>
+            <em>Cette liste permettra de faire des statistiques. Si votre poste n'apparait pas, signalez le.</em>
+            <span class="error">${field.error}</span><br/>
+        </p>
+        #{/}
+        
+        
         #{field 'mission.title'}
         <p>
             <label for="${field.id}">Titre :</label>
             <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
                    size="50" maxlength="255">
             <span class="error">${field.error}</span><br/>
+            <em>Un rapide descriptif de votre mission</em>
         </p>
         #{/}
         
@@ -95,6 +118,7 @@
                    placeholder="Nom du client final pour lequel vous avez effectué la mission"
                    size="90" maxlength="255">
             <span class="error">${field.error}</span><br/>
+            <em>Commencez à taper pour avoir une liste de choix</em>
         </p>
         #{/}
         
@@ -106,6 +130,7 @@
                    placeholder="Si vous passiez par un intermédiaire, précisez son nom"
                    size="90" maxlength="255">
             <span class="error">${field.error}</span><br/>
+            <em>Commencez à taper pour avoir une liste de choix</em>
         </p>
         #{/}
         
@@ -120,7 +145,17 @@
         
 		#{field 'mission.location'}
         <p>
-            <label for="${field.id}">Région/Pays :</label>
+            <label for="${field.id}">Région :</label>
+            <input type="text" id="${field.id}" name="${field.name}" value="${field.value}"
+                   class="${field.errorClass}"
+                   size="90" maxlength="255">
+            <span class="error">${field.error}</span><br/>
+        </p>
+        #{/}
+        
+        #{field 'mission.country'}
+        <p>
+            <label for="${field.id}">Pays :</label>
             <input type="text" id="${field.id}" name="${field.name}" value="${field.value}"
                    class="${field.errorClass}"
                    size="90" maxlength="255">
