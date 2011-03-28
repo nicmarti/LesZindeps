@@ -32,6 +32,8 @@ import models.Mission;
 import models.Zindep;
 import play.data.validation.Valid;
 
+import com.google.gson.GsonBuilder;
+
 /**
  * Ce controleur permet à chaque Zindep de gérer les missions qu'il a déjà effectuées
  *
@@ -72,12 +74,14 @@ public class AdminMissions extends Admin {
      *
      * @param missionId
      */
-    public static void showMission(Long missionId) {
-        Mission mission = Mission.findById(missionId);
-        if (mission == null) {
-            error("Mission non trouvée");
-        }
-        render(mission);
+    public static void showReport(String poste,String intermediary, String customer, String region) 
+    {
+        List values = Mission.findPriceByExperience(poste,intermediary, customer, region);
+        List statistics = Mission.findStatistics(poste,intermediary, customer, region);
+        
+        GsonBuilder builder = new GsonBuilder();
+        String json = builder.create().toJson(values);
+        render(json,values,statistics);
     }
 
 

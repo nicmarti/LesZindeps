@@ -1,0 +1,68 @@
+#{extends 'Admin/adminTemplate.html' /}
+#{set title:'Statistiques' /}
+
+<link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/jqplot/jquery.jqplot.min.css'}"/>
+<script src="@{'/public/javascripts/jqplot/excanvas.min.js'}" type="text/javascript" charset="utf-8"></script>
+<script src="@{'/public/javascripts/jqplot/jquery.jqplot.min.js'}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="@{'/public/javascripts/jqplot/plugins/jqplot.categoryAxisRenderer.min.js'}"></script>
+<script type="text/javascript" src="@{'/public/javascripts/jqplot/plugins/jqplot.barRenderer.min.js'}"></script>
+
+<h2>Valeurs moyennes</h2>
+#{list items:statistics, as:'statistic'}
+<p>
+	<span class="infosDetails">Expérience moyenne</span> : ${statistic[0]} années <br/>
+	<span class="infosDetails">Tarif moyenne</span> ${statistic[1]} euros <br/>
+	<span class="infosDetails">Durée moyenne</span> : ${statistic[1]} jours <br/>
+</p> 
+#{/list}
+
+<h2>Graphiques</h2>
+
+<div id="tarifbyexp" style="height:500px; width:500px;margin: 2em auto 2em auto;"></div>
+
+<h2>Tableau de valeurs </h2>
+
+<table class="simpleTable">
+<thead>
+	<tr>
+		<th>Expérience</th>
+		<th>Tarif</th>
+	</tr>
+</thead>	
+#{list items:values, as:'value'}
+    <tr>
+    	<td>${value[0]}</td>
+    	<td>${value[1]}</td>
+    </tr>
+#{/list}
+</table>
+
+
+
+
+<script type="text/javascript">
+<!--
+
+line1 = ${json};
+
+plot1 = $.jqplot('tarifbyexp', [line1], {
+    legend:{show:true, location:'ne'},title:'Tarif / Expérience',
+    series:[
+        {label:'Tarif', renderer:$.jqplot.BarRenderer}
+    ],
+    axes:{
+        xaxis:{
+        		renderer:$.jqplot.CategoryAxisRenderer,
+        		autoscale:true
+        	  }, 
+        yaxis:{
+        	min:0,
+        	autoscale:true
+        }
+    }
+});
+
+
+//-->
+</script>
+

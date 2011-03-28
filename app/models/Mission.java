@@ -135,4 +135,45 @@ public class Mission extends Model {
         Query query = JPA.em().createQuery("select distinct customer from Mission m " + whereClause + " order by customer");
         return query.getResultList();
     }
+
+    public static List findStatistics(String poste, String intermediary, String customer, String region)
+    {
+        Query query = JPA.em().createQuery("select AVG(exp), AVG(clientPrice) from Mission m " +
+                "where "+
+                " (:role is null or role = :role)"+
+                " AND (:intermediary is null or intermediary = :intermediary)"+
+                " AND (:customer is null or customer = :customer)"+
+                " AND (:region is null or location = :region)")
+                .setParameter("role", poste)
+                .setParameter("role", poste)
+                .setParameter("intermediary", intermediary)
+                .setParameter("intermediary", intermediary)
+                .setParameter("customer", customer)
+                .setParameter("customer", customer)
+                .setParameter("region", region)
+                .setParameter("region", region)
+                ;
+        return query.getResultList();
+    }
+    
+    public static List findPriceByExperience(String poste, String intermediary, String customer, String region)
+    {
+        Query query = JPA.em().createQuery("select exp, AVG(clientPrice) from Mission m " +
+                "where "+
+                " (:role is null or role = :role)"+
+                " AND (:intermediary is null or intermediary = :intermediary)"+
+                " AND (:customer is null or customer = :customer)"+
+                " AND (:region is null or location = :region)"+
+        		" GROUP BY exp")
+        		.setParameter("role", poste)
+        		.setParameter("role", poste)
+        		.setParameter("intermediary", intermediary)
+        		.setParameter("intermediary", intermediary)
+        		.setParameter("customer", customer)
+        		.setParameter("customer", customer)
+        		.setParameter("region", region)
+        		.setParameter("region", region)
+        		;
+        return query.getResultList();
+    }
 }
