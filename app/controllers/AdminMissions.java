@@ -144,6 +144,7 @@ public class AdminMissions extends Admin {
             mission.zindep = zindep;
             zindep.missions.add(mission);
             zindep.save();
+            mission.save();
         }
 
         flash.success("Mise à jour effectuée");
