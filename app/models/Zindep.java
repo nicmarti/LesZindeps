@@ -34,7 +34,6 @@ import play.db.jpa.GenericModel;
 import play.templates.JavaExtensions;
 
 import javax.persistence.*;
-
 import java.util.Date;
 import java.util.List;
 
@@ -46,7 +45,8 @@ import java.util.List;
  */
 @Entity
 public class Zindep extends GenericModel {
-    public static enum Availability{ NOT_AVAILABLE,PART_TIME_ONLY,AVAILABLE }
+
+    public static enum Availability {NOT_AVAILABLE, PART_TIME_ONLY, AVAILABLE}
 
     @Id
     @GeneratedValue(generator = "system-uuid")
@@ -96,11 +96,11 @@ public class Zindep extends GenericModel {
     public String linkedInId;
 
     public String pictureUrl;
-    
+
     public boolean isVisible = false;
-    
-    @OneToMany(mappedBy = "zindep", cascade=CascadeType.ALL)
-    public List<Mission> missions; 
+
+    @OneToMany(mappedBy = "zindep", cascade = CascadeType.ALL)
+    public List<Mission> missions;
 
     @Enumerated(EnumType.STRING)
     public Availability currentAvailability;
@@ -155,16 +155,16 @@ public class Zindep extends GenericModel {
     void index() {
         this.index = JavaExtensions.noAccents(this.firstName).toLowerCase() + " ";
         this.index += JavaExtensions.noAccents(this.lastName).toLowerCase() + " ";
-        if("undefined".equals(pictureUrl)){
+        if ("undefined".equals(pictureUrl)) {
             // clean up invalid image
-            pictureUrl=null;
+            pictureUrl = null;
         }
-        if(currentAvailability==null){
+        if (currentAvailability == null) {
             // for existing user in DB
-            currentAvailability=Zindep.Availability.NOT_AVAILABLE;
+            currentAvailability = Zindep.Availability.NOT_AVAILABLE;
         }
-        if(memberSince==null){
-            memberSince=new Date();
+        if (memberSince == null) {
+            memberSince = new Date();
         }
     }
 
@@ -187,4 +187,12 @@ public class Zindep extends GenericModel {
         return Zindep.find("from Zindep z where linkedInId=:pid").bind("pid", id).first();
     }
 
+    /**
+     * Retourne la liste trié par nom des Zindeps qui veulent rendre leur profil visible.
+     *
+     * @return une liste triée ou vide... si un jour tous les zindeps venait à disparaitre ou a rendre leur profil invisible ;).
+     */
+    public static List<Zindep> findAllByName() {
+        return Zindep.find("from Zindep z order by z.lastName").fetch();
+    }
 }
