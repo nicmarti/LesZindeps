@@ -28,6 +28,7 @@ package controllers;
 
 import models.Propal;
 import models.Zindep;
+import play.Logger;
 import play.libs.OpenID;
 import play.mvc.Before;
 import play.mvc.Controller;
@@ -175,10 +176,7 @@ public class Admin extends Controller {
         validation.maxSize(zindep.location, 255);
         validation.maxSize(zindep.bio, 2000);
         validation.maxSize(zindep.techno, 2000);
-        if (zindep.blogUrl != null) {
-            // Verifie que c'est bien une url
-            validation.valid(zindep.blogUrl);
-        }
+        validation.valid(zindep.blogUrl);
         validation.email(zindep.emailBackup);
 
 
@@ -187,13 +185,9 @@ public class Admin extends Controller {
             flash.error("Utilisateur non trouvé");
             index();
         }
-        // Il y a moyen de merger directement zindep car
-        // l'utilisateur doit être authentifié pour
-        // pouvoir éditer son profil.
-
 
         // L'email n'est pas repassé à la page d'édition
-        // c'est la clé fonctionnelle. Donc on le recopie
+        // c'est la clé fonctionnelle. Donc on la recopie.
         zindep.email = existing.email;
 
         // Derniere validation globale
@@ -201,6 +195,12 @@ public class Admin extends Controller {
         if (validation.hasErrors()) {
             render("@showMyProfile", zindep);
         }
+
+        // Avec Play lorsque l'on passe une entité Zindep à une action, et qu'il y a
+        // des cases à cocher comme isVisible, il faut reprendre la map des parametres
+        // et voir si la personne a gardé la case cochée ou non.
+        // C'est pas top.
+        zindep.isVisible=(request.params.get("zindep.isVisible")!=null);
 
         // Et persiste
         zindep.save();
