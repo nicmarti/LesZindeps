@@ -99,6 +99,9 @@ public class Zindep extends GenericModel {
 
     public boolean isVisible = false;
 
+    @MaxSize(255)
+    public String blogUrl;
+
     @OneToMany(mappedBy = "zindep", cascade = CascadeType.ALL)
     public List<Mission> missions;
 

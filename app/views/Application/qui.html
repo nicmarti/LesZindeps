@@ -15,26 +15,30 @@
 <div class="grid_8 prefix_2">
 
     <table class="zindepTable">
-    #{list items:listOfZindeps, as:'indep'}
+        #{list items:listOfZindeps, as:'indep'}
         #{if (indep_index % 5)==1}
         <TR>
-        #{/if}
+            #{/if}
             <td>#{a @showProfile(indep.id,indep.firstName,indep.lastName)}
-                  #{if indep.pictureUrl && indep.pictureUrl!='undefined'}
-                   <img src="${indep.pictureUrl}"
-                         alt="${indep.firstName} ${indep.lastName}"
-                         class="zindepPicture"/>
-                  #{/if}
-                  #{else}
-                     <img src="@{'public/images/no_photo.png'}" alt="No picture yet"  class="zindepPicture"/>
-                  #{/else}
+                #{if indep.pictureUrl && indep.pictureUrl!='undefined'}
+                <img src="${indep.pictureUrl}"
+                     alt="${indep.firstName} ${indep.lastName}"
+                     class="zindepPicture"/>
+                #{/if}
+                #{else}
+                <img src="@{'public/images/no_photo.png'}" alt="No picture yet" class="zindepPicture"/>
+                #{/else}
                 #{/a}<br/>
                 ${indep.firstName} ${indep.lastName}<br/>
-                #{a @showProfile(indep.id,indep.firstName,indep.lastName),class:'button green small'}Profil#{/a}</td>
-        #{if (indep_index % 5)==0}
+                #{a @showProfile(indep.id,indep.firstName,indep.lastName),class:'button green small'}Profil#{/a}
+                #{if indep.blogUrl && indep.blogUrl!='undefined'}
+                <a href="${indep.blogUrl}" class='button green small' target="_blank">Blog</a>
+                #{/if}
+            </td>
+            #{if (indep_index % 5)==0}
         </TR>
         #{/if}
-    #{/list}
+        #{/list}
     </table>
 
 

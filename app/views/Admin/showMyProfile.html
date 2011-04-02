@@ -1,156 +1,167 @@
 #{extends 'Admin/adminTemplate.html' /}
 #{set title:'Mon profil' /}
 
-    #{ifErrors}
-    <div class="error">
-        <h2>Erreur</h2>
-        <ul>
-            #{errors}
-            <li>${error}</li>
-            #{/errors}
-        </ul>
-    </div>
-    #{/ifErrors}
+#{ifErrors}
+<div class="error">
+    <h2>Erreur</h2>
+    <ul>
+        #{errors}
+        <li>${error}</li>
+        #{/errors}
+    </ul>
+</div>
+#{/ifErrors}
 
-    #{if flash.error}
-    <div class="error">
-        <h2>${flash.error}</h2>
-    </div>
-    #{/if}
+#{if flash.error}
+<div class="error">
+    <h2>${flash.error}</h2>
+</div>
+#{/if}
 
-    #{if flash.success}
-    <div class="successbox">
-        ${flash.success}
-    </div>
-    #{/if}
+#{if flash.success}
+<div class="successbox">
+    ${flash.success}
+</div>
+#{/if}
 
-    <!-- Tag play cree dans views/tags -->
-    #{jQueryValidate class:models.Zindep.class, key:'zindep' /}
+<!-- Tag play cree dans views/tags -->
+#{jQueryValidate class:models.Zindep.class, key:'zindep' /}
 
-    #{form id:'joinForm', action:@doUpdateMyProfile()}
+#{form id:'joinForm', action:@doUpdateMyProfile()}
 
-    <fieldset>
-        <legend>Votre profil</legend>
-        
-        <p><label>Adresse email :</label> ${zindep.email}</p>
+<fieldset>
+    <legend>Votre profil</legend>
 
-         #{field 'zindep.title'}
-        <p>
-            <label>Titre de votre profil :</label>
-            <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
-                   size="50" maxlength="255">
-            <span class="error">${field.error}</span><br/>
-        </p>
-        #{/}
+    <p><label>Adresse email :</label> ${zindep.email}</p>
 
-        #{field 'zindep.emailBackup'}
-        <p>
-            <label>Email secondaire :</label>
-            <input type="text" id="${field.id}" name="${field.name}"
-                   value="${field.value}"
-                   class="${field.errorClass}"
-                   size="90" maxlength="255"
-                   title="Optionel">
-            <span class="error">${field.error}</span><br/>
-        </p>
-        #{/}
+    #{field 'zindep.title'}
+    <p>
+        <label>Titre de votre profil :</label>
+        <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
+               size="50" maxlength="255">
+        <span class="error">${field.error}</span><br/>
+    </p>
+    #{/}
 
-        #{field 'zindep.firstName'}
-        <p>
-            <label>Prénom :</label>
-            <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
-                   size="90" maxlength="255">
-            <span class="error">${field.error}</span><br/>
-        </p>
-        #{/}
+    #{field 'zindep.emailBackup'}
+    <p>
+        <label>Email secondaire :</label>
+        <input type="text" id="${field.id}" name="${field.name}"
+               value="${field.value}"
+               class="${field.errorClass}"
+               size="90" maxlength="255"
+               title="Optionel">
+        <span class="error">${field.error}</span><br/>
+    </p>
+    #{/}
 
-        #{field 'zindep.lastName'}
-        <p>
-            <label>Nom :</label>
-            <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
-                   size="90" maxlength="255">
-            <span class="error">${field.error}</span><br/>
-        </p>
-        #{/}
+    #{field 'zindep.firstName'}
+    <p>
+        <label>Prénom :</label>
+        <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
+               size="90" maxlength="255">
+        <span class="error">${field.error}</span><br/>
+    </p>
+    #{/}
 
-        #{field 'zindep.location'}
-        <p>
-            <label>Ville :</label>
-            <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
-                   size="90" maxlength="255">
-            <span class="error">${field.error}</span><br/>
-        </p>
-        #{/}
+    #{field 'zindep.lastName'}
+    <p>
+        <label>Nom :</label>
+        <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
+               size="90" maxlength="255">
+        <span class="error">${field.error}</span><br/>
+    </p>
+    #{/}
 
-        #{field 'zindep.bio'}
-        <p>
-            <label>Bio :</label>
-            <textarea id="${field.id}" name="${field.name}" cols="60" rows="6"
-                      class="${field.errorClass}">${field.value}</textarea>
-            <span class="error">${field.error}</span><br/>
-        </p>
-        #{/}
+    #{field 'zindep.location'}
+    <p>
+        <label>Ville :</label>
+        <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
+               size="90" maxlength="255">
+        <span class="error">${field.error}</span><br/>
+    </p>
+    #{/}
 
-        #{field 'zindep.linkedInId'}
-        <p>
-            <label>ID LinkedIn :</label>
-            <input type="text" id="${field.id}" name="${field.name}" value="${field.value}"
-                      class="${field.errorClass}"/>
-            <span class="error">${field.error}</span><br/>
-        </p>
-        #{/}
+    #{field 'zindep.bio'}
+    <p>
+        <label>Bio :</label>
+        <textarea id="${field.id}" name="${field.name}" cols="60" rows="6"
+                  class="${field.errorClass}">${field.value}</textarea>
+        <span class="error">${field.error}</span><br/>
+    </p>
+    #{/}
 
-         #{field 'zindep.pictureUrl'}
-        <p>
-            <label>URL absolue d'une photo de 80px par 80px :</label>
-            <input type="text" id="${field.id}" name="${field.name}" value="${field.value}"
-                      class="${field.errorClass}"/>
-            <span class="error">${field.error}</span><br/>
-            <img src="${field.value}" alt="Votre photo en 80x80" border="3"/>
+    #{field 'zindep.linkedInId'}
+    <p>
+        <label>ID LinkedIn :</label>
+        <input type="text" id="${field.id}" name="${field.name}" value="${field.value}"
+               class="${field.errorClass}"/>
+        <span class="error">${field.error}</span><br/>
+    </p>
+    #{/}
 
-        </p>
-        #{/}
+    #{field 'zindep.pictureUrl'}
+    <p>
+        <label>URL absolue d'une photo de 80px par 80px :</label>
+        <input type="text" id="${field.id}" name="${field.name}" value="${field.value}"
+               class="${field.errorClass}"/>
+        <span class="error">${field.error}</span><br/>
+        <img src="${field.value}" alt="Votre photo en 80x80" border="3"/>
 
-        #{field 'zindep.techno'}
-        <p>
-            <label>Technologies :</label>
-            <textarea id="${field.id}" name="${field.name}" cols="60" rows="6"
-                      class="${field.errorClass}">${field.value}</textarea>
-            <span class="error">${field.error}</span><br/>
-        </p>
-        #{/}
+    </p>
+    #{/}
 
+    #{field 'zindep.blogUrl'}
+    <p>
+        <label>URL absolue de votre blog :</label>
+        <input type="text" id="${field.id}" name="${field.name}" value="${field.value}"
+               class="${field.errorClass}" size="90" maxlength="255"/>
+        <span class="error">${field.error}</span><br/>
 
-        #{field 'zindep.memberSince'}
-        <p>
-            <label>Membre du groupe Les Zindeps depuis :</label>
-            <input type="text" id="${field.id}" name="${field.name}" value="${field.value?.format('dd/MM/yy')}"
-                   class="${field.errorClass}"
-                   size="90" maxlength="255">
-            <span class="error">${field.error}</span><br/>
-            <em>Format: dd/mm/yy</em>
-        </p>
-        #{/}
-        
-        #{field 'zindep.isVisible'}
-        <p>
-            <label>Voulez-vous rendre votre profil visible ?</label>
-            <input type="checkbox" id="${field.id}" name="${field.name}" ${field.value? 'checked' : ''} class="${field.errorClass}"> Oui je veux afficher mon profil
-            <span class="error">${field.error}</span><br/>
-        </p>
-        #{/}
-    </fieldset>
+    </p>
+    #{/}
 
-    <script type="text/javascript" charset="utf-8">
-        $("#zindep_memberSince").datepicker(
-        {dateFormat:'dd/mm/yy', showAnim:'fadeIn',
-            dayNamesMin:["Di","Lu","Ma","Me","Je","Ve","Sa"],
-            firstDay:'1'}
-                )
-    </script>
+    #{field 'zindep.techno'}
+    <p>
+        <label>Technologies :</label>
+        <textarea id="${field.id}" name="${field.name}" cols="60" rows="6"
+                  class="${field.errorClass}">${field.value}</textarea>
+        <span class="error">${field.error}</span><br/>
+    </p>
+    #{/}
 
 
-    <p class="buttons"><input type="submit" value="Enregistrer"/></p>
-    #{/form}
+    #{field 'zindep.memberSince'}
+    <p>
+        <label>Membre du groupe Les Zindeps depuis :</label>
+        <input type="text" id="${field.id}" name="${field.name}" value="${field.value?.format('dd/MM/yy')}"
+               class="${field.errorClass}"
+               size="90" maxlength="255">
+        <span class="error">${field.error}</span><br/>
+        <em>Format: dd/mm/yy</em>
+    </p>
+    #{/}
+
+    #{field 'zindep.isVisible'}
+    <p>
+        <label>Voulez-vous rendre votre profil visible ?</label>
+        <input type="checkbox" id="${field.id}" name="${field.name}" ${field.value? 'checked' : ''}
+        class="${field.errorClass}"> Oui je veux afficher mon profil
+        <span class="error">${field.error}</span><br/>
+    </p>
+    #{/}
+</fieldset>
+
+<script type="text/javascript" charset="utf-8">
+    $("#zindep_memberSince").datepicker(
+    {dateFormat:'dd/mm/yy', showAnim:'fadeIn',
+    dayNamesMin:["Di","Lu","Ma","Me","Je","Ve","Sa"],
+    firstDay:'1'}
+    )
+</script>
+
+
+<p class="buttons"><input type="submit" value="Enregistrer"/></p>
+#{/form}
 
 
