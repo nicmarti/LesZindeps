@@ -9,13 +9,6 @@ import models.*;
 public class ZindepTest extends UnitTest {
 
     @Test
-    public void shouldReturns5ZindepForFindAllByName() {
-        List<Zindep> result=Zindep.findAllByName();
-        assertNotNull(result);
-        assertEquals(5,result.size());
-    }
-
-    @Test
     public void shouldReturns3ZindepForFindAllVisibleByName() {
         List<Zindep> result=Zindep.findAllVisibleByName();
         assertNotNull(result);
