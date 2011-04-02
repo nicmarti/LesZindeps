@@ -86,12 +86,12 @@ function showDetails(missionId)
 		
 		
 		</td>
-		<td>${mission.role}</td>
+		<td><a href="@{AdminMissions.showReport}?poste=${mission.role}">${mission.role}</a></td>
         <td>${mission.title}</td>
         <td>${mission.clientPrice}</td>
         <td>${mission.intermediaryPrice}</td>
-        <td>${mission.customer}</td>
-        <td>${mission.intermediary}</td>
+        <td><a href="@{AdminMissions.showReport}?customer=${mission.customer}">${mission.customer}</a></td>
+        <td><a href="@{AdminMissions.showReport}?intermediary=${mission.intermediary}">${mission.intermediary}</a></td>
         <td><a href="#" title="Détails" class="linkDetails" onclick="showDetails('missionDetails_${mission.id}')"><img alt="Détails" src="/public/images/view.gif"/></a>  #{if mission.zindep.id == session.zindepId} #{a @AdminMissions.updateMission(mission.id)}<img alt="Modifier" src="/public/images/edit.png"/>#{/a} #{a @AdminMissions.delMission(mission.id)}<img alt="Supprimer" src="/public/images/trash.gif"/>#{/a}#{/if}</td>
     </tr>
 
