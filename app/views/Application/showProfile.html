@@ -22,11 +22,21 @@ ${zindep.firstName} ${zindep.lastName}
 
     <h3>Domaines d'expertise</h3>
     <p align="justify">${zindep.techno}</p>
+
+    #{if zindep.blogUrl}
+    <h3>Blog</h3>
+      <p align="justify"><a href="${zindep.blogUrl}" target="_blank">${zindep.blogUrl}</a> </p>
+    #{/if}
+
+        #{if zindep.twitter}
+    <h3>Twitter</h3>
+      <p align="justify"><a href="http://www.twitter.com/${zindep.twitter}" target="_blank">${zindep.twitter}</a> </p>
+    #{/if}
+
 </div>
 
 <div class="clear">&nbsp;</div>
 <div class="grid6 prefix_2">
-    <h3>Contactez ${zindep.firstName}</h3>
     #{if flash.success}
     <div class="successbox">${flash.success}</div>
     #{/if}
