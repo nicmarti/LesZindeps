@@ -28,7 +28,7 @@
 #{jQueryValidate class:models.Zindep.class, key:'zindep' /}
 
 #{form id:'joinForm', action:@doUpdateMyProfile()}
-
+<input type="hidden" name="zindep.id" value="${zindep.id}"/>
 <fieldset>
     <legend>Votre profil</legend>
 
@@ -115,9 +115,20 @@
     <p>
         <label>URL absolue de votre blog :</label>
         <input type="text" id="${field.id}" name="${field.name}" value="${field.value}"
+               placeholder="http://www.votre-blog.fr/"
                class="${field.errorClass}" size="90" maxlength="255"/>
         <span class="error">${field.error}</span><br/>
 
+    </p>
+    #{/}
+
+        #{field 'zindep.twitter'}
+    <p>
+        <label>Votre compte twitter :</label>
+        <input type="text" id="${field.id}" name="${field.name}" value="${field.value}"
+               placeholder="votre identifiant twitter sans le caractère '@'"
+               class="${field.errorClass}" size="90" maxlength="255"/>
+        <span class="error">${field.error}</span><br/>
     </p>
     #{/}
 

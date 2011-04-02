@@ -30,6 +30,7 @@ import org.hibernate.annotations.GenericGenerator;
 import play.data.validation.Email;
 import play.data.validation.MaxSize;
 import play.data.validation.Required;
+import play.data.validation.URL;
 import play.db.jpa.GenericModel;
 import play.templates.JavaExtensions;
 
@@ -100,7 +101,11 @@ public class Zindep extends GenericModel {
     public boolean isVisible = false;
 
     @MaxSize(255)
+    @URL
     public String blogUrl;
+
+    @MaxSize(255)
+    public String twitter;
 
     @OneToMany(mappedBy = "zindep", cascade = CascadeType.ALL)
     public List<Mission> missions;

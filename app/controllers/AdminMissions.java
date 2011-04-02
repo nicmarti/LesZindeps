@@ -72,9 +72,12 @@ public class AdminMissions extends Admin {
     /**
      * Affiche les détails d'une mission
      *
-     * @param missionId
+     * @param poste
+     * @param intermediary
+     * @param customer
+     * @param region
      */
-    public static void showReport(String poste,String intermediary, String customer, String region) 
+    public static void showReport(String poste,String intermediary, String customer, String region)
     {
         List values = Mission.findPriceByExperience(poste,intermediary, customer, region);
         List statistics = Mission.findStatistics(poste,intermediary, customer, region);
