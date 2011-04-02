@@ -66,6 +66,20 @@ public class AdminMissions extends Admin {
         }
         render("@addMission", mission);
     }
+    
+    /**
+     * Affiche les détails d'une mission
+     *
+     * @param missionId
+     */
+    public static void showMission(Long missionId) {
+        Mission mission = Mission.findById(missionId);
+        if (mission == null) {
+            error("Mission non trouvée");
+        }
+        render(mission);
+    }
+
 
     /**
      * Supprime une mission et renvoie vers la liste des missions
