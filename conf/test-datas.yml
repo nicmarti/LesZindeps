@@ -46,7 +46,7 @@ Zindep(z0):
  emailBackup: emailbackup@letesteur.fr
 
 Zindep(z1):
- email: nmartignole@gmail.com
+ email: nmartignole@xxxxx.com
  firstName: Nicolas
  lastName: Martin
  memberSince: 20/10/2010
@@ -57,7 +57,7 @@ Zindep(z1):
  blogUrl: http://www.touilleur-express.fr/
 
 Zindep(z2):
- email: louis.gueye@gmail.com
+ email: louis.gueye@xxxxx.com
  firstName: Jacques
  lastName: Test1
  memberSince: 21/02/2010
@@ -87,7 +87,7 @@ Zindep(z4):
  bio: Exemple de bio 3
 
  Zindep(z5):
- email: hlassiege@gmail.com
+ email: hlassiege@xxxx.com
  firstName: Hugo
  lastName: Lassiege
  memberSince: 12/01/2009

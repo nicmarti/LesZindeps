@@ -26,10 +26,5 @@ public class ApplicationTest extends FunctionalTest {
         assertStatus(302, response);
     }
 
-    @Test
-    @Ignore // FIXME : HTTP 404
-    public void testThatAdminMissionPageIsProtected() {
-        Response response = GET("/adminmission/showmymissions");
-        assertStatus(302, response);
-    }
 }
+
