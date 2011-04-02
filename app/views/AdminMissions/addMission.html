@@ -90,9 +90,9 @@
         
         #{field 'mission.clientPrice'}
         <p>
-            <label for="${field.id}">Tarif client :</label>
+            <label for="${field.id}">Votre facturation :</label>
             <input type="text" id="${field.id}" name="${field.name}" value="${field.value}"
-                   placeholder="Indiquez le TJM que vous avez facturé"
+                   placeholder="TJM net par jour que vous avez facturé"
                    class="${field.errorClass}"
                    size="90" maxlength="255">
             <span class="error">${field.error}</span><br/>
@@ -101,7 +101,7 @@
         
         #{field 'mission.intermediaryPrice'}
         <p>
-            <label for="${field.id}">Tarif SSII/intermédiaire :</label>
+            <label for="${field.id}">Facturation au client final (si intermédiaire) :</label>
             <input type="text" id="${field.id}" name="${field.name}" value="${field.value}"
                    class="${field.errorClass}"
                    placeholder="Indiquez le tarif facturé au client final"
