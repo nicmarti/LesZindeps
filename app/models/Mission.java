@@ -45,6 +45,7 @@ import play.data.validation.Min;
 import play.data.validation.Required;
 import play.db.jpa.GenericModel;
 import play.db.jpa.JPA;
+import play.db.jpa.JPABase;
 import play.db.jpa.Model;
 
 /**
@@ -64,6 +65,8 @@ public class Mission extends Model {
     @Temporal(TemporalType.DATE)
     @Required
     public Date initialDate;
+    
+    public long length;
 
     @Temporal(TemporalType.DATE)
     @Required
@@ -93,6 +96,20 @@ public class Mission extends Model {
     @Required(message = "Le champ expérience est obligatoire, merci d'indiquer un nombre d'années")
     public Long exp;
 
+    
+    /**
+     * Override save method to compute automatically the mission length in days
+     * @param <Mission>
+     * @return the mission saved
+     */
+    @Override
+    public <Mission extends JPABase> Mission save()
+    {
+        length = endDate.getTime() - initialDate.getTime();
+        length = length / (3600 * 24 * 1000);
+        return super.save();
+    }
+    
 
     /**
      * Retourne la liste des missions déjà effectuées par cet indep
@@ -138,7 +155,7 @@ public class Mission extends Model {
 
     public static List findStatistics(String poste, String intermediary, String customer, String region)
     {
-        Query query = JPA.em().createQuery("select AVG(exp), AVG(clientPrice) from Mission m " +
+        Query query = JPA.em().createQuery("select AVG(exp), AVG(clientPrice), AVG(length) from Mission m " +
                 "where "+
                 " (:role is null or role = :role)"+
                 " AND (:intermediary is null or intermediary = :intermediary)"+
