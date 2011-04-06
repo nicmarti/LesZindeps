@@ -1,6 +1,5 @@
 <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/jquery.validate.min.js"></script>
 
-<!-- Par Hugo Lassiege //-->
 <script type="text/javascript">
 	$(document).ready(function(){
   		$("#joinForm").validate({
@@ -30,6 +29,34 @@
 					out.println "},"
 				}
 			}%
+			},
+			messages : {
+				%{
+					play.data.validation.Validation.getValidators(_class, _key).each() {
+						out.println "'" + it.key + "': {"
+						for(validator in it.value) {
+							switch (validator.annotation.annotationType().name.substring(21)) {
+							    case "Required":
+							        out.println "required: \"" + validator.annotation.message() + "\","
+									break;
+								case "MinSize":
+							        out.println "minlength: \"" + validator.annotation.message() + "\","
+									break;
+								case "Range":
+							        out.println "range: \""+validator.annotation.message() + "\"," 
+									break;
+								case "Email":
+							        out.println "email: \""+validator.annotation.message() + "\","
+									break;
+								case "Equals":
+							        out.println "equalTo: \""+validator.annotation.message() + "\","
+									break;
+							}
+						}
+						out.println "},"
+					}
+				}%				
+				
 			}
 		});	
 	});

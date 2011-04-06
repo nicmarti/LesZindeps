@@ -26,6 +26,7 @@
 
 package models;
 
+import play.data.validation.Email;
 import play.data.validation.Required;
 import play.db.jpa.Model;
 
@@ -45,11 +46,14 @@ public class Propal extends Model {
     @Required(message = "Le titre est obligatoire")
     public String title;
     @Lob
+    @Required(message = "Nous avons vraiment besoin d'une description pour répondre à votre demande")
     public String description;
     public String localisation;
     public String tjm;
-    @Required(message="Comment vous contacter ?")
+    
+    @Email(message="Veuillez indiquer une adresse email valide")
     public String contact;
+    public String phone;
 
     public Date creationDate;
 

@@ -1,0 +1,570 @@
+
+
+/* ----- Borders ----- */
+#container{
+	border:1px solid #CCCCCC;
+}
+
+.wufoo .section h3, .wufoo .captcha, #payment .paging-context 
+{
+border-top-width: 1px;
+border-top-style: dotted;
+border-top-color: #cccccc;
+}
+
+/* ----- Typography ----- */
+
+.wufoo .info h2{
+	font-size:160%;
+	font-family:inherit;
+	font-style:normal;
+	font-weight:normal;
+	color:#000000;
+}
+.wufoo .info div{
+	font-size:95%;
+	font-family:inherit;
+	font-style:normal;
+	font-weight:normal;
+	color:#444444;
+}
+.wufoo .section h3{
+	font-size:140%;
+	font-family:inherit;
+	font-style:normal;
+	font-weight:normal;
+	color:#000000;
+}
+.wufoo .section div{
+	font-size:85%;
+	font-family:inherit;
+	font-style:normal;
+	font-weight:normal;
+	color:#444444;
+}
+
+.wufoo label.desc, .wufoo legend.desc{
+	font-size:95%;
+	font-family:inherit;
+	font-style:normal;
+	font-weight:bold;
+	color:#444444;
+}
+
+.wufoo input.text, .wufoo textarea.textarea, .wufoo input.file, .wufoo select.select{
+	font-size:100%;
+	font-family:inherit;
+	font-style:normal;
+	font-weight:normal;
+	color:#333333;
+}
+.wufoo li div, .wufoo li span, .wufoo li div label, .wufoo li span label{
+	font-family:inherit;
+	color:#444444;
+}
+.wufoo .instruct small{
+	font-size:85%;
+	font-family:inherit;
+	font-style:normal;
+	font-weight:normal;
+	color:#444444;
+}
+
+.altInstruct small{
+	color:#444444 !important;
+}
+
+
+/* Drop Shadows */
+#bottom{
+	visibility:visible;
+}
+
+
+
+/* - - - - - - - - - - - - - - - - - - - - -
+
+Title : Wufoo Form Structure
+Author : Infinity Box Inc.
+URL : http://wufoo.com
+
+- - - - - - - - - - - - - - - - - - - - - */
+
+#container{
+	text-align:left;
+	background:#fff;
+	border:1px solid #ccc;
+	-webkit-box-shadow:rgba(0,0,0,.2) 0px 0px 5px;
+	-moz-box-shadow:rgba(0,0,0,.2) 0px 0px 5px;
+	-o-box-shadow:rgba(0,0,0,.2) 0px 0px 5px;
+	box-shadow:rgba(0,0,0,.2) 0px 0px 5px;
+}
+#container, #bottom{
+	margin:0 auto;
+	width:90%;
+}
+#bottom{
+	width:650px;
+	height:10px !important;
+	margin-bottom:10px;
+	display:block !important;
+}
+
+form.wufoo{
+	margin:20px 14px 0 14px;
+	padding:0 0 20px 0;
+	position:relative;
+}
+
+/* ----- LOGO ----- */
+
+#logo{
+	margin:0;
+	padding:0;
+	min-height:0;
+	background-color:#dedede;
+	text-indent:-9000px;
+	text-decoration:none;
+}
+#logo a{
+	min-height:40px;
+	height:40px;
+	display:block;
+	overflow:hidden;
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - -
+
+Title : Wufoo Form Framework
+Author : Infinity Box Inc.
+URL : http://wufoo.com
+
+Last Updated : March 2, 2010
+
+- - - - - - - - - - - - - - - - - - - - - */
+
+.wufoo{
+	font-family:"Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif;
+	letter-spacing:.01em;
+	text-rendering: optimizeLegibility;
+}
+.wufoo li{
+	width:64%;
+}
+
+/* ----- INFO ----- */
+
+.info{
+	display:inline-block; 
+	clear:both;
+	margin:0 0 5px 0;
+	padding:0 1% 1.1em 1%;
+	border-bottom:1px dotted #ccc;
+}
+.info[class]{
+	display:block;
+}
+.info h2{
+	font-weight:normal;
+	font-size:160%;
+	margin:0 0 5px 0;
+	clear:left;
+}
+.info div{
+	font-size:95%;
+	line-height:135%;
+	color:#555;
+}
+
+/* ----- Field Structure ----- */
+
+form ul{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+}
+
+form li{
+	margin:0;
+	padding:6px 1% 9px 1%;
+	clear:both;
+	background-color:transparent;
+	position:relative; /* Makes Instructs z-index stay on top in IE. */
+	-webkit-transition: background-color 350ms ease-out;
+	   -moz-transition: background-color 350ms ease-out;
+	     -o-transition: background-color 350ms ease-out;
+	        transition: background-color 350ms ease-out;
+}
+form ul:after,form li:after, form li div:after{
+	content:"."; 
+	display:block;
+	height:0; 
+	clear:both; 
+	visibility:hidden;
+}
+* html form li{height: 1%;margin-bottom:-3px;}
+*+html form li{height: 1%;margin-bottom:-3px;}
+* html form li div{display:inline-block;}
+*+html form ul, *+html form li div{display:inline-block;}
+
+form li div{
+	margin:0;
+	padding:0;
+	color:#444;
+}
+form li span{
+	margin:0 .3em 0 0;
+	padding:0;
+	float:left;
+	color:#444;
+}
+
+/* ----- Choices Field Structures ----- */
+
+form li div span{
+	margin:0;
+	display:block;
+	width:100%;
+	float:left;
+}
+
+
+/* ----- FLOATS ----- */
+
+.left{
+	float:left;
+}
+.right{
+	float:right;
+}
+.clear{
+	clear:both !important;
+}
+
+label span, .section span, p span{
+	display:inline !important;
+	float:none !important;
+}
+
+/* ----- LABELS ----- */
+
+form li div label, form li span label{
+	margin:0;
+	padding-top:3px;
+	clear:both;
+	font-size:85%;
+	line-height:160%;
+	color:#444;
+	display:block;
+}
+
+label.desc, legend.desc{
+	font-size:95%;
+	font-weight:bold;
+	color:#222;
+	line-height:150%;
+	margin:0;
+	padding:0 0 3px 0;
+	border:none;
+	display:block;
+	white-space: normal;
+}
+
+
+span.symbol{
+	font-size:120%;
+	line-height:135%;
+}
+form li .datepicker{
+	float:left;
+	margin:.19em 5px 0 0;
+	padding:0;
+	width: 16px;
+	height: 16px;
+	cursor:pointer !important;
+}
+
+/* ----- REQUIRED ----- */
+
+form span.req{
+	display:inline;
+	float:none;
+	color:red !important;
+	font-weight:bold;
+	margin:0;
+	padding:0;
+}
+
+/* ----- FIELDS ----- */
+
+input.text, input.search, input.file, textarea.textarea, select.select{
+	font-family:"Lucida Grande", Tahoma, Arial, sans-serif;
+	font-size:100%;
+	color:#333;
+	margin:0;
+	padding:2px 0;
+}
+input.text, input.search, textarea.textarea{
+	border-top:1px solid #7c7c7c;
+	border-left:1px solid #c3c3c3;
+	border-right:1px solid #c3c3c3;
+	border-bottom:1px solid #ddd;
+}
+
+select.select{
+	padding:1px 0 0 0;
+}
+input.search{
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+	padding-left:6px;
+}
+input.other{
+	margin:0 0 8px 25px;
+}
+
+
+.center, 
+form li span.center input.text, form li span.center label,
+form li.name span label,
+form li.date input.text, form li.date span label, 
+form li.phone input.text, form li.phone span label,
+form li.time input.text, form li.time span label{
+	text-align:center;
+}
+
+
+input.small, select.small{
+	width:25%;
+}
+input.medium, select.medium{
+	width:50%;
+}
+input.large, select.large{
+	width:100%;
+}
+
+textarea.textarea{
+	width:293px;
+	min-width:100%; /* IE8 Textarea Scroll Bug */
+	max-width:100%;
+}
+textarea.small{
+	height:5.5em;
+}
+textarea.medium{
+	height:10em;
+}
+textarea.large{
+	height:20em;
+}
+
+/* ----- BUTTONS ----- */
+
+form li.buttons{
+	width:auto !important;
+	position:relative;
+	clear:both;
+	padding:10px 1% 10px 1%;
+}
+form li.buttons input{
+	font-size:100%;
+	margin-right:5px;
+}
+input.btTxt{
+	padding:0 7px;
+	width:auto;
+	overflow:visible;
+}
+.safari input.btTxt{
+	font-size:120%;
+}
+.buttons .marker{
+	position:absolute;
+	top:0;
+	right:0;
+	padding:15px 10px 0 0;
+	color:#000;
+	width:auto;
+}
+button.link{
+	display:inline-block;
+	border:none;
+	background:none;
+	color:blue;
+	text-decoration:underline;
+	cursor:pointer;
+	padding:0;
+	font-size:100%;
+}
+button.link:hover{
+	color:green;
+}
+
+/* ----- LABEL LAYOUT ----- */
+
+.leftLabel li, .rightLabel li{
+	width:74% !important;
+	padding-top:9px;
+}
+.leftLabel .desc, .rightLabel .desc{
+	float:left;
+	width:31%;
+	margin:0 15px 0 0;
+}
+.rightLabel .desc{
+	text-align:right;
+}
+.leftLabel li div, .rightLabel li div{
+	float:left;
+	width:65%;
+}
+
+* html .leftLabel li fieldset div, 
+* html .rightLabel li fieldset div{
+	float:right;
+}
+*+html .leftLabel li fieldset div, 
+*+html .rightLabel li fieldset div{
+	float:right;
+}
+
+.leftLabel .buttons, .rightLabel .buttons{
+	padding-left:23%;
+}
+.leftLabel .buttons div, .rightLabel .buttons div{
+	float:none;
+	margin:0 0 0 20px;
+}
+
+
+.leftLabel p.instruct, .rightLabel p.instruct{
+	width:28%;
+	margin-left:5px;
+}
+.leftLabel .altInstruct .instruct, .rightLabel .altInstruct .instruct{
+	margin-left:31% !important;
+	padding-left:15px;
+	width:65%;
+}
+
+form .instruct{
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:1000;
+	width:45%;
+	margin:0 0 0 8px;
+	padding:8px 10px 10px 10px;
+	border:1px solid #e6e6e6;
+	background:#f5f5f5;
+	visibility:hidden;
+	opacity:0;
+	font-size:105%;
+	-webkit-transition: opacity 350ms ease-out;
+	   -moz-transition: opacity 350ms ease-out;
+	     -o-transition: opacity 350ms ease-out;
+	        transition: opacity 350ms ease-out;
+}
+form .instruct small{
+	line-height:120%;
+	font-size:80%;
+	color:#444;
+}
+form li.focused .instruct, form li:hover .instruct{
+	left:100%; /* Prevent scrollbars for IE Instruct fix */
+	visibility:visible;
+	opacity:1;
+}
+
+/* ----- ALT INSTRUCTIONS ----- */
+
+.altInstruct .instruct{
+	visibility:visible;
+	position:static;
+	margin:0;
+	padding:6px 0 0 0;
+	width:100%;
+	clear:left;
+	background:none !important;
+	border:none !important;
+	font-style:italic;
+	opacity:1;
+}
+.altInstruct p.complex {
+	padding:0 0 9px 0;
+}
+
+/* ----- ERRORS ----- */
+
+#errorLi{
+	width:99%;
+	margin:15px auto 15px auto;
+	background:#fff !important;
+	border:1px solid red;
+	text-align:center;
+	padding:1em 0 1em 0;
+	-webkit-border-radius:20px;
+	-moz-border-radius:20px;
+	border-radius:20px;
+}
+#errorMsgLbl{
+	margin:0 0 5px 0;
+	padding:0;
+	font-size:125%;
+	color:#DF0000 !important;
+}
+#errorMsg{
+	margin:0 0 2px 0;
+	color:#000 !important;
+	font-size:100%;
+}
+#errorMsg strong{
+	padding:2px 8px;
+	background-color: #FFDFDF !important;
+	color:red !important;
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+}
+form li.error{
+	display:block !important;
+	background-color: #FFDFDF !important;
+	margin-bottom:3px !important;
+}
+form li label.error, form li input.error{
+	color:#DF0000 !important;
+	font-weight:bold !important;
+}
+form li input.error{
+	background:#fff !important;
+	border:2px solid #DF0000 !important;
+}
+
+
+form li.error label, form li.error span.symbol{
+	color:#000 !important;
+}
+form li.error .desc{
+	color:#DF0000 !important;
+}
+form p.error{
+	display:none;
+	margin:0 !important;
+	padding:7px 0 0 0 !important;
+	line-height:10px !important;
+	font-weight:bold;
+	font-size:11px;
+	color:#DF0000 !important;
+	clear:both;
+}
+form li.error p.error{
+	display:block;
+}
+form li.complex p.error{
+	padding:0 0 9px 0 !important;
+}
+
+

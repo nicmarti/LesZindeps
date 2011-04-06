@@ -1,71 +1,134 @@
 #{extends 'main.html' /}
 #{set title:'Proposer une mission' /}
 
-<div class="grid_8 prefix_2">
-        <h1>Proposer une mission</h1>
-        #{form @submitMission()}
-        <p>A la recherche d'un indépendant ? Compléter ce formulaire et contactez directement les indépendants
+<link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/wufoo.css'}"/>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+
+
+
+<div id="container">
+
+	<h1 id="logo">
+		<a>&nbsp;</a>
+	</h1>
+
+<!-- Tag play cree dans views/tags -->
+    #{jQueryValidate class:models.Propal.class, key:'propal' /}
+    
+    #{form id:'joinForm', class:'wufoo', action:@submitMission()}
+
+<div class="info">
+	<h2>Proposer une mission</h2>
+	<div>A la recherche d'un indépendant ? Compléter ce formulaire et contactez directement les indépendants
         du réseau. Merci de #{a @Application.qui()}prendre connaissance de nos profils#{/a} avant de poster une offre.
-        Nous déclinons systématiquement toutes les offres qui n'ont pas de rapport avec nos domaines d'expértise.</p>
+        Nous déclinons systématiquement toutes les offres qui n'ont pas de rapport avec nos domaines d'expertise.
+        </div>
+</div>
+
+<ul>
 
         #{field 'propal.title'}
-        <p>
-            <label for="${field.id}">Titre de la mission :</label>
-            <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
-                   size="60" maxlength="255"><span class="error">${field.error}</span><br/>
-            <em>Merci d'indiquer le profil, le niveau, les compétences recherchées.</em>
-        </p>
+        <li  >
+            <label for="${field.id}" class="desc" id="title_${field.name}">Titre de la mission <span id="req_${field.name}" class="req">*</span></label>
+            <div><input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="field text large"  maxlength="255" >
+            </div> 
+            <p class="instruct" ><small>Merci d'indiquer le profil, le niveau, les compétences recherchées. </small>
+			</p>
+            <br/><span class="error">${field.error}</span><br/>
+        </li>
         #{/}
-
-
+        
+        
         #{field 'propal.description'}
-        <p>
-            <label for="${field.id}">Description :</label>
-            <textarea id="desc" name="${field.name}" cols="60" rows="6"></textarea>
-<span class="error">${field.error}</span><br/>
-            <em>Type de client, durée, date de début souhaitée, environnement technique, compétences requises, objectif de la mission</em>
+        <li  class="altInstruct     ">
+            <label for="${field.id}" class="desc" id="title_${field.name}">Description <span id="req_1"
+		class="req">*</span></label>
+            <div><textarea id="${field.id}" name="${field.name}" class="field textarea medium" rows="10" cols="50"></textarea></div>
+			<p class="instruct"><small>Type de client,
+			durée, date de début souhaitée, environnement technique, compétences
+			requises, objectif de la mission </small></p>			
+			<br/><span class="error">${field.error}</span><br/>
+        </li>
+        #{/}        
 
-        </p>
-        #{/}
 
         #{field 'propal.localisation'}
-        <p>
-            <label for="${field.id}">Localisation :</label>
-            <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
-                   size="40" maxlength="255">
-            <span class="error">${field.error}</span><br/>
-            <em>Où se situe la mission ?</em>
-
-        </p>
+        <li  >
+            <label for="${field.id}" class="desc" id="title_${field.name}">Localisation <span id="req_${field.name}" class="req">*</span></label>
+            <div><input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="field text large"  maxlength="255" >
+            </div> 
+            <p class="instruct"><small>Où se situe la mission ?</small>
+			</p>
+            <br/><span class="error">${field.error}</span><br/>
+        </li>
         #{/}
-
-
+	
+	
         #{field 'propal.tjm'}
-        <p>
-            <label for="${field.id}">TJM net:</label>
-            <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
-                   size="40" maxlength="255">
-            <span class="error">${field.error}</span><br/>
-            <em>Merci de préciser une fourchette</em>
+        <li  >
+            <label for="${field.id}" class="desc" id="title_${field.name}">TJM net</label>
+            <div><input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="field text large"  maxlength="255"  >
+            </div> 
+            <p class="instruct" ><small>Merci de préciser une fourchette</small>
+			</p>
+            <br/><span class="error">${field.error}</span><br/>
+        </li>
+        #{/}	
 
-        </p>
-        #{/}
+	<li class="section">
+		<div>
+		<h3>Vos coordonnées</h3>
+		<div>Comment vous contacter ?</div>
+		</div>
+	</li>
+
 
         #{field 'propal.contact'}
-        <p>
-            <label>Comment vous contacter ?</label>
-            <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}"
-                   size="60" maxlength="255">
-            <span class="error">${field.error}</span><br/>
-            <em>Votre email, votre nom et votre téléphone</em>
+        <li  >
+            <label for="${field.id}" class="desc" id="title_${field.name}">Email</label>
+            <div>
+            	<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="field text large" maxlength="255">
+            </div> 
+            <p class="instruct" ><small>Laissez-nous
+	votre email pour que nous puissions vous contacter</small>
+			</p>
+            <br/><span class="error">${field.error}</span><br/>
+        </li>
+        #{/}	
 
-        </p>
-        #{/}
+        #{field 'propal.phone'}
+        <li  >
+            <label for="${field.id}" class="desc" id="title_${field.name}">Numéro de téléphone</label>
+            <div><input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="field text large" maxlength="255">
+            </div> 
+            <p class="instruct" ><small>Vous pouvez	aussi nous laisser vos coordonnées téléphoniques</small>
+			</p>
+            <br/><span class="error">${field.error}</span><br/>
+        </li>
+        #{/}	
+		<li class="buttons "><p class="buttons"><input type="submit" value="Soumettre"  class="button blue "/></p>
+		</li>
+</ul>
+#{/form}
+
+</div><!--container-->
+<img id="bottom" src="@{'public/images/bottom.png'}" />
+<div class="clear">&nbsp;</div>
+
+<script type="text/javascript">
+<!--
+	
+$(".field").focus(function() {
+	$(this).parent().parent().css('background-color','#FFF7C0');
+});
+
+$(".field").blur(function() {
+	$(this).parent().parent().css('background-color','transparent');
+});
 
 
-        <p class="buttons"><input type="submit" value="Soumettre"  class="button blue large"/></p>
-        #{/form}
 
-    </div>
-
-    <div class="clear">&nbsp;</div>
+//-->
+</script>
