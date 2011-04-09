@@ -27,6 +27,7 @@
 package models;
 
 import play.data.validation.Email;
+import play.data.validation.Max;
 import play.data.validation.Min;
 import play.data.validation.Required;
 import play.data.validation.URL;
@@ -35,41 +36,73 @@ import play.db.jpa.Model;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.Predicate;
+import org.joda.time.DateTime;
+
 import net.sf.oval.constraint.Future;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Une propal est une proposition de mission.
- *
+ * 
  * @author Nicolas Martignole
  * @since 21 déc. 2010 14:09:12
  */
 @Entity
-public class Propal extends Model {
+public class Propal extends Model
+{
     @Required(message = "Le titre est obligatoire")
     public String title;
+
     @Lob
     @Required(message = "Nous avons vraiment besoin d'une description pour répondre à votre demande")
     public String description;
-    @Required(message="Veuillez indiquer le lieu d'exécution de la mission")
+
+    @Required(message = "Veuillez indiquer le lieu d'exécution de la mission")
     public String localisation;
+
     public String tjm;
-    
-    @Email(message="Veuillez indiquer une adresse email valide")
-    @Required(message="Veuillez nous fournir une adresse email")
+
+    @Email(message = "Veuillez indiquer une adresse email valide")
+    @Required(message = "Veuillez nous fournir une adresse email")
     public String contact;
+
     public String phone;
-    
-    @Min(value=0,message="Vous ne pouvez pas préciser une validité inférieure à 0 jours")
-    @Required(message="Veuillez préciser le nombre de jours de validité de votre demande. Vous pourrez le modifier par la suite")
-    public Long nbDaysOfValidity;
-    
+
+    @Max(value = 365, message = "Avez-vous vraiment une visibilité à 1 an ?")
+    @Min(value = 0, message = "Vous ne pouvez pas préciser une validité inférieure à 0 jours")
+    @Required(message = "Veuillez préciser le nombre de jours de validité de votre demande.")
+    public Long nbDaysOfValidity=Long.valueOf(0);
+
     public Date creationDate;
 
-    public static List<Propal> findAllByDate() {
-        List<Propal> list=Propal.find("from Propal order by creationDate desc").fetch();
+    public static List<Propal> findAllByDate()
+    {
+        List<Propal> list = Propal.find("from Propal order by creationDate desc").fetch();
         return list;
     }
+
+    public static List<Propal> findDeprecated()
+    {
+        List<Propal> propals = findAllByDate();
+        List<Propal> deprecatedPropals = new ArrayList<Propal>();
+        for (Propal propal : propals)
+        {
+            DateTime dt = new DateTime(propal.creationDate);
+            Date endDate = dt.plusDays(propal.nbDaysOfValidity.intValue()).toDate();
+            if (endDate.after(new Date()))
+            {
+                deprecatedPropals.add(propal);                
+            }
+        }
+        return deprecatedPropals;
+    }
+    
+    
+
 }

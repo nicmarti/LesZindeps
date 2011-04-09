@@ -34,6 +34,7 @@ package notifiers;
  * @since 29 mars 2010 17:21:31
  */
 
+import models.Propal;
 import play.mvc.*;
 
 
@@ -44,5 +45,13 @@ public class Mails extends Mailer {
         setFrom("contact@leszindeps.fr");
         addRecipient(email);
         send(message);
+    }
+
+    public static void sendPropalDeletedMessage(Propal deprecatedPropal, String contact)
+    {
+        setSubject("Malheureusement votre demande n'a pu être prise en compte (Message envoyé via le site des zindeps)");
+        setFrom("contact@leszindeps.fr");
+        addRecipient(contact);
+        send(deprecatedPropal);
     }
 }
