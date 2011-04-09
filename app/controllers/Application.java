@@ -66,7 +66,8 @@ public class Application extends Controller {
      * Si nous avons besoin d'un captcha, il faudra mettre le code ici.
      */
     public static void mission() {
-        render();
+        Propal propal = new Propal();
+        render(propal);
     }
 
     /**

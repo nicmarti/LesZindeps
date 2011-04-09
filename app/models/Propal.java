@@ -77,7 +77,7 @@ public class Propal extends Model
     @Max(value = 365, message = "Avez-vous vraiment une visibilité à 1 an ?")
     @Min(value = 0, message = "Vous ne pouvez pas préciser une validité inférieure à 0 jours")
     @Required(message = "Veuillez préciser le nombre de jours de validité de votre demande.")
-    public Long nbDaysOfValidity=Long.valueOf(0);
+    public Long nbDaysOfValidity=Long.valueOf(30);
 
     public Date creationDate;
 
