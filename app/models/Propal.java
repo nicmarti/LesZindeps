@@ -27,11 +27,16 @@
 package models;
 
 import play.data.validation.Email;
+import play.data.validation.Min;
 import play.data.validation.Required;
+import play.data.validation.URL;
 import play.db.jpa.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.Lob;
+
+import net.sf.oval.constraint.Future;
+
 import java.util.Date;
 import java.util.List;
 
@@ -48,13 +53,19 @@ public class Propal extends Model {
     @Lob
     @Required(message = "Nous avons vraiment besoin d'une description pour répondre à votre demande")
     public String description;
+    @Required(message="Veuillez indiquer le lieu d'exécution de la mission")
     public String localisation;
     public String tjm;
     
     @Email(message="Veuillez indiquer une adresse email valide")
+    @Required(message="Veuillez nous fournir une adresse email")
     public String contact;
     public String phone;
-
+    
+    @Min(value=0,message="Vous ne pouvez pas préciser une validité inférieure à 0 jours")
+    @Required(message="Veuillez préciser le nombre de jours de validité de votre demande. Vous pourrez le modifier par la suite")
+    public Long nbDaysOfValidity;
+    
     public Date creationDate;
 
     public static List<Propal> findAllByDate() {

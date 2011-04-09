@@ -12,6 +12,12 @@
 						    case "Required":
 						        out.println "required: true,"
 								break;
+							case "Min":
+						        out.println "min: " + validator.annotation.value() + ","
+								break;
+							case "Max":
+						        out.println "max: " + validator.annotation.value() + ","
+								break;
 							case "MinSize":
 						        out.println "minlength: " + validator.annotation.value() + ","
 								break;
@@ -41,6 +47,12 @@
 									break;
 								case "MinSize":
 							        out.println "minlength: \"" + validator.annotation.message() + "\","
+									break;
+								case "Min":
+							        out.println "min: \"" + validator.annotation.message() + "\","
+									break;
+								case "Max":
+							        out.println "max: \"" + validator.annotation.message() + "\","
 									break;
 								case "Range":
 							        out.println "range: \""+validator.annotation.message() + "\"," 

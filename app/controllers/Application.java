@@ -75,13 +75,12 @@ public class Application extends Controller {
      * @param propal est la nouvelle mission
      */
     public static void submitMission(Propal propal) {
+        propal.creationDate = new Date();
         if (propal.validateAndSave() == false) {
             flash.error("Erreur, impossible de créer votre demande, merci de corriger le formulaire");
             validation.keep();
             mission();
         }
-        propal.creationDate = new Date();
-        propal.save();
 
         flash.success("Merci d'avoir proposé une mission.");
         render();

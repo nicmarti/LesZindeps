@@ -405,51 +405,6 @@ button.link:hover{
 
 /* ----- LABEL LAYOUT ----- */
 
-.leftLabel li, .rightLabel li{
-	width:74% !important;
-	padding-top:9px;
-}
-.leftLabel .desc, .rightLabel .desc{
-	float:left;
-	width:31%;
-	margin:0 15px 0 0;
-}
-.rightLabel .desc{
-	text-align:right;
-}
-.leftLabel li div, .rightLabel li div{
-	float:left;
-	width:65%;
-}
-
-* html .leftLabel li fieldset div, 
-* html .rightLabel li fieldset div{
-	float:right;
-}
-*+html .leftLabel li fieldset div, 
-*+html .rightLabel li fieldset div{
-	float:right;
-}
-
-.leftLabel .buttons, .rightLabel .buttons{
-	padding-left:23%;
-}
-.leftLabel .buttons div, .rightLabel .buttons div{
-	float:none;
-	margin:0 0 0 20px;
-}
-
-
-.leftLabel p.instruct, .rightLabel p.instruct{
-	width:28%;
-	margin-left:5px;
-}
-.leftLabel .altInstruct .instruct, .rightLabel .altInstruct .instruct{
-	margin-left:31% !important;
-	padding-left:15px;
-	width:65%;
-}
-
 form .instruct{
 	position:absolute;
 	top:0;
@@ -498,37 +453,6 @@ form li.focused .instruct, form li:hover .instruct{
 }
 
 /* ----- ERRORS ----- */
-
-#errorLi{
-	width:99%;
-	margin:15px auto 15px auto;
-	background:#fff !important;
-	border:1px solid red;
-	text-align:center;
-	padding:1em 0 1em 0;
-	-webkit-border-radius:20px;
-	-moz-border-radius:20px;
-	border-radius:20px;
-}
-#errorMsgLbl{
-	margin:0 0 5px 0;
-	padding:0;
-	font-size:125%;
-	color:#DF0000 !important;
-}
-#errorMsg{
-	margin:0 0 2px 0;
-	color:#000 !important;
-	font-size:100%;
-}
-#errorMsg strong{
-	padding:2px 8px;
-	background-color: #FFDFDF !important;
-	color:red !important;
-	-webkit-border-radius:10px;
-	-moz-border-radius:10px;
-	border-radius:10px;
-}
 form li.error{
 	display:block !important;
 	background-color: #FFDFDF !important;
@@ -536,17 +460,30 @@ form li.error{
 }
 form li label.error, form li input.error{
 	color:#DF0000 !important;
-	font-weight:bold !important;
+	font-weight:normal !important;
+	line-height: 10px !important;
+	font-size: 11px !important;	
 }
 form li input.error{
 	background:#fff !important;
 	border:2px solid #DF0000 !important;
+	background-color: #ffcccc !important;
 }
 
+form li textarea.error{
+	background:#fff !important;
+	border:2px solid #DF0000 !important;
+	background-color: #ffcccc !important;
+}
 
 form li.error label, form li.error span.symbol{
 	color:#000 !important;
 }
+form li label.error:before
+{
+	content: url(../images/exclamation.png) ;
+}
+
 form li.error .desc{
 	color:#DF0000 !important;
 }

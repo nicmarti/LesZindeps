@@ -103,7 +103,7 @@ public class Mission extends Model {
      * @return the mission saved
      */
     @Override
-    public <Mission extends JPABase> Mission save()
+    public Mission save()
     {
         length = endDate.getTime() - initialDate.getTime();
         length = length / (3600 * 24 * 1000);
