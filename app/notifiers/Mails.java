@@ -47,8 +47,7 @@ public class Mails extends Mailer {
         send(message);
     }
 
-    public static void sendPropalDeletedMessage(Propal deprecatedPropal, String contact)
-    {
+    public static void sendPropalDeletedMessage(Propal deprecatedPropal, String contact) {
         setSubject("Malheureusement votre demande n'a pu être prise en compte (Message envoyé via le site des zindeps)");
         setFrom("contact@leszindeps.fr");
         addRecipient(contact);
