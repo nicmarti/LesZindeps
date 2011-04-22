@@ -26,6 +26,7 @@
 
 package models;
 
+import org.joda.time.DateMidnight;
 import play.data.validation.Email;
 import play.data.validation.Max;
 import play.data.validation.Min;
@@ -35,6 +36,8 @@ import play.db.jpa.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.Lob;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
@@ -48,14 +51,13 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Une propal est une proposition de mission.
- * 
+ * This is a job offer that has an expiration date.
+ *
  * @author Nicolas Martignole
  * @since 21 déc. 2010 14:09:12
  */
 @Entity
-public class Propal extends Model
-{
+public class Propal extends Model {
     @Required(message = "Le titre est obligatoire")
     public String title;
 
@@ -66,8 +68,10 @@ public class Propal extends Model
     @Required(message = "Veuillez indiquer le lieu d'exécution de la mission")
     public String localisation;
 
+    /* how much you charge a day ? */
     public String tjm;
 
+    /* Who submited this proposal ? */
     @Email(message = "Veuillez indiquer une adresse email valide")
     @Required(message = "Veuillez nous fournir une adresse email")
     public String contact;
@@ -77,32 +81,46 @@ public class Propal extends Model
     @Max(value = 365, message = "Avez-vous vraiment une visibilité à 1 an ?")
     @Min(value = 0, message = "Vous ne pouvez pas préciser une validité inférieure à 0 jours")
     @Required(message = "Veuillez préciser le nombre de jours de validité de votre demande.")
-    public Long nbDaysOfValidity=Long.valueOf(30);
+    public int nbDaysOfValidity = 30;
 
+    /* When was the propal created */
     public Date creationDate;
 
-    public static List<Propal> findAllByDate()
-    {
+    /* When should it expire ? */
+    public Date expirationDate;
+
+
+    @PreUpdate
+    @PrePersist
+    private void calculateExpirationDate() {
+        if (creationDate == null) {
+            // Set the creation Date to today for existing propals in DB
+            creationDate = new DateMidnight().toDate();
+        }
+        DateMidnight dt = new DateMidnight(creationDate);
+        this.expirationDate = dt.plusDays(nbDaysOfValidity).toDate();
+    }
+
+    /**
+     * Returns all propals order by creationDate.
+     *
+     * @return a list of Propals.
+     */
+    public static List<Propal> findAllByDate() {
         List<Propal> list = Propal.find("from Propal order by creationDate desc").fetch();
         return list;
     }
 
-    public static List<Propal> findDeprecated()
-    {
-        List<Propal> propals = findAllByDate();
-        List<Propal> deprecatedPropals = new ArrayList<Propal>();
-        for (Propal propal : propals)
-        {
-            DateTime dt = new DateTime(propal.creationDate);
-            Date endDate = dt.plusDays(propal.nbDaysOfValidity.intValue()).toDate();
-            if (endDate.after(new Date()))
-            {
-                deprecatedPropals.add(propal);                
-            }
-        }
+    /**
+     * Returns all Propals that have expired.
+     *
+     * @return a list of Propal.
+     */
+    public static List<Propal> findDeprecated() {
+        List<Propal> deprecatedPropals = find("expirationDate < :pnow")
+                .bind("pnow", new DateMidnight().toDate())
+                .fetch();
         return deprecatedPropals;
     }
-    
-    
 
 }
