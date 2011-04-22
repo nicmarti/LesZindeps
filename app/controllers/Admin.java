@@ -200,7 +200,7 @@ public class Admin extends Controller {
         // des cases à cocher comme isVisible, il faut reprendre la map des parametres
         // et voir si la personne a gardé la case cochée ou non.
         // C'est pas top.
-        zindep.isVisible=(request.params.get("zindep.isVisible")!=null);
+        zindep.isVisible = (request.params.get("zindep.isVisible") != null);
 
         // Et persiste
         zindep.save();

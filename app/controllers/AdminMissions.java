@@ -68,7 +68,7 @@ public class AdminMissions extends Admin {
         }
         render("@addMission", mission);
     }
-    
+
     /**
      * Affiche les détails d'une mission
      *
@@ -77,14 +77,13 @@ public class AdminMissions extends Admin {
      * @param customer
      * @param region
      */
-    public static void showReport(String poste,String intermediary, String customer, String region)
-    {
-        List values = Mission.findPriceByExperience(poste,intermediary, customer, region);
-        List statistics = Mission.findStatistics(poste,intermediary, customer, region);
-        
+    public static void showReport(String poste, String intermediary, String customer, String region) {
+        List values = Mission.findPriceByExperience(poste, intermediary, customer, region);
+        List statistics = Mission.findStatistics(poste, intermediary, customer, region);
+
         GsonBuilder builder = new GsonBuilder();
         String json = builder.create().toJson(values);
-        render(json,values,statistics);
+        render(json, values, statistics);
     }
 
 
