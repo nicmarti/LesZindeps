@@ -46,8 +46,21 @@ import java.util.List;
  */
 @Entity
 public class Zindep extends GenericModel {
+    public static enum Availability {
+        NOT_AVAILABLE("Non disponible"),
+        PART_TIME_ONLY("A temps partiel"),
+        AVAILABLE("Disponible");
 
-    public static enum Availability {NOT_AVAILABLE, PART_TIME_ONLY, AVAILABLE}
+        private String label;
+
+        Availability(String label) {
+            this.label = label;
+        }
+
+        public String toString() {
+            return label;
+        }
+    }
 
     @Id
     @GeneratedValue(generator = "system-uuid")
