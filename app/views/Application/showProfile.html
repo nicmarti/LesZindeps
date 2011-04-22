@@ -3,7 +3,7 @@
 ${zindep.firstName} ${zindep.lastName}
 #{/set}
 <div class="grid_2">
-     #{if zindep.pictureUrl && zindep.pictureUrl!='undefined'}
+    #{if zindep.pictureUrl && zindep.pictureUrl!='undefined'}
     <img src="${zindep.pictureUrl}" alt="${zindep.firstName} ${zindep.lastName}" class="zindepPicture"/>
     #{/if}
     #{else}
@@ -18,35 +18,38 @@ ${zindep.firstName} ${zindep.lastName}
     <p>${zindep.memberSince?.format('MMMM yyyy')}</p>
 
     <h3>Présentation</h3>
-     <p align="justify">${zindep.bio}</p>
+    <p align="justify">${zindep.bio}</p>
 
     <h3>Domaines d'expertise</h3>
     <p align="justify">${zindep.techno}</p>
 
     #{if zindep.blogUrl}
     <h3>Blog</h3>
-      <p align="justify"><a href="${zindep.blogUrl}" target="_blank">${zindep.blogUrl}</a> </p>
+    <p align="justify"><a href="${zindep.blogUrl}" target="_blank">${zindep.blogUrl}</a></p>
     #{/if}
 
-        #{if zindep.twitter}
+    #{if zindep.twitter}
     <h3>Twitter</h3>
-      <p align="justify"><a href="http://www.twitter.com/${zindep.twitter}" target="_blank">${zindep.twitter}</a> </p>
+    <p align="justify"><a href="http://www.twitter.com/${zindep.twitter}" target="_blank">${zindep.twitter}</a></p>
     #{/if}
+
+    <h3>Disponibilité</h3>
+    <P align="justify">${zindep.currentAvailability}</P>
 
 </div>
 
 <div class="clear">&nbsp;</div>
-<div class="grid6 prefix_2">
+<div class="grid_8 prefix_2">
     #{if flash.success}
     <div class="successbox">${flash.success}</div>
     #{/if}
-     #{if flash.error}
+    #{if flash.error}
     <div class="errorbox">${flash.error}</div>
     #{/if}
     #{form @sendMessage(zindep.id)}
-        <label for="msg">Votre Message :</label>
-        <textarea id="msg" rows="6" cols="60" name="message" title="Message"></textarea><br/>
-        <input type="submit" value="Envoyer votre message" class="button blue large"/>
+    <label for="msg">Votre Message :</label>
+    <textarea id="msg" rows="6" cols="60" name="message" title="Message"></textarea><br/>
+    <input type="submit" value="Envoyer votre message" class="button blue large"/>
     #{/form}
 
 
