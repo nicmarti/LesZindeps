@@ -65,7 +65,7 @@ public class Mission extends Model {
     @Temporal(TemporalType.DATE)
     @Required
     public Date initialDate;
-    
+
     public long length;
 
     @Temporal(TemporalType.DATE)
@@ -96,20 +96,20 @@ public class Mission extends Model {
     @Required(message = "Le champ expérience est obligatoire, merci d'indiquer un nombre d'années")
     public Long exp;
 
-    
+
     /**
      * Override save method to compute automatically the mission length in days
+     *
      * @param <Mission>
      * @return the mission saved
      */
     @Override
-    public Mission save()
-    {
+    public Mission save() {
         length = endDate.getTime() - initialDate.getTime();
         length = length / (3600 * 24 * 1000);
         return super.save();
     }
-    
+
 
     /**
      * Retourne la liste des missions déjà effectuées par cet indep
@@ -123,6 +123,7 @@ public class Mission extends Model {
     /**
      * Retourne la liste des intermédiares vers la vue pour l'autocompletion
      * dans la page addMision
+     *
      * @param term est le terme entré par l'utilisateur.
      * @return une liste qui matche la recherche afin d'afficher une dropdown list.
      */
@@ -153,13 +154,12 @@ public class Mission extends Model {
         return query.getResultList();
     }
 
-    public static List findStatistics(String poste, String intermediary, String customer, String region)
-    {
+    public static List findStatistics(String poste, String intermediary, String customer, String region) {
         Query query = JPA.em().createQuery("select AVG(exp), AVG(clientPrice), AVG(length) from Mission m " +
-                "where "+
-                " (:role is null or role = :role)"+
-                " AND (:intermediary is null or intermediary = :intermediary)"+
-                " AND (:customer is null or customer = :customer)"+
+                "where " +
+                " (:role is null or role = :role)" +
+                " AND (:intermediary is null or intermediary = :intermediary)" +
+                " AND (:customer is null or customer = :customer)" +
                 " AND (:region is null or location = :region)")
                 .setParameter("role", poste)
                 .setParameter("role", poste)
@@ -168,29 +168,26 @@ public class Mission extends Model {
                 .setParameter("customer", customer)
                 .setParameter("customer", customer)
                 .setParameter("region", region)
-                .setParameter("region", region)
-                ;
+                .setParameter("region", region);
         return query.getResultList();
     }
-    
-    public static List findPriceByExperience(String poste, String intermediary, String customer, String region)
-    {
+
+    public static List findPriceByExperience(String poste, String intermediary, String customer, String region) {
         Query query = JPA.em().createQuery("select exp, AVG(clientPrice) from Mission m " +
-                "where "+
-                " (:role is null or role = :role)"+
-                " AND (:intermediary is null or intermediary = :intermediary)"+
-                " AND (:customer is null or customer = :customer)"+
-                " AND (:region is null or location = :region)"+
-        		" GROUP BY exp")
-        		.setParameter("role", poste)
-        		.setParameter("role", poste)
-        		.setParameter("intermediary", intermediary)
-        		.setParameter("intermediary", intermediary)
-        		.setParameter("customer", customer)
-        		.setParameter("customer", customer)
-        		.setParameter("region", region)
-        		.setParameter("region", region)
-        		;
+                "where " +
+                " (:role is null or role = :role)" +
+                " AND (:intermediary is null or intermediary = :intermediary)" +
+                " AND (:customer is null or customer = :customer)" +
+                " AND (:region is null or location = :region)" +
+                " GROUP BY exp")
+                .setParameter("role", poste)
+                .setParameter("role", poste)
+                .setParameter("intermediary", intermediary)
+                .setParameter("intermediary", intermediary)
+                .setParameter("customer", customer)
+                .setParameter("customer", customer)
+                .setParameter("region", region)
+                .setParameter("region", region);
         return query.getResultList();
     }
 }
