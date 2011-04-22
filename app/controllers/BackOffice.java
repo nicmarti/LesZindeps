@@ -26,7 +26,9 @@
 
 package controllers;
 
+import models.Propal;
 import models.Zindep;
+import org.joda.time.DateMidnight;
 import play.data.validation.Valid;
 import play.mvc.Before;
 import play.mvc.Controller;
@@ -102,37 +104,56 @@ public class BackOffice extends Controller {
 
     /**
      * Permet de rendre visible un compte.
+     *
      * @param id est la cle primaire.
      */
     public static void setVisible(String id) {
-         Zindep z = Zindep.findById(id);
-        if(z==null){
+        Zindep z = Zindep.findById(id);
+        if (z == null) {
             flash.error("Compte non trouvé");
             listZindeps(); // Cette methode coupe le flow d'execution, Play leve une exception et termine l'execution
         }
         // ... donc le "else" est implicite
-        z.isVisible=Boolean.TRUE;
+        z.isVisible = Boolean.TRUE;
         z.save();
         flash.success("Le compte est maintenant visible sur le site des Zindeps.");
         listZindeps();
-}
+    }
 
     /**
      * Permet de rendre invisible un compte.
+     *
      * @param id de l'utilisateur.
      */
     public static void setInvisible(String id) {
         Zindep z = Zindep.findById(id);
-        if(z==null){
+        if (z == null) {
             flash.error("Compte non trouvé");
             listZindeps(); // Cette methode coupe le flow d'execution, Play leve une exception et termine l'execution
         }
         // ... donc le "else" est implicite
-        z.isVisible=Boolean.FALSE;
+        z.isVisible = Boolean.FALSE;
         z.save();
         flash.success("Le compte est maintenant invisible sur le site.");
         listZindeps();
 
+    }
+
+    /**
+     * Methode ajoutee temporairement afin que l'ensemble des Propals ait une expirationDate
+     */
+    public static void doUpdatePropals(){
+        List<Propal> listOfPropals=Propal.findAll();
+        for(Propal p:listOfPropals){
+            if(p.expirationDate==null){
+                p.expirationDate=new DateMidnight().plus(30L).toDate();
+            }
+            if(p.creationDate==null){
+                p.creationDate=new DateMidnight().toDate();
+                p.nbDaysOfValidity=30;
+            }
+            p.save();
+        }
     }
 
 }
