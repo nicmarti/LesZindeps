@@ -18,10 +18,10 @@ ${zindep.firstName} ${zindep.lastName}
     <p>${zindep.memberSince?.format('MMMM yyyy')}</p>
 
     <h3>Présentation</h3>
-    <p align="justify">${zindep.bio}</p>
+    <p align="justify">${zindep.bio.nl2br()}</p>
 
     <h3>Domaines d'expertise</h3>
-    <p align="justify">${zindep.techno}</p>
+    <p align="justify">${zindep.techno.nl2br()}</p>
 
     #{if zindep.blogUrl}
     <h3>Blog</h3>
