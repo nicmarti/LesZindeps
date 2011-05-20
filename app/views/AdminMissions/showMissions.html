@@ -7,21 +7,33 @@
 
 function showDetails(missionId)
 {
-	$( "#"+missionId ).dialog({ minWidth: 600 });
-	return false;
+    $( "#"+missionId ).dialog({ minWidth: 600 });
+    return false;
 }
 
-
-
+$(document).ready(function() {
+	$(".linkDetails").click(function(){
+	    var dataid = $(this).attr("dataid");
+	    showDetails('missionDetails_'+dataid);
+	    return false;
+	});
+});
 
 //-->
 </script>
 
-<h1>Liste des missions effectuées</h1>
+<h1>Liste des tarifs de précédentes missions</h1>
+	<div class="successbox">
+	      Vous pouvez consulter ici les tarifs des zindeps sur des missions précédentes. <br/>
+	      Cette base de tarif peut vous permettre de vous situer mais ne constitue pas une référence fiable.<br/>
+	      Vous pouvez cliquer sur "poste", "Client", "Intermédiaire", et "Lieu" afin d'avoir des statistiques sur les tarifs pour 
+	      un type de mission particulière.     
+	</div>
+
 
  #{a @AdminMissions.addMission(),class:'button red'}Ajouter une mission#{/a}
 	#{ifErrors}
-    <div class="error">
+    <div class="errorbox">
         <h2>Erreur</h2>
         <ul>
             #{errors}
@@ -32,7 +44,7 @@ function showDetails(missionId)
     #{/ifErrors}
 
     #{if flash.error}
-    <div class="error">
+    <div class="errorbox">
         <h2>${flash.error}</h2>
     </div>
     #{/if}
@@ -92,7 +104,7 @@ function showDetails(missionId)
         <td>${mission.intermediaryPrice}</td>
         <td><a href="@{AdminMissions.showReport}?customer=${mission.customer}">${mission.customer}</a></td>
         <td><a href="@{AdminMissions.showReport}?intermediary=${mission.intermediary}">${mission.intermediary}</a></td>
-        <td><a href="#" title="Détails" class="linkDetails" onclick="showDetails('missionDetails_${mission.id}')"><img alt="Détails" src="/public/images/view.gif"/></a>  #{if mission.zindep.id == session.zindepId} #{a @AdminMissions.updateMission(mission.id)}<img alt="Modifier" src="/public/images/edit.png"/>#{/a} #{a @AdminMissions.delMission(mission.id)}<img alt="Supprimer" src="/public/images/trash.gif"/>#{/a}#{/if}</td>
+        <td><a href="#" dataid="${mission.id}" title="Détails" class="linkDetails"><img alt="Détails" src="/public/images/view.gif"/></a>  #{if mission.zindep.id == session.zindepId} #{a @AdminMissions.updateMission(mission.id)}<img alt="Modifier" src="/public/images/edit.png"/>#{/a} #{a @AdminMissions.delMission(mission.id)}<img alt="Supprimer" src="/public/images/trash.gif"/>#{/a}#{/if}</td>
     </tr>
 
 
