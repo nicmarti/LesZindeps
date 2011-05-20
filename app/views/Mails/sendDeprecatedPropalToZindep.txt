@@ -1,0 +1,34 @@
+Message envoyé via le site des Zindeps
+=======================================
+
+Bonjour,
+
+Une Propal postée sur le site a expiré et a été effacé.
+Pour rappel, voici les détails de cette proposition :
+
+
+Titre :
+${deprecatedPropal?.title}
+
+Description :
+${deprecatedPropal?.description}
+
+Localisation :
+${deprecatedPropal?.localisation}
+
+TJM :
+${deprecatedPropal?.tjm}
+
+Envoyé par :
+${deprecatedPropal?.contact}
+
+Téléphone :
+${deprecatedPropal?.phone}
+
+Créée le :
+${deprecatedPropal?.creationDate}
+
+
+------------------------------------------------------------------------------
+Les Zindeps
+

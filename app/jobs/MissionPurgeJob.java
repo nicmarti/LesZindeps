@@ -1,3 +1,4 @@
+package jobs;
 /*
  * Copyright(c) 2010 Les Zindeps.
  *
@@ -25,21 +26,34 @@
  */
 
 import models.Propal;
+import models.Zindep;
 import notifiers.Mails;
+import play.data.validation.Validation;
 import play.jobs.Job;
 import play.jobs.On;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Fire at 12pm (noon) every day *
  */
 @On("0 0 12 * * ?")
 public class MissionPurgeJob extends Job {
+
     public void doJob() {
         List<Propal> propals = Propal.findDeprecated();
         for (Propal deprecatedPropal : propals) {
-            Mails.sendPropalDeletedMessage(deprecatedPropal, deprecatedPropal.contact);
+            Validation.ValidationResult result = Validation.email("Email invalide", deprecatedPropal.contact);
+            if (result.ok) {
+                Mails.sendPropalDeletedMessage(deprecatedPropal, deprecatedPropal.contact);
+                List<Zindep> listOfVisibles = Zindep.findAllVisibleByName();
+                for (Zindep z : listOfVisibles) {
+                    Mails.sendDeprecatedPropalToZindep(deprecatedPropal, z.email);
+                }
+            }else{
+                play.Logger.debug("Email invalide dans une Propal " + deprecatedPropal.contact);
+            }
             deprecatedPropal.delete();
         }
     }
