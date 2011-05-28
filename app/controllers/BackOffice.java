@@ -26,9 +26,7 @@
 
 package controllers;
 
-import models.Propal;
 import models.Zindep;
-import org.joda.time.DateMidnight;
 import play.data.validation.Valid;
 import play.mvc.Before;
 import play.mvc.Controller;
@@ -139,21 +137,10 @@ public class BackOffice extends Controller {
 
     }
 
-    /**
-     * Methode ajoutee temporairement afin que l'ensemble des Propals ait une expirationDate
-     */
-    public static void doUpdatePropals(){
-        List<Propal> listOfPropals=Propal.findAll();
-        for(Propal p:listOfPropals){
-            if(p.expirationDate==null){
-                p.expirationDate=new DateMidnight().plus(30L).toDate();
-            }
-            if(p.creationDate==null){
-                p.creationDate=new DateMidnight().toDate();
-                p.nbDaysOfValidity=30;
-            }
-            p.save();
-        }
+    public static void triggerMissionPurgeBatchManually(){
+        new jobs.MissionPurgeJob().now();
+        flash.success("Purge des anciennes missions activées");
+        index();
     }
 
 }

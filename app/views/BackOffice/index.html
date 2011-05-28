@@ -2,19 +2,17 @@
 #{set title:'BackOffice' /}
 
 
-<div class="grid_8">
-<h1>Accueil</h1>
-
-<p class="embp">Bienvenue ${session.zindepEmail}</p>
-    <P>Cette partie permet de créer de nouveaux indépendants.</P>
-    <br/>
+<div class="grid_6 prefix_1">
+<h1>Accueil de la partie BackOffice</h1>
 
 #{a @newZindep()}Créer un nouvel zindep#{/a}<br/>
 #{a @listZindeps()}Lister tous les zindeps#{/a}  <br/>
+
+#{a @triggerMissionPurgeBatchManually()}Purger les propositions de mission ayant expirées#{/a}  <br/>
 #{a @Admin.logout()}Se déloguer#{/a} <br/>
 
 </div>
-<div class="grid_4">
+<div class="grid_5">
 #{if flash.success}
     <div class="successbox">
         ${flash.success}

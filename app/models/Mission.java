@@ -100,7 +100,6 @@ public class Mission extends Model {
     /**
      * Override save method to compute automatically the mission length in days
      *
-     * @param <Mission>
      * @return the mission saved
      */
     @Override

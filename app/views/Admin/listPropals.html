@@ -1,29 +1,66 @@
 #{extends 'Admin/adminTemplate.html' /}
 #{set title:'Liste des propositions de mission' /}
 
+<script type="text/javascript">
+<!--
+
+function showDetails(missionId)
+{
+    $( "#"+missionId ).dialog({ minWidth: 600 });
+    return false;
+}
+
+$(document).ready(function() {
+    $(".linkDetails").click(function(){
+        var dataid = $(this).attr("dataid");
+        showDetails('propalDetails_'+dataid);
+        return false;
+    });
+});
+
+//-->
+</script>
+
+
 <h1>Liste des missions envoyées</h1>
 
 <table class="simpleTable">
     <thead>
     <tr>
         <th>Title</th>
-        <th>Description</th>
         <th>Postée le</th>
         <th>TJM</th>
         <th>Localisation</th>
-        <th>Contact</th>
+        <th>Actions</th>
 
     </tr>
     </thead>
 
     #{list items:listOfPropals, as:'propal'}
     <tr class="${propal_parity}">
-        <td>${propal.title}</td>
-        <td>${propal.description}</td>
-        <td>${propal.creationDate.format('EEE d MMM HH:mm')}</td>
+        <td>
+            ${propal.title}
+            <div id="propalDetails_${propal.id}" title="${propal.title}" style="display : none;">
+            <p>
+                <span class="infosDetails">Lieu</span> :  ${propal.localisation} <br/>
+                <span class="infosDetails">Début</span> : ${propal.creationDate?.format('EEE d MMM')} <br/>
+                <span class="infosDetails">Fin de validité</span> : ${propal.expirationDate?.format('EEE d MMM')} <br/>
+                <span class="infosDetails">Tarif</span> : ${propal.tjm} <br/>
+                <span class="infosDetails">Contact</span> : ${propal.contact} <br/>
+            </p> 
+            <fieldset>
+                <legend>Description</legend>
+                <p>
+                ${propal.description?.nl2br()}
+                </p>        
+            </fieldset> 
+        
+        </div>            
+        </td>
+        <td>${propal.creationDate?.format('EEE d MMM')}</td>
         <td>${propal.tjm}</td>
         <td>${propal.localisation}</td>
-        <td>${propal.contact}</td>
+        <td><a href="#" dataid="${propal.id}" title="Détails" class="linkDetails"><img alt="Détails" src="/public/images/view.gif"/></a></td>
     </tr>
 
     #{/list}

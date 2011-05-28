@@ -35,6 +35,9 @@ package notifiers;
  */
 
 import models.Propal;
+import org.apache.commons.lang.StringUtils;
+import play.Logger;
+import play.data.validation.Validation;
 import play.mvc.*;
 
 
@@ -43,14 +46,38 @@ public class Mails extends Mailer {
     public static void sendMessageToUser(String message, String email) {
         setSubject("Message envoyé via le site des zindeps");
         setFrom("contact@leszindeps.fr");
-        addRecipient(email);
-        send(message);
+        Validation.ValidationResult result = Validation.email("Email invalide", email);
+        if (result.ok) {
+            addRecipient(email);
+            send(message);
+        } else {
+            Logger.error("Email invalide " + email);
+        }
+
     }
 
-    public static void sendPropalDeletedMessage(Propal deprecatedPropal, String contact) {
-        setSubject("Malheureusement votre demande n'a pu être prise en compte (Message envoyé via le site des zindeps)");
+    public static void sendPropalDeletedMessage(Propal deprecatedPropal, String email) {
+        setSubject("Suite à votre proposition de mission postée sur le site les Zindeps");
         setFrom("contact@leszindeps.fr");
-        addRecipient(contact);
-        send(deprecatedPropal);
+        Validation.ValidationResult result = Validation.email("Email invalide", email);
+        if (result.ok) {
+            addRecipient(email);
+            send(deprecatedPropal);
+        } else {
+            Logger.error("Email invalide " + email);
+        }
+    }
+
+    public static void sendDeprecatedPropalToZindep(Propal deprecatedPropal, String email) {
+        String cleanTitle = StringUtils.abbreviate(deprecatedPropal.title, 35);
+        setSubject("Propal sur le site des Zindeps ayant expirée " + cleanTitle);
+        setFrom("contact@leszindeps.fr");
+        Validation.ValidationResult result = Validation.email("Email invalide", email);
+        if (result.ok) {
+            addRecipient(email);
+            send(deprecatedPropal);
+        } else {
+            Logger.error("Email invalide " + email);
+        }
     }
 }

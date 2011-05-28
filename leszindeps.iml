@@ -6,9 +6,6 @@
       <sourceFolder url="file://$MODULE_DIR$/app" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
     </content>
-    <content url="file://$MODULE_DIR$/../play-1.1/framework/src">
-      <sourceFolder url="file://$MODULE_DIR$/../play-1.1/framework/src" isTestSource="false" />
-    </content>
     <orderEntry type="jdk" jdkName="1.6" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
@@ -26,15 +23,15 @@
       <library name="PlayFramework Dependecies">
         <CLASSES>
           <root url="file://$MODULE_DIR$/lib" />
-          <root url="file://$MODULE_DIR$/../play-1.1/framework/lib" />
-          <root url="jar://$MODULE_DIR$/../play-1.1/framework/play.jar!/" />
+          <root url="jar://$MODULE_DIR$/../play-1.1.1/framework/play.jar!/" />
+          <root url="file://$MODULE_DIR$/../play-1.1.1/framework/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/../play-1.1/framework/src" />
+          <root url="file://$MODULE_DIR$/../play-1.1.1/framework/src" />
         </SOURCES>
         <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" />
-        <jarDirectory url="file://$MODULE_DIR$/../play-1.1/framework/lib" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/../play-1.1.1/framework/lib" recursive="false" />
       </library>
     </orderEntry>
   </component>

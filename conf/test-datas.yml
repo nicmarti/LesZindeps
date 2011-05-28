@@ -95,14 +95,180 @@ Zindep(z4):
  techno: Assurance,Spring,J2EE,JEE5,JEE6,Agile,Scrum,Apache Camel,Lucene,Velocity,Tomcat
  bio: Exemple de bio 3
 
+
  Zindep(z6):
- email: damien.gouyette@xxx.com
+ email: damien.gouyette@gmail.com
  firstName: Damien
  lastName: GOUYETTE
  memberSince: 17/01/2009
  location: Paris
  techno: Assurance,Spring,J2EE,JEE5,JEE6,Agile,Scrum,Apache Camel,Lucene,Velocity,Tomcat
  bio: Exemple de bio 3
+
+Propal(p1):
+ title: Architecte super mega trop cool qui roxxe des courges
+ description: Tu roxxe ? On attend que toi pour la tonte des bugs en milieu hostile. 
+ localisation: Ile de France
+ tjm: 700
+ contact: annonce2.0@test.fr
+ phone: 0606060606
+ nbDaysOfValidity: 30
+
+Propal(p2):
+ title: Scrum master expert en Microsoft Project
+ description: Nous souhaitons démarrer un projet avec itération de 6 mois. Les specs sont prêtes, nous recherchons un Scrum Master capable de prendre en charge le projet suivant la méthodo Sum 
+ localisation: Ile de France
+ tjm: 450
+ contact: acotedelaplaque@test.fr
+ phone: 0606060606
+ nbDaysOfValidity: 15
+
+Propal(p3):
+ title: Urgent, cherche chef cuisinier 
+ description: Veuillez me contacter pour plus de détails,  cherche cuisinier de toute urgence,  quartier montorgeuil. 
+ localisation: Quartier montorgeuil
+ tjm: 35k + mutuelle
+ contact: griencompris@out.fr
+ phone: 0606060606
+ nbDaysOfValidity: 30
+
+Propal(p4):
+ title: Stage très intéressant. Expérience exigé.
+ description: Proposition de stage chez un client très prestigieux de la place bancaire.  Ce stage non rémunéré requiert une compétence Java (3/4 années d'expérience). 
+ localisation: Ile de France
+ tjm: 350
+ contact: ambitieux@test.fr
+ phone: 0606060606
+ nbDaysOfValidity: 30
+
+Propal(p5):
+ title: Architecte
+ description: Si vous avez pratiqué l'architecture (5 ans),  une superbe mission vous attend.  Attention sélection sur CV, nous vous recontacterons si nécessaire. Une expérience en programmation serait un plus.  
+ localisation: Ile de France
+ tjm: 550
+ contact: toto@test.fr
+ phone: 0606060606
+ nbDaysOfValidity: 30
+
+Propal(p6):
+ title: Architecte super mega trop cool qui roxxe des courges
+ description: Tu roxxe ? On attend que toi pour la tonte des bugs en milieu hostile. 
+ localisation: Ile de France
+ tjm: 700
+ contact: toto@test.fr
+ phone: 0606060606
+ nbDaysOfValidity: 30
+
+Propal(p7):
+ title: Architecte super mega trop cool qui roxxe des courges
+ description: Tu roxxe ? On attend que toi pour la tonte des bugs en milieu hostile. 
+ localisation: Ile de France
+ tjm: 700
+ contact: toto@test.fr
+ phone: 0606060606
+ nbDaysOfValidity: 30
+
+Propal(p8):
+ title: Architecte super mega trop cool qui roxxe des courges
+ description: Tu roxxe ? On attend que toi pour la tonte des bugs en milieu hostile. 
+ localisation: Ile de France
+ tjm: 700
+ contact: toto@test.fr
+ phone: 0606060606
+ nbDaysOfValidity: 30
+
+Propal(p9):
+ title: Architecte super mega trop cool qui roxxe des courges
+ description: Tu roxxe ? On attend que toi pour la tonte des bugs en milieu hostile. 
+ localisation: Ile de France
+ tjm: 700
+ contact: toto@test.fr
+ phone: 0606060606
+ nbDaysOfValidity: 30
+
+Propal(p10):
+ title: Architecte super mega trop cool qui roxxe des courges
+ description: Tu roxxe ? On attend que toi pour la tonte des bugs en milieu hostile. 
+ localisation: Ile de France
+ tjm: 700
+ contact: toto@test.fr
+ phone: 0606060606
+ nbDaysOfValidity: 30
+
+Mission(m1):
+ zindep: z1
+ title: Architecte  
+ role: Architecte
+ initialDate: 10/01/2010
+ endDate: 10/05/2010
+ clientPrice: 500
+ intermediaryPrice: 600
+ customer: SG
+ intermediary: SOAT
+ comment: une mission comme les autres
+ location: Ile de France
+ country: France
+ exp: 8
+ 
+Mission(m2):
+ zindep: z4
+ title: Architecte  
+ role: Architecte
+ initialDate: 10/01/2010
+ endDate: 10/05/2010
+ clientPrice: 500
+ intermediaryPrice: 600
+ customer: SG
+ intermediary: SOAT
+ comment: une mission comme les autres
+ location: Ile de France
+ country: France
+ exp: 8
+ 
+Mission(m3):
+ zindep: z3
+ title: Architecte  
+ role: Architecte
+ initialDate: 10/01/2010
+ endDate: 10/05/2010
+ clientPrice: 500
+ intermediaryPrice: 600
+ customer: SG
+ intermediary: SOAT
+ comment: une mission comme les autres
+ location: Ile de France
+ country: France
+ exp: 8
+
+Mission(m4):
+ zindep: z2
+ title: Architecte  
+ role: Architecte
+ initialDate: 10/01/2010
+ endDate: 10/05/2010
+ clientPrice: 500
+ intermediaryPrice: 600
+ customer: SG
+ intermediary: SOAT
+ comment: une mission comme les autres
+ location: Ile de France
+ country: France
+ exp: 8
+
+Mission(m5):
+ zindep: z1
+ title: Architecte  
+ role: Architecte
+ initialDate: 10/01/2010
+ endDate: 10/05/2010
+ clientPrice: 500
+ intermediaryPrice: 600
+ customer: SG
+ intermediary: SOAT
+ comment: une mission comme les autres
+ location: Ile de France
+ country: France
+ exp: 8
 
 
 # --------------------------------------------------------------------------------------------------------

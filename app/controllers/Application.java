@@ -32,6 +32,7 @@ import notifiers.Mails;
 import play.Logger;
 import play.mvc.*;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -56,7 +57,8 @@ public class Application extends Controller {
      */
     public static void qui() {
         List<Zindep> listOfZindeps = Zindep.findAllVisibleByName();
-
+        Collections.shuffle(listOfZindeps);
+        
         render(listOfZindeps);
     }
 
