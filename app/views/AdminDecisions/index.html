@@ -1,0 +1,47 @@
+#{extends 'Admin/adminTemplate.html' /} #{set title:'Liste des
+d&eacute;cisions' /} #{ifErrors}
+<div class="error">
+	<h2>Erreur</h2>
+	<ul>
+		#{errors}
+		<li>${error}</li> #{/errors}
+	</ul>
+</div>
+#{/ifErrors} #{if flash.error}
+<div class="error">
+	<h2>${flash.error}</h2>
+</div>
+#{/if} #{if flash.success}
+<div class="successbox">${flash.success}</div>
+#{/if}
+
+
+<h1>Historique des d&eacute;cisions</h1>
+
+    <a href="@{newDecision()}">Cr&eacute;er</a>
+
+
+<table class="simpleTable">
+	<thead>
+		<tr>
+			<th>Titre</th>
+			<th>Description</th>
+			<th>Cr&eacute;ateur</th>
+			<th colspan="2">Actions</th>
+		</tr>
+	</thead>
+	 #{list items:decisions, as:'decision'}	
+	<tr>
+		<td>${decision.titre}</td>
+		<td>${decision.description}</td>
+		<td>${decision?.initiator.firstName} ${decision?.initiator.lastName}</td>
+		
+		<td><a href="@{voter(decision.id)}">Voter</a></td>
+		<td><a href="@{remove(decision.id)}">Supprimer</a></td>
+	</tr>
+	 #{/list}
+
+</table>
+
+
+

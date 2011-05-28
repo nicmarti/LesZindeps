@@ -26,17 +26,31 @@
 
 package models;
 
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import org.hibernate.annotations.GenericGenerator;
+
 import play.data.validation.Email;
 import play.data.validation.MaxSize;
 import play.data.validation.Required;
 import play.data.validation.URL;
 import play.db.jpa.GenericModel;
 import play.templates.JavaExtensions;
-
-import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
 
 /**
  * Un Zindep comme son nom l'indique est une espece rare et protegee qui represente un independant.
@@ -122,11 +136,11 @@ public class Zindep extends GenericModel {
 
     @OneToMany(mappedBy = "zindep", cascade = CascadeType.ALL)
     public List<Mission> missions;
-
+    
     @Enumerated(EnumType.STRING)
     public Availability currentAvailability;
-
-
+   
+    
     @Override
     public String toString() {
         return "Zindep {" +

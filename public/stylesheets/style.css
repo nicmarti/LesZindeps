@@ -582,3 +582,10 @@ legend {
 	color: #7e807f;
 }
 
+.positive{
+	background-color: #D1F3D1;
+}
+.negative{
+	background-color: #FFCCCA;
+}
+

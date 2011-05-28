@@ -95,6 +95,15 @@ Zindep(z4):
  techno: Assurance,Spring,J2EE,JEE5,JEE6,Agile,Scrum,Apache Camel,Lucene,Velocity,Tomcat
  bio: Exemple de bio 3
 
+ Zindep(z6):
+ email: damien.gouyette@gmail.com
+ firstName: Damien
+ lastName: GOUYETTE
+ memberSince: 17/01/2009
+ location: Paris
+ techno: Assurance,Spring,J2EE,JEE5,JEE6,Agile,Scrum,Apache Camel,Lucene,Velocity,Tomcat
+ bio: Exemple de bio 3
+
 
 # --------------------------------------------------------------------------------------------------------
 # NE SURTOUT PAS stocker dans ce fichier vos vrais emails et votre linkedInId qui doivent rester secret

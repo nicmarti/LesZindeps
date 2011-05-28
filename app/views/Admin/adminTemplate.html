@@ -21,10 +21,8 @@
     <div class="grid_5">
         <a href="/"><img src="@{'public/images/logo_leszindeps.png'}" alt="Logo les Zindeps"/></a>
     </div>
-
     #{showAdminMenu /}
     #{tagMenuNav /}
-
 </div>
 <div class="container_12" id="mainContent">
 
@@ -33,6 +31,7 @@
     #{a @Admin.importFromLinkedIn(), class:'button small'}Importer mon profil de LinkedIn#{/a}<br/>
     #{a @Admin.listPropals(), class:'button small'}Proposition de mission#{/a}<br/>
     #{a @AdminMissions.showMissions(), class:'button small'}Voir les missions des autres#{/a}<br/>
+    #{a @AdminDecisions.index(), class:'button small'}Historique des décisions#{/a}<br/>
 </div>
 <div class="grid_9">
     #{doLayout /}

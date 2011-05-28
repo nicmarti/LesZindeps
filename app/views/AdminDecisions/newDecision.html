@@ -1,0 +1,51 @@
+#{extends 'Admin/adminTemplate.html' /} 
+#{set title:'Cr&eacute;er un vote' /} 
+
+#{ifErrors}
+<div class="error">
+	<h2>Erreur</h2>
+	<ul>
+		#{errors}
+		<li>${error}</li> 
+		#{/errors}
+	</ul>
+</div>
+#{/ifErrors} 
+
+#{if flash.error}
+<div class="error">
+	<h2>${flash.error}</h2>
+</div>
+#{/if}
+
+#{if flash.success}
+<div class="successbox">${flash.success}</div>
+#{/if}
+
+
+#{jQueryValidate class:models.Decision.class, key:'mission' /}
+    #{form id:'addForm', action:@savePoll()}
+    <fieldset>
+        <legend>Cr&eacute;er un nouveau sondage</legend>
+         #{field 'decision.titre'}
+        <p>
+            <label for="${field.id}">Titre :</label>
+            <input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="${field.errorClass}" size="50" maxlength="255"/>
+            <span class="error">${field.error}</span><br/>
+            <em>Titre du sondage</em>
+        </p>
+        #{/}
+         #{field 'decision.description'}
+        <p>
+            <label for="${field.id}">Description :</label>
+            <textarea id="${field.id}" name="${field.name}" class="${field.errorClass}" rows="5" cols="80">${field.value}</textarea>
+            <span class="error">${field.error}</span><br/>
+            <em>Description</em>
+        </p>
+        #{/}
+    </fieldset>
+    <p class="buttons"><input type="submit" value="Continuer" class="button green"/></p>
+    #{/form}
+    
+
+
