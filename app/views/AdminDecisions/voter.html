@@ -1,0 +1,75 @@
+#{extends 'Admin/adminTemplate.html' /} 
+#{set title:'Faire un choix' /} 
+
+
+#{set 'moreScripts'}
+ <script type="text/javascript">
+ $(document).ready(function() {
+	 $('.vote').click(function(event) {
+		
+		var decisionId=$("#decisionId").val();
+		var optionChoisieId = this.name;
+		var optionChoisieValue = this.checked;
+		var url = #{jsAction @saveVote(':decisionId', ':optionChoisieId', ':optionChoisieValue') /};
+		$.get(url({'decisionId': decisionId, 'optionChoisieId': optionChoisieId, 'optionChoisieValue':optionChoisieValue}), function() {
+        });
+		
+	 });
+ });
+ </script>
+ #{/set}
+
+
+#{ifErrors}
+<div class="error">
+	<h2>Erreur</h2>
+	<ul>
+		#{errors}
+		<li>${error}</li> 
+		#{/errors}
+	</ul>
+</div>
+#{/ifErrors} 
+
+#{if flash.error}
+<div class="error">
+	<h2>${flash.error}</h2>
+</div>
+#{/if}
+#{if flash.success}
+<div class="successbox">${flash.success}</div>
+#{/if}
+<h1>Voter pour la proposition suivante : </h1>
+<form>
+	<input type="hidden" id="decisionId" value="${decision.id}">
+</form>
+<fieldset>
+	<legend>${decision.titre} -  ${decision.initiator.firstName} ${decision.initiator.lastName}</legend>
+	${decision.description}
+	<table class="simpleTable">
+		<thead>
+		<tr>
+			<td>&nbsp;</td>
+		 	#{list items:decision.options, as:'option'}
+				<th>${option.libelle}</th>
+			#{/list}
+		</tr>
+		</thead>
+		#{list items:votes, as:'vote'}
+			<td>${vote.key.firstName} ${vote.key.lastName}</td>
+			#{list items:decision.options, as:'option'}
+					#{if vote.key.equals(currentZindep)}
+						<td><input class="vote" name="${option.id}" type="checkbox" ${vote.value?.contains(option.id) ? 'checked=checked' : ''}/></td>
+					#{/if}
+					#{elseif vote.value?.contains(option.id)}
+						<td class='positive'>&nbsp;</td>
+					#{/elseif}
+					#{else}
+							<td class='negative'>&nbsp;</td>
+					#{/else}
+			#{/list}
+		</tr>
+		#{/list}
+	</table>
+	Le fait de cocher/d&eacute;cocher une case est persist&eacute;
+</fieldset>

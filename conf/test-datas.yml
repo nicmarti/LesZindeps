@@ -95,6 +95,16 @@ Zindep(z4):
  techno: Assurance,Spring,J2EE,JEE5,JEE6,Agile,Scrum,Apache Camel,Lucene,Velocity,Tomcat
  bio: Exemple de bio 3
 
+
+ Zindep(z6):
+ email: damien.gouyette@gmail.com
+ firstName: Damien
+ lastName: GOUYETTE
+ memberSince: 17/01/2009
+ location: Paris
+ techno: Assurance,Spring,J2EE,JEE5,JEE6,Agile,Scrum,Apache Camel,Lucene,Velocity,Tomcat
+ bio: Exemple de bio 3
+
 Propal(p1):
  title: Architecte super mega trop cool qui roxxe des courges
  description: Tu roxxe ? On attend que toi pour la tonte des bugs en milieu hostile. 
@@ -259,6 +269,7 @@ Mission(m5):
  location: Ile de France
  country: France
  exp: 8
+
 
 # --------------------------------------------------------------------------------------------------------
 # NE SURTOUT PAS stocker dans ce fichier vos vrais emails et votre linkedInId qui doivent rester secret

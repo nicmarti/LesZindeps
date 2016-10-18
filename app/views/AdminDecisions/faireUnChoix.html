@@ -1,0 +1,60 @@
+#{extends 'Admin/adminTemplate.html' /} 
+#{set title:'Faire un choix' /} 
+
+#{set 'moreScripts'}
+ <script type="text/javascript">
+ $.fn.addInput = function() {
+	 return this.each(function() {
+		 var ul = this;
+		 $(ul).find(":input").focus(function (event) {
+			 var duplicateLi = $(this).parent().clone(true);
+			 var size = $(ul).find(":input").size();
+			 duplicateLi.find(":input").attr("name", "option_"+size);
+			 duplicateLi.find("label").text("Option "+(size+1));
+			 duplicateLi.appendTo(ul);
+		 });
+	 });
+ }
+ $(document).ready(function() {
+	 $('#options').addInput();
+ });
+ </script>
+ #{/set}
+ 
+ 
+ 
+#{ifErrors}
+<div class="error">
+	<h2>Erreur</h2>
+	<ul>
+		#{errors}
+		<li>${error}</li> 
+		#{/errors}
+	</ul>
+</div>
+#{/ifErrors} 
+
+#{if flash.error}
+<div class="error">
+	<h2>${flash.error}</h2>
+</div>
+#{/if}
+
+#{if flash.success}
+<div class="successbox">${flash.success}</div>
+#{/if}
+
+
+#{jQueryValidate class:models.Decision.class, key:'decision' /}
+    #{form id:'addForm', action:@saveOptions()}
+    <fieldset>
+        <legend>Vos proppositions : </legend>
+            <input type="text" id="id" name="id" value="${decision.id}"  size="50" maxlength="255"/>
+  			 <ul id="options">
+   				<li>
+   					<label>Option 1</label><input type="text" name="option_0"/>
+   				</li>
+			</ul>
+         <p class="buttons"><input type="submit" value="Valider" class="button green"/></p>
+  </fieldset>       
+  #{/form}

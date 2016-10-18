@@ -3,4 +3,8 @@ leszindeps.iws
 tmp
 test-result
 /eclipse
+.classpath
+.project
+.settings/
+.DS_Store
 leszindeps.iml
